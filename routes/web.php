@@ -16,10 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Register
-Route::get('/register', [Register_Controller::class, 'register']);
+// Route::get('/register', [Register_Controller::class, 'register']);
+Route::get('/loginAdmin', [Register_Controller::class, 'loginAdmin']);
+Route::post('/loginAdmin', [Register_Controller::class, 'loginAdmin_post']);
 Route::get('/login', [Register_Controller::class, 'login']);
-Route::post('/login', [Register_Controller::class, 'login_post']);
-
+Route::get('/login', [Register_Controller::class, 'login']);
 // Register End
 
 

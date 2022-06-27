@@ -7,8 +7,14 @@
             <div class="card-header py-3">
                 <h6 class="m-0 font-weight-bold text-primary">Data Instansi</h6>
             </div>
+            <style>
+                .dataTables_filter{
+                    text-align: right;
+                }
+            </style>
             <div class="card-body">
                 <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
+                    
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
                         <thead>
                             <tr>
