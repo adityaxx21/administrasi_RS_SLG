@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('nama');
             $table->string('username')->unique();
             $table->string('email')->unique();
+            $table->string('nomor_induk')->unique();
             $table->string('password');
             $table->integer('role')->default(0);
             $table->rememberToken();

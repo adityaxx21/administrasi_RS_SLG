@@ -13,16 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_siswa', function (Blueprint $table) {
+        Schema::create('tb_pegawai', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_siswa');
-            $table->string('nomor_induk');
-            $table->string('alamat');
-            $table->string('jenis_kelamin');
+            $table->string('id_pegawai');
             $table->string('berkas1');
             $table->string('berkas2');
-            $table->string('berkas3');
-            $table->integer('id_pelayanan')->default(0);
+            $table->integer('verifikasi_1')->default(1);
+            $table->integer('verifikasi_2')->default(1);
+            $table->integer('verifikasi_3')->default(1);
             $table->rememberToken();
             $table->timestamps();
             $table->integer('is_deleted')->default(1);
@@ -36,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_siswa');
+        //
     }
 };

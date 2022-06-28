@@ -28,6 +28,7 @@ Route::get('/login', [Register_Controller::class, 'login']);
 // Admin Page
 
 Route::get('/admin', [Admin_Controller::class, 'index']);
+Route::post('/admin', [Admin_Controller::class, 'tambah_data']);
 // Admin Page End
 
 

@@ -22,8 +22,6 @@ return new class extends Migration
             $table->string('username')->unique();
             $table->string('email')->unique();
             $table->string('password');
-            $table->integer('id_pelayanan')->default(0);
-            $table->integer('id_jenis_pelayanan')->default(0);
             $table->integer('role')->default(0);
             $table->rememberToken();
             $table->timestamps();
