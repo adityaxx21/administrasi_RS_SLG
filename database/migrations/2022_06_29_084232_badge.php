@@ -13,14 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_pegawai', function (Blueprint $table) {
+        Schema::create('tb_text_status', function (Blueprint $table) {
             $table->id();
-            $table->string('id_pegawai');
-            $table->string('berkas1');
-            $table->string('berkas2');
-            $table->integer('verifikasi_1')->default(1);
-            $table->integer('verifikasi_2')->default(1);
-            $table->integer('verifikasi_3')->default(1);
+            $table->string('style');
+            $table->integer('id_status');
             $table->rememberToken();
             $table->timestamps();
             $table->integer('is_deleted')->default(1);
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_pegawai');
+        Schema::dropIfExists('tb_text_status');
     }
 };

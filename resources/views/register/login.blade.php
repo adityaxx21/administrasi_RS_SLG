@@ -41,7 +41,7 @@
                                     <div class="text-center">
                                         <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
                                     </div>
-                                    <form class="user" action="/loginAdmin" method="POST" id="login">
+                                    <form class="user" action="/login" method="POST" id="login">
                                         @csrf
                                         <div class="form-group">
                                             <input type="text" class="form-control form-control-user"

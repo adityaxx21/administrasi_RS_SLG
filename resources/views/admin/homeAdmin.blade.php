@@ -32,7 +32,8 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <form class="modal-body" method="POST" id="add_data" action="/admin" enctype="multipart/form-data">
+                            <form class="modal-body" method="POST" id="add_data" action="/admin"
+                                enctype="multipart/form-data">
                                 @csrf
 
                                 <div class="form-group">
@@ -51,9 +52,10 @@
                                         placeholder="Masukan Alamat Instansi"></textarea>
                                 </div>
                                 <div class="form-group">
+                                    <label for="gambar_instansi_update">Gambar Instansi</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="gambar_instansi"
-                                            name="gambar_instansi" onchange="input_gb(1)">
+                                            name="gambar_instansi" onchange="input_gb('1','gambar_instansi')">
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name1">Choose
                                             file</label>
                                     </div>
@@ -66,8 +68,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Username</label>
-                                    <input type="text" class="form-control" id="username_instansi" name="username_instansi"
-                                        aria-describedby="emailHelp" placeholder="Enter email">
+                                    <input type="text" class="form-control" id="username_instansi"
+                                        name="username_instansi" aria-describedby="emailHelp" placeholder="Enter email">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Jenis</label>
@@ -83,8 +85,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="password_instansi" name="password_instansi"
-                                        placeholder="Password">
+                                    <input type="password" class="form-control" id="password_instansi"
+                                        name="password_instansi" placeholder="Password">
                                 </div>
 
 
@@ -107,17 +109,21 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <form class="modal-body">
-
-                                <div class="form-group"> 
+                            <form id="update_form" method="POST" action="updateAkun" enctype="multipart/form-data" style="
+                            margin: 20px;">
+                                @csrf
+                                <input type="hidden" id="id_data" name="id_data">
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">Nama Pendafter</label>
-                                    <input type="text" class="form-control" id="nama_pendaftar_update" name="nama_pendaftar_update"
-                                        aria-describedby="emailHelp" placeholder="Masukan Nama Pendaftar">
+                                    <input type="text" class="form-control" id="nama_pendaftar_update"
+                                        name="nama_pendaftar_update" aria-describedby="emailHelp"
+                                        placeholder="Masukan Nama Pendaftar">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nama Instansi</label>
-                                    <input type="text" class="form-control" id="nama_instansi_update" name="nama_instansi_update"
-                                        aria-describedby="emailHelp" placeholder="Masukan Nama Instansi">
+                                    <input type="text" class="form-control" id="nama_instansi_update"
+                                        name="nama_instansi_update" aria-describedby="emailHelp"
+                                        placeholder="Masukan Nama Instansi">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Alamat Instansi</label>
@@ -128,7 +134,7 @@
                                     <label for="gambar_instansi_update">Gambar Instansi</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="gambar_instansi_update"
-                                            name="gambar_instansi_update" onchange="input_gb(2)">
+                                            name="gambar_instansi_update" onchange="input_gb('2','gambar_instansi_update')">
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name2">Choose
                                             file</label>
                                     </div>
@@ -141,15 +147,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Username</label>
-                                    <input type="text" class="form-control" id="username_update" name="username_update"
-                                        aria-describedby="emailHelp" placeholder="Enter username">
+                                    <input type="text" class="form-control" id="username_update"
+                                        name="username_update" aria-describedby="emailHelp" placeholder="Enter username">
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Jenis</label>
+                                    <label for="jenis_instansi_update">Jenis</label>
                                     <div class="input-group mb-3">
                                         <select class="custom-select" id="jenis_instansi_update" name="jenis_instansi_update">
                                             <option value="2001" >Instansi</option>
-                                            <option value="2002">Perorangan</option>
+                                            <option value="2002"  >Perorangan</option>
                                         </select>
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="inputGroupSelect02">Options</label>
@@ -159,14 +165,14 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
                                     <input type="password" class="form-control" id="password_update"
-                                        placeholder="Password">
+                                        placeholder="Kosongkan Jika tidak ingin mengganti password">
                                 </div>
 
 
                             </form>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <button class="btn btn-primary">Save</button>
+                                <button class="btn btn-primary" onclick="$('#update_form').submit()">Save</button>
                             </div>
                         </div>
                     </div>
@@ -189,7 +195,7 @@
                                 <tr>
                                     <th>{{ $item->nama_pendaftar }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
-                                    <th>{{ 'Instansi' }}</th>
+                                    <th>{{ $item->role == 2001 ? "Instansi" : "Perorangan" }} </th>
                                     <th>{{ $item->email }}</th>
                                     <th>
                                         <button type="button" class="btn btn-warning"
@@ -210,31 +216,48 @@
         </div>
         <script>
             var id_data;
-            function input_gb(i) {
-                var gambar = $('input[type=file]').val().replace(/C:\\fakepath\\/i, '')
+            var role;
+            var gambar ;
+            function input_gb(i,id) {
+                gambar = $('#'+id).val().replace(/C:\\fakepath\\/i, '')
                 $("#change_name" + i).html(gambar);
             }
 
             function get_data(id) {
-            id_data = id;
-            $('#updateData').modal('show');
-            $.ajax({
-                type: 'GET',
-                url: "/getData_mail/" + id,
-                success: function(data) {
+                id_data = id;
+                
+                $('#updateData').modal('show');
+                $.ajax({
+                    type: 'GET',
+                    url: "/find_data/" + id,
+                    success: function(data) {
 
-                    if ($.isEmptyObject(data.error)) {
-                        // alert(data.data.owner);
-                        $('#id').val(id);
-                        $('#owner').val(data.data.username);
-                        $('#name').val(data.data.email);
-                        $('#desc').val(data.data.message);
-                    } else {
-                        printErrorMsg(data.error);
+                        if ($.isEmptyObject(data.error)) {
+                            // alert(data.data.owner);
+                            $('#id_data').val(id);
+                            $('#nama_pendaftar_update').val(data.data.nama_pendaftar);
+                            $('#nama_instansi_update').val(data.data.nama_instansi);
+                            $('#alamat_instansi_update').val(data.data.alamat_instansi);
+                            $('#email_update').val(data.data.email);
+                            $('#username_update').val(data.data.username);
+                            $('#jenis_instansi_update').val(data.data.role)
+                            // $('#'+data.data.role).attr('selected');
+                            // role = data.data.role;
+                            
+                            
+                            // $('#jenis_instansi_update option:eq(1)');
+                            // const text = data.data.role;
+                            // const $select = document.querySelector('#jenis_instansi_update');
+                            // const $options = Array.from($select.options);
+                            // const optionToSelect = $options.find(item => item.text === text);
+                            // $select.value = optionToSelect.value;
+                            // alert(role);
+                        } else {
+                            printErrorMsg(data.error);
+                        }
                     }
-                }
-            });
-        }
+                });
+            }
         </script>
     </div>
 @endsection

@@ -22,9 +22,9 @@ class Admin_Controller extends Controller
             'alamat_instansi'=>$request->alamat_instansi,
             'username'=>$request->username_instansi,
             'email'=>$request->email_instansi,
-            'password'=>$request->password_instansi,
+            'password'=>md5($request->password_instansi),
             'role'=>$request->jenis_instansi,
-            'created_at'=>$request->date("Y-m-d H:i:s"),
+            'created_at'=>date("Y-m-d H:i:s"),
         ];
         try {
             $name_img =  $request->file('gambar_instansi')->getClientOriginalName();
@@ -43,18 +43,24 @@ class Admin_Controller extends Controller
         return redirect('/admin');
     }
     // Update Data
-    public function update_data(Request $request,$get)
+    public function update_data(Request $request)
     {
+        if (session()->get('username') == "") {
+            return redirect('/login')->with('alert-notif', 'Anda Harus Login Terlebih Dahulu');
+        }
+        $id =  $request->id;
+        $password = $request->password_instansi;
         $get_data = [
             'nama_pendaftar'=>$request->nama_pendaftar,
             'nama_instansi'=>$request->nama_instansi,
             'alamat_instansi'=>$request->alamat_instansi,
             'username'=>$request->username_instansi,
             'email'=>$request->email_instansi,
-            'password'=>$request->password_instansi,
-            'role'=>$request->jenis_instansi,
-            'created_at'=>$request->date("Y-m-d H:i:s"),
+            'updated_at'=>$request->date("Y-m-d H:i:s"),
         ];
+        if ($password != null) {
+            $get_data = array_merge($get_data, ['password' => md5($password)]);
+        }
         try {
             $name_img =  $request->file('gambar_instansi')->getClientOriginalName();
         } catch (\Throwable $th) {
@@ -68,13 +74,14 @@ class Admin_Controller extends Controller
             $get_data = array_merge($get_data, array('gambar_instansi' =>  $img_loc . $name_img));
         }
         // print_r($get_data);
-        DB::table('tb_instansi')->insert($get_data);
+        DB::table('tb_instansi')->where('id',$id)->update($get_data);
         return redirect('/admin');
     }
     // Cari Data
     public function find_data($id)
     {
         $data['data'] = DB::table('tb_instansi')->where([['id', $id], ['is_deleted', 1]])->first();
+        
         return Response()->json($data);
     }
 }

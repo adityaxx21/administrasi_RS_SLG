@@ -13,12 +13,19 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/admin">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
     </li>
-    <!-- Divider -->
     <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/konfirmasi_pembayaran">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Konfirmasi Pembayaran</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <!-- Divider -->
+    
 
 
 </ul>

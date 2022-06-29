@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin_Controller;
+use App\Http\Controllers\KonfirmasiPembayaran_Controller;
 use App\Http\Controllers\Register_Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -17,10 +18,8 @@ use Illuminate\Support\Facades\Route;
 
 // Register
 // Route::get('/register', [Register_Controller::class, 'register']);
-Route::get('/loginAdmin', [Register_Controller::class, 'loginAdmin']);
-Route::post('/loginAdmin', [Register_Controller::class, 'loginAdmin_post']);
-Route::get('/login', [Register_Controller::class, 'login']);
-Route::get('/login', [Register_Controller::class, 'login']);
+Route::get('/login', [Register_Controller::class, 'loginAdmin']);
+Route::post('/login', [Register_Controller::class, 'loginAdmin_post']);
 // Register End
 
 
@@ -29,6 +28,11 @@ Route::get('/login', [Register_Controller::class, 'login']);
 
 Route::get('/admin', [Admin_Controller::class, 'index']);
 Route::post('/admin', [Admin_Controller::class, 'tambah_data']);
+Route::get('/find_data/{id}', [Admin_Controller::class, 'find_data']);
+Route::post('/updateAkun', [Admin_Controller::class, 'update_data']);
+Route::get('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index']);
+Route::post('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index_post']);
+Route::get('/konfirmasi_pembayaran/detail/{id}', [KonfirmasiPembayaran_Controller::class, 'detail_pelayanan']);
 // Admin Page End
 
 
