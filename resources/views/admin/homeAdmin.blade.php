@@ -193,6 +193,7 @@
                         <tbody>
                             @foreach ($instansi as $item)
                                 <tr>
+                                    {{-- <th><img src="{{asset($item->gambar_instansi)}}" alt="" srcset=""></th> --}}
                                     <th>{{ $item->nama_pendaftar }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
                                     <th>{{ $item->role == 2001 ? "Instansi" : "Perorangan" }} </th>

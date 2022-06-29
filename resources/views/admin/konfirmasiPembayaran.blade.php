@@ -25,6 +25,9 @@
                 <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
 
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                        <div>
+                           
+                        </div>
                         <thead>
                             <tr>
                                 <th>Nama Pendaftar</th>
@@ -40,7 +43,7 @@
                                     <th>{{ $item->nama_pendaftar }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
                                     <th>{{ $item->jenis_pelayanan }}</th>
-                                    <th><span class="{{$item->style}}">{{$item->text}}</span></th>
+                                    <th><span class="{{$item->style}}">{{$item->text}}</span>  </th>
                                     <th>
                                         <button type="button" class="btn btn-success"
                                             onclick="success_form({{$item->id}})" {{$item->id_status_pembayaran == 0 || $item->id_status_pembayaran == 3 ? 'disabled' : ""}}><i class="fas fa-check fa-sm "></i>

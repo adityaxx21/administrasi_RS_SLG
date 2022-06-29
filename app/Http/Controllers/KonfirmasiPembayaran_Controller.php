@@ -44,15 +44,17 @@ class KonfirmasiPembayaran_Controller extends Controller
         ->selectRaw('tb_transaksi_pelayanan.*,
                 tb_instansi.nama_pendaftar as nama_pendaftar,
                 tb_instansi.nama_instansi as nama_instansi,
-                tb_jenis_pelayanan.jenis_pelayanan as jenis_pelayanan')
+                tb_jenis_pelayanan.jenis_pelayanan as jenis_pelayanan,
+                tb_jenis_pelayanan.satuan_waktu as satuan_waktu')
         ->leftJoin('tb_instansi', 'tb_instansi.id', '=', 'tb_transaksi_pelayanan.id_instansi')
         ->leftJoin('tb_jenis_pelayanan', 'tb_jenis_pelayanan.id', '=', 'tb_transaksi_pelayanan.id_jenis_pelayanan')
         ->orderBy('tb_transaksi_pelayanan.id', 'ASC')
         ->where([['tb_transaksi_pelayanan.is_deleted', 1],['tb_transaksi_pelayanan.id',$id]])
         ->groupByRaw('tb_transaksi_pelayanan.id')
-        ->get();
+        ->first();
 
-        $data['siswa'] = DB::table('tb_siswa')->where([['is_deleted',1],['id_pelayanan',$id]]);
-        return view('admin.detail_konfirmasi_', $data);
+        $data['siswa'] = DB::table('tb_siswa')->where([['is_deleted',1],['id_pelayanan',$id]])->get();
+        // print_r($data['instansi']);
+        return view('admin.detail_konfirmasi', $data);
     }
 }
