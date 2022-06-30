@@ -17,14 +17,39 @@ class Register_Controller extends Controller
     $username = $request->username;
     $password = md5($request->password);
     $data = DB::table('tb_user')->where([['username',$username],['password',$password],['is_deleted',1]])->first();
-    if ($data->username != null) {
+    if (isset($data->role)) {
         session(['username' => $username]);
         session(['role' => $data->role]);
-        return redirect('admin');
+
+        if ($data->role == 1001) {
+            return redirect('admin');
+        } else if($data->role == 1002) {
+            # code...
+        } else if($data->role == 1003) {
+            # code...
+        }else if($data->role == 1004) {
+            # code...
+        }else if($data->role == 1005) {
+            # code...
+        }
+        
+
+        
     }
     else {
-        return view('register.login');
+        $data = DB::table('tb_instansi')->where([['username',$username],['password',$password],['is_deleted',1]])->first();
+        if (isset($data->username)) {
+            session(['username' => $username]);
+            session(['role' => $data->role]);
+            if ($data->role == 2001) {
+                return redirect('instansi');
+            } else if($data->role == 1002) {
+                # code...
+            }
+            
+        }    
     }
+    return view('register.login');
    }
 
 }

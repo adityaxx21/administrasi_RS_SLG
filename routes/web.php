@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin_Controller;
+use App\Http\Controllers\Instansi_Controller;
 use App\Http\Controllers\KonfirmasiPembayaran_Controller;
 use App\Http\Controllers\Register_Controller;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,11 @@ Route::get('/konfirmasi_pembayaran/detail/{id}', [KonfirmasiPembayaran_Controlle
 
 
 // Instansi Page 
-
+Route::get('/instansi', [Instansi_Controller::class, 'index']);
+Route::post('/instansi', [Instansi_Controller::class, 'index_post']);
+Route::get('/instansi/tambahData/{id}', [Instansi_Controller::class, 'tambahData']);
+Route::post('/instansi/tambahData', [Instansi_Controller::class, 'tambahData_post']);
+// Route::get('/instansi', [Admin_Controller::class, 'index']);
 
 // Instansi Page End
 
