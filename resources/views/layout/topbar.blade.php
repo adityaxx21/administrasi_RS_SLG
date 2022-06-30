@@ -9,10 +9,8 @@
         </svg><!-- <i class="fas fa-bars"></i> Font Awesome fontawesome.com --></button>
 
     <!-- Topbar Search -->
-
     <!-- Topbar Navbar -->
     <ul class="navbar-nav ml-auto">
-
         <!-- Nav Item - Search Dropdown (Visible Only XS) -->
         <li class="nav-item dropdown no-arrow d-sm-none">
             <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"

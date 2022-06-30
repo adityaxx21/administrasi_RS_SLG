@@ -21,7 +21,9 @@
                 {{-- Input Data --}}
                 {{-- Update Data --}}
    
-
+                <div>
+                    
+                </div>
                 <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
 
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">

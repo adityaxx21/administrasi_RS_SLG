@@ -42,6 +42,9 @@ Route::get('/instansi', [Instansi_Controller::class, 'index']);
 Route::post('/instansi', [Instansi_Controller::class, 'index_post']);
 Route::get('/instansi/tambahData/{id}', [Instansi_Controller::class, 'tambahData']);
 Route::post('/instansi/tambahData', [Instansi_Controller::class, 'tambahData_post']);
+Route::post('/tambahSiswa_post', [Instansi_Controller::class, 'tambahSiswa_post']);
+Route::post('/bayar', [Instansi_Controller::class, 'bayar']);
+
 // Route::get('/instansi', [Admin_Controller::class, 'index']);
 
 // Instansi Page End
