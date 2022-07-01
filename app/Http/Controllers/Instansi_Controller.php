@@ -24,6 +24,7 @@ class Instansi_Controller extends Controller
             ->where([['tb_transaksi_pelayanan.is_deleted', 1], ['tb_instansi.username', session()->get('username')]])
             ->groupByRaw('tb_transaksi_pelayanan.id')
             ->get();
+        $data['data_instansi'] = DB::table('tb_instansi')->where('username', session()->get('username'))->first();
         $data['jenis_pelayanan'] = DB::table('tb_jenis_pelayanan')->where('is_deleted', 1)->get();
 
         return view('instansi.homeInstansi', $data);
@@ -76,6 +77,7 @@ class Instansi_Controller extends Controller
             'total_biaya_pelayanan' => $durasi_pelayanan * $biaya_orang * $jumlah_pelayan,
             'updated_at' => date("Y-m-d H:i:s"),
         ];
+        // print_r($get_data);
         DB::table('tb_transaksi_pelayanan')->where('id', $id)->update($get_data);
         return redirect('/instansi/tambahData/' . $id);
     }
@@ -130,7 +132,7 @@ class Instansi_Controller extends Controller
         }
         // print_r($get_data);
         DB::table('tb_transaksi_pelayanan')->where('id', $id)->update($get_data);
-        return redirect('/instansi/tambahData/' . $id);
+        return redirect('/instansi');
     }
 
     public function doc_input($data, $get_data, $i)

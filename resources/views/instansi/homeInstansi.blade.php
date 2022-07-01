@@ -40,7 +40,7 @@
                                 enctype="multipart/form-data">
                                 @csrf
                                 <input type="hidden" id="id_instansi" name="id_instansi"
-                                    value="{{ $instansi[0]->id_instansi }}">
+                                    value="{{$data_instansi->id }}">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Jenis</label>
                                     <div class="input-group mb-3">
@@ -95,13 +95,13 @@
                                     <th><span class="{{ $item->style }}">{{ $item->text }}</span> </th>
 
                                     <th>
-                                        <button type="button" class="btn btn-success"
+                                        {{-- <button type="button" class="btn btn-success"
                                             onclick="success_form({{ $item->id }})"
                                             {{ $item->id_status_pembayaran != 1 ? 'disabled' : '' }}><i
                                                 class="fas fa-check fa-sm "></i>
-                                            Bayar</button>
+                                            Bayar</button> --}}
                                         <button type="button" class="btn btn-warning"
-                                            onclick="$('#updateData').modal('show');"><i class="fas fa-edit fa-sm "></i>
+                                            onclick="location.replace('/instansi/tambahData/'+{{$item->id}})" {{ $item->id_status_pembayaran != 1 ? 'disabled' : '' }}><i class="fas fa-edit fa-sm "></i>
                                             Update</button>
                                         <button type="button" class="btn btn-danger"
                                             onclick="reject_form({{ $item->id }})"

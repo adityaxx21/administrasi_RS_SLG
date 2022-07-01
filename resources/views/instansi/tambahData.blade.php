@@ -81,7 +81,7 @@
                                             <input type="text" class="form-control" id="biaya_orang"
                                                 name="biaya_orang" aria-describedby="emailHelp"
                                                 placeholder="Masukan Nama Pendaftar"
-                                                value=" {{ $instansi->nama_instansi }}" readonly>
+                                                value="" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +107,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Total Biaya</label>
-                                    <input readonly type="text" value="{{ $instansi->total_biaya_pelayanan }}"
+                                    <input readonly type="text" value="{{  $instansi->total_biaya_pelayanan }}"
                                         class="form-control" id="biaya" name="biaya" aria-describedby="emailHelp"
                                         placeholder="Durasi Pelayanan">
                                 </div>
@@ -116,12 +116,12 @@
                                         <div class="col">
                                         </div>
                                         <div class="col text-right">
-                                            <button class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
-                                                onclick="location.replace('/instansi');"><i
-                                                    class="fas fa-arrow-left fa-sm "></i> Kembali </button>
+                                            <a href="/instansi" class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
+                                           ><i class="fas fa-arrow-left fa-sm "></i>
+                                            Kembali </a>
                                             <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                                                onclick=" $('#tambahData').modal('show');"><i
-                                                    class="fas fa-plus fa-sm text-white-50"></i> Tambah Siswa</button>
+                                                onclick=" $('#add_data').submit();"><i
+                                                    class="fas fa-plus fa-sm text-white-50"></i> Ubah Data</button>
                                         </div>
                                     </div>
                                 </div>
@@ -291,9 +291,9 @@
 
                                 </div>
                                 <div class="col text-right">
-                                    <button class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
-                                        onclick="location.replace('/instansi');"><i class="fas fa-arrow-left fa-sm "></i>
-                                        Kembali </button>
+                                    <a class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
+                                        href="/instansi"><i class="fas fa-arrow-left fa-sm "></i>
+                                        Kembali </a>
                                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                                         onclick=" $('#tambahData').modal('show');"><i
                                             class="fas fa-plus fa-sm text-white-50"></i> Tambah Siswa</button>
@@ -348,8 +348,8 @@
 
                                 </div>
                                 <div class="col text-right">
-                                    <button class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
-                                        onclick="location.replace('/instansi');"><i class="fas fa-arrow-left fa-sm "></i> Kembali </button>
+                                    <a class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
+                                        href="/instansi"><i class="fas fa-arrow-left fa-sm "></i> Kembali </a>
                                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                                         onclick=" $('#bayar_sekarang').submit();"><i class="fas fa-plus fa-sm text-white-50"></i> Bayar Sekarang</button>
                                 </div>
