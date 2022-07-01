@@ -70,7 +70,7 @@
                                 <th>Verifikasi 2</th>
                                 <th>Verifikasi 3</th>
                                 <th>Berkas</th>
-                                {{-- <th></th> --}}
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -97,12 +97,7 @@
                                         @endif
                                     </th>
 
-                                    {{-- <th>
-                                        <button type="button" class="btn btn-success"
-                                            onclick="success_form({{ $item->id }})"
-                                            {{ $item->id_status_pembayaran != 1 ? 'disabled' : '' }}><i
-                                                class="fas fa-check fa-sm "></i>
-                                            Bayar</button>
+                                    <th>
                                         <button type="button" class="btn btn-warning"
                                             onclick="$('#updateData').modal('show');"><i class="fas fa-edit fa-sm "></i>
                                             Update</button>
@@ -111,7 +106,7 @@
                                             {{ $item->id_status_pembayaran != 1 ? 'disabled' : '' }}><i
                                                 class="fas fa-ban fa-sm "></i>
                                             Hapus</button>
-                                    </th> --}}
+                                    </th>
                                 </tr>
                             @endforeach
 

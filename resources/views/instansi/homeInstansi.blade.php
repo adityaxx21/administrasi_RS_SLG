@@ -101,11 +101,11 @@
                                                 class="fas fa-check fa-sm "></i>
                                             Bayar</button> --}}
                                         <button type="button" class="btn btn-warning"
-                                            onclick="location.replace('/instansi/tambahData/'+{{$item->id}})" {{ $item->id_status_pembayaran != 1 ? 'disabled' : '' }}><i class="fas fa-edit fa-sm "></i>
+                                            onclick="location.replace('/instansi/tambahData/'+{{$item->id}})" {{ $item->id_status_pembayaran != 0 && $item->id_status_pembayaran != 2 ? '' : 'disabled' }}><i class="fas fa-edit fa-sm "></i>
                                             Update</button>
                                         <button type="button" class="btn btn-danger"
                                             onclick="reject_form({{ $item->id }})"
-                                            {{ $item->id_status_pembayaran != 1 ? 'disabled' : '' }}><i
+                                            {{ $item->id_status_pembayaran != 0 && $item->id_status_pembayaran != 2 ? '' : 'disabled' }}><i
                                                 class="fas fa-ban fa-sm "></i>
                                             Hapus</button>
                                     </th>

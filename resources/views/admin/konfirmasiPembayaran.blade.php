@@ -81,11 +81,11 @@
                 $("#change_name" + i).html(gambar);
             }
 
-            // function success_form(id) {
-            //     $('#id_data').val(id);
-            //     $('#status').val(0);
-            //     $('#submit_it').submit();
-            // }
+            function success_form(id) {
+                $('#id_data').val(id);
+                $('#status').val(0);
+                $('#submit_it').submit();
+            }
             function reject_form(id) {
                 $('#id_data').val(id);
                 $('#status').val(3);

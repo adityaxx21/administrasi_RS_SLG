@@ -22,6 +22,8 @@ use Illuminate\Support\Facades\Route;
 // Register
 // Route::get('/register', [Register_Controller::class, 'register']);
 Route::get('/login', [Register_Controller::class, 'loginAdmin']);
+Route::get('/logout', [Register_Controller::class, 'logout']);
+
 Route::post('/login', [Register_Controller::class, 'loginAdmin_post']);
 // Register End
 
