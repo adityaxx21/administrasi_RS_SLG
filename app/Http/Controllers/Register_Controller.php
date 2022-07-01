@@ -31,17 +31,17 @@ class Register_Controller extends Controller
             
     }    
     }
-    if ($data->role == 1001) {
+    if (isset($data->role) == 1001) {
         return redirect('admin');
-    } else if($data->role == 1002) {
+    } else if(isset($data->role) == 1002) {
         return redirect('pegawai');
-    } else if($data->role == 1003) {
+    } else if(isset($data->role) == 1003) {
         return redirect('verifikator_1');
-    }else if($data->role == 1004) {
+    }else if(isset($data->role) == 1004) {
         return redirect('verifikator_2');
-    }else if($data->role == 1005) {
+    }else if(isset($data->role) == 1005) {
         return redirect('verifikator_3');
-    }else if($data->role == 2001) {
+    }else if(isset($data->role) == 2001) {
         return redirect('instansi');
     } else {
         return view('register.login');
