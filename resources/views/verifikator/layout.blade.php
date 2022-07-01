@@ -31,7 +31,7 @@
     <div id="wrapper">
 
         <!-- Sidebar -->
-        @include('pegawai.sidebar_verifikator')
+        @include('verifikator.sidebar_verifikator')
         <!-- End of Sidebar -->
 
         <!-- Content Wrapper -->

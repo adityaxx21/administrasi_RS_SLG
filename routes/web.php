@@ -5,6 +5,7 @@ use App\Http\Controllers\Instansi_Controller;
 use App\Http\Controllers\KonfirmasiPembayaran_Controller;
 use App\Http\Controllers\Pegawai_Controller;
 use App\Http\Controllers\Register_Controller;
+use App\Http\Controllers\Verifikator_Controller;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -59,3 +60,6 @@ Route::post('/pegawai', [Pegawai_Controller::class, 'index_post']);
 // Pegawai Page End
 
 
+// Verifikator
+Route::get('/verifikasi', [Verifikator_Controller::class, 'index']);
+// Verifikator End
