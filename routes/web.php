@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin_Controller;
 use App\Http\Controllers\Instansi_Controller;
 use App\Http\Controllers\KonfirmasiPembayaran_Controller;
+use App\Http\Controllers\Pegawai_Controller;
 use App\Http\Controllers\Register_Controller;
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,8 @@ Route::post('/bayar', [Instansi_Controller::class, 'bayar']);
 
 
 // Pegawai Page
+Route::get('/pegawai', [Pegawai_Controller::class, 'index']);
+Route::post('/pegawai', [Pegawai_Controller::class, 'index_post']);
 
 // Pegawai Page End
 

@@ -1,11 +1,10 @@
-@extends('instansi.layout')
+@extends('pegawai.layout')
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                onclick=" $('#tambahData').modal('show');"><i class="fas fa-plus fa-sm text-white-50"></i> Tambah
-                Pelayanan</button>
+                onclick=" $('#tambahData').modal('show');"><i class="fas fa-plus fa-sm text-white-50"></i> Buat Permohonan</button>
 
 
         </div>
@@ -22,7 +21,7 @@
             <div class="card-body">
                 <!-- Vertically centered modal -->
                 {{-- Input Data --}}
-                <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataTitle"
+                {{-- <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataTitle"
                     style="display: none;" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" style="max-width:50%">
                         <div class="modal-content">
@@ -32,10 +31,6 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <script>
-                                var biaya;
-                                var satuan_waktu
-                            </script>
                             <form class="modal-body" method="POST" id="add_data" action="/instansi"
                                 enctype="multipart/form-data">
                                 @csrf
@@ -62,7 +57,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
                 {{-- Update Data --}}
 
                 <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
@@ -70,31 +65,39 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Jenis Pelayanan</th>
-                                <th>Jumlah Pelayanan</th>
-                                <th>Total Biaya Pelayanan</th>
-                                <th>Nota</th>
-                                <th>Status</th>
-                                <th></th>
+                                <th>Keperluan</th>
+                                <th>Verifikasi 1</th>
+                                <th>Verifikasi 2</th>
+                                <th>Verifikasi 3</th>
+                                <th>Berkas</th>
+                                {{-- <th></th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($instansi as $item)
+                            @foreach ($pegawai as $key=>$item)
                                 <tr>
-                                    <th>{{ $item->jenis_pelayanan }}</th>
-                                    <th>{{ $item->jumlah_pelayanan }}</th>
-                                    <th>{{ $item->total_biaya_pelayanan }}</th>
+                                    <th>{{ $item->keperluan }}</th>
+                                    @foreach ($style as $value)
+                                        @if ($item->verifikasi_1 == $value->id_status)
+                                        <th> <span class="{{$value->style}}">{{ $value->text }}</span>  </th> 
+                                        @endif
+                                        @if ($item->verifikasi_2 == $value->id_status)
+                                        <th> <span class="{{$value->style}}">{{ $value->text }}</span>  </th>  
+                                        @endif
+                                        @if ($item->verifikasi_3 == $value->id_status)
+                                        <th> <span class="{{$value->style}}">{{ $value->text }}</span>  </th> 
+                                        @endif
+                                    @endforeach
                                     <th>
-                                        @if ($item->id_status_pembayaran == 0)
+                                        @if ($item->verifikasi_1 == 10 && $item->verifikasi_2 == 10 && $item->verifikasi_3 == 10)
                                             <button type="button" class="btn btn-success"
                                                 onclick="success_form({{ $item->id }})"><i
                                                     class="fas fa-file fa-sm "></i>
                                             </button>
                                         @endif
                                     </th>
-                                    <th><span class="{{ $item->style }}">{{ $item->text }}</span> </th>
 
-                                    <th>
+                                    {{-- <th>
                                         <button type="button" class="btn btn-success"
                                             onclick="success_form({{ $item->id }})"
                                             {{ $item->id_status_pembayaran != 1 ? 'disabled' : '' }}><i
@@ -108,7 +111,7 @@
                                             {{ $item->id_status_pembayaran != 1 ? 'disabled' : '' }}><i
                                                 class="fas fa-ban fa-sm "></i>
                                             Hapus</button>
-                                    </th>
+                                    </th> --}}
                                 </tr>
                             @endforeach
 

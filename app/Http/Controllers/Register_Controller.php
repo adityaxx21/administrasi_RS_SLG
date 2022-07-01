@@ -24,15 +24,16 @@ class Register_Controller extends Controller
         if ($data->role == 1001) {
             return redirect('admin');
         } else if($data->role == 1002) {
-            # code...
+            return redirect('pegawai');
         } else if($data->role == 1003) {
-            # code...
+            return redirect('verifikator_1');
         }else if($data->role == 1004) {
-            # code...
+            return redirect('verifikator_2');
         }else if($data->role == 1005) {
-            # code...
+            return redirect('verifikator_3');
+        }else if($data->role == 2001) {
+            return redirect('instansi');
         }
-        
 
         
     }
