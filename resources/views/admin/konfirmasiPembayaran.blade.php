@@ -32,6 +32,7 @@
                         </div>
                         <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Nama Pendaftar</th>
                                 <th>Instansi</th>
                                 <th>Jenis Pelayanan</th>
@@ -42,7 +43,7 @@
                         <tbody>
                             @foreach ($instansi as $item)
                                 <tr>
-                                    <th>{{ $item->nama_pendaftar }}</th>
+                                    <th>{{ $item->id }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
                                     <th>{{ $item->jenis_pelayanan }}</th>
                                     <th><span class="{{$item->style}}">{{$item->text}}</span>  </th>

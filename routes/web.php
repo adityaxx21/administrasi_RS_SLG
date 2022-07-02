@@ -57,7 +57,13 @@ Route::post('/bayar', [Instansi_Controller::class, 'bayar']);
 
 // Pegawai Page
 Route::get('/pegawai', [Pegawai_Controller::class, 'index']);
-Route::post('/pegawai', [Pegawai_Controller::class, 'index_post']);
+Route::get('/find_data_pegawai/{id}', [Pegawai_Controller::class, 'find_data']);
+Route::post('/pegawai_post', [Pegawai_Controller::class, 'index_post']);
+Route::post('/pegawai_update', [Pegawai_Controller::class, 'index_update']);
+Route::post('/pegawai_delete', [Pegawai_Controller::class, 'index_delete']);
+
+
+
 
 // Pegawai Page End
 

@@ -22,10 +22,16 @@ class Verifikator_Controller extends Controller
     return view('verifikator.homeVerifikator',$data);
    }
 
-   public function verifikasi()
+   public function index_post(Request $request)
    {
-     if ($role == 200) {
-        # code...
+     if (session()->get('role') == 10003) {
+       $get_data = ['verifikasi_1'=>$request->verifikasi];
+     } elseif (session()->get('role') == 10004){
+        $get_data = ['verifikasi_2'=>$request->verifikasi];
+     } elseif (session()->get('role') == 10005) {
+        $get_data = ['verifikasi_3'=>$request->verifikasi];
      }
+     DB::table('tb_pegawai')->where('id',$request->id_data)->update($get_data);
+     redirect('/verifikator');
    }
 }
