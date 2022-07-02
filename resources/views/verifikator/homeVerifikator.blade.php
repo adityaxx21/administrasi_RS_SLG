@@ -4,7 +4,8 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
             <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                onclick=" $('#tambahData').modal('show');"><i class="fas fa-plus fa-sm text-white-50"></i> Buat Permohonan</button>
+                onclick=" $('#tambahData').modal('show');"><i class="fas fa-plus fa-sm text-white-50"></i> Buat
+                Permohonan</button>
 
 
         </div>
@@ -19,83 +20,62 @@
                 }
             </style>
             <div class="card-body">
-                <!-- Vertically centered modal -->
-                {{-- Input Data --}}
-                {{-- <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataTitle"
-                    style="display: none;" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" style="max-width:50%">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Instansi</h5>
-                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">×</span>
-                                </button>
-                            </div>
-                            <form class="modal-body" method="POST" id="add_data" action="/instansi"
-                                enctype="multipart/form-data">
-                                @csrf
-                                <input type="hidden" id="id_instansi" name="id_instansi"
-                                    value="{{ $instansi[0]->id_instansi }}">
-                                <div class="form-group">
-                                    <label for="exampleInputPassword1">Jenis</label>
-                                    <div class="input-group mb-3">
-                                        <select class="custom-select" id="jenis_pelayanan" name="jenis_pelayanan"
-                                            onchange="input_data($('#jenis_pelayanan').val())">
-                                            @foreach ($jenis_pelayanan as $key => $item)
-                                                <option value="{{ $item->id }}">{{ $item->jenis_pelayanan }}</option>
-                                            @endforeach
-                                        </select>
-                                        <div class="input-group-append">
-                                            <label class="input-group-text" for="inputGroupSelect02">Options</label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            <div class="modal-footer">
-                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <button class="btn btn-primary" onclick="$('#add_data').submit()">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div> --}}
-                {{-- Update Data --}}
 
                 <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
 
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Nama Pegawai</th>
+                                <th>Nomor Induk</th>
                                 <th>Keperluan</th>
                                 <th>Verifikasi 1</th>
                                 <th>Verifikasi 2</th>
                                 <th>Verifikasi 3</th>
-                                <th>Berkas</th>
+                                <th>Berkas 1</th>
+                                <th>Berkas 2</th>
+                                <th></th>
                                 {{-- <th></th> --}}
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pegawai as $key=>$item)
+                            @foreach ($pegawai as $key => $item)
                                 <tr>
+                                    <th>{{ $item->nama }}</th>
+                                    <th>{{ $item->nomor_induk }}</th>
                                     <th>{{ $item->keperluan }}</th>
                                     @foreach ($style as $value)
                                         @if ($item->verifikasi_1 == $value->id_status)
-                                        <th> <span class="{{$value->style}}">{{ $value->text }}</span>  </th> 
+                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
                                         @endif
                                         @if ($item->verifikasi_2 == $value->id_status)
-                                        <th> <span class="{{$value->style}}">{{ $value->text }}</span>  </th>  
+                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
                                         @endif
                                         @if ($item->verifikasi_3 == $value->id_status)
-                                        <th> <span class="{{$value->style}}">{{ $value->text }}</span>  </th> 
+                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
                                         @endif
                                     @endforeach
                                     <th>
-                                        @if ($item->verifikasi_1 == 10 && $item->verifikasi_2 == 10 && $item->verifikasi_3 == 10)
-                                            <button type="button" class="btn btn-success"
-                                                onclick="success_form({{ $item->id }})"><i
-                                                    class="fas fa-file fa-sm "></i>
-                                            </button>
-                                        @endif
+                                        <button type="button" class="btn btn-success"
+                                            onclick="success_form({{ $item->id }})"><i class="fas fa-file fa-sm "></i>
+                                        </button>
                                     </th>
+                                    <th>
+                                        <button type="button" class="btn btn-success"
+                                            onclick="success_form({{ $item->id }})"><i class="fas fa-file fa-sm "></i>
+                                        </button>
+                                    </th>
+                                    <th>
+                                            <button type="button" class="btn btn-success"
+                                                onclick=" sumbit_it({{ $item->id }},10)"><i
+                                                    class="fas fa-edit fa-sm "></i>
+                                                Setujui</button>
+                                            <button type="button" class="btn btn-danger"
+                                                onclick=" sumbit_it({{ $item->id }},12)"><i
+                                                    class="fas fa-ban fa-sm "></i>
+                                                Tolak</button>
+                                    </th>
+
 
                                     {{-- <th>
                                         <button type="button" class="btn btn-success"
@@ -114,59 +94,24 @@
                                     </th> --}}
                                 </tr>
                             @endforeach
-
+                          
 
                         </tbody>
                     </table>
                 </div>
             </div>
+            <form action="/verifikasi_post" method="post" id="post_it" hidden>
+                @csrf
+                <input type="text" name="verifikasi" id="verifikasi" >
+                <input type="text" name="id_data" id="id_data">
+            </form>
         </div>
         <script>
-            var id_data;
-            var role;
-            var gambar;
-
-
-
-            function input_gb(i, id) {
-                gambar = $('#' + id).val().replace(/C:\\fakepath\\/i, '')
-                $("#change_name" + i).html(gambar);
-            }
-
-            function get_data(id) {
-                id_data = id;
-
-                $('#updateData').modal('show');
-                $.ajax({
-                    type: 'GET',
-                    url: "/find_data/" + id,
-                    success: function(data) {
-
-                        if ($.isEmptyObject(data.error)) {
-                            // alert(data.data.owner);
-                            $('#id_data').val(id);
-                            $('#nama_pendaftar_update').val(data.data.nama_pendaftar);
-                            $('#nama_instansi_update').val(data.data.nama_instansi);
-                            $('#alamat_instansi_update').val(data.data.alamat_instansi);
-                            $('#email_update').val(data.data.email);
-                            $('#username_update').val(data.data.username);
-                            $('#jenis_instansi_update').val(data.data.role)
-                            // $('#'+data.data.role).attr('selected');
-                            // role = data.data.role;
-
-
-                            // $('#jenis_instansi_update option:eq(1)');
-                            // const text = data.data.role;
-                            // const $select = document.querySelector('#jenis_instansi_update');
-                            // const $options = Array.from($select.options);
-                            // const optionToSelect = $options.find(item => item.text === text);
-                            // $select.value = optionToSelect.value;
-                            // alert(role);
-                        } else {
-                            printErrorMsg(data.error);
-                        }
-                    }
-                });
+            function sumbit_it(id, status) {
+                $('#verifikasi').val(status);
+                $('#id_data').val(id);
+                // alert($('#verifikasi').val());
+                $('#post_it').submit();       
             }
         </script>
     </div>
