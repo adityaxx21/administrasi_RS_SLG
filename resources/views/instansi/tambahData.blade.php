@@ -239,6 +239,7 @@
                                 <tbody>
                                     @foreach ($siswa as $item)
                                         <tr>
+                                            <th>{{$item->id}}</th>
                                             <th>{{ $item->nama_siswa }}</th>
                                             <th>{{ $item->nomor_induk }}</th>
                                             <th>{{ $item->jenis_kelamin }}</th>

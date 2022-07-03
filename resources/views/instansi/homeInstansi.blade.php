@@ -70,6 +70,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
+                                <th>Id</th>
                                 <th>Jenis Pelayanan</th>
                                 <th>Jumlah Pelayanan</th>
                                 <th>Total Biaya Pelayanan</th>
@@ -81,6 +82,7 @@
                         <tbody>
                             @foreach ($instansi as $item)
                                 <tr>
+                                    <th>Id</th>
                                     <th>{{ $item->jenis_pelayanan }}</th>
                                     <th>{{ $item->jumlah_pelayanan }}</th>
                                     <th>{{ $item->total_biaya_pelayanan }}</th>

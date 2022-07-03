@@ -183,7 +183,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                {{-- <th>Id</th> --}}
+                                <th>Id</th>
                                 <th>Nama Pendaftar</th>
                                 <th>Instansi</th>
                                 <th>Jenis Instansi</th>
@@ -195,7 +195,7 @@
                             @foreach ($instansi as $item)
                                 <tr>
                                     {{-- <th><img src="{{asset($item->gambar_instansi)}}" alt="" srcset=""></th> --}}
-                                    {{-- <th>{{ $item->id }}</th> --}}
+                                    <th>{{ $item->id }}</th>
                                     <th>{{ $item->nama_pendaftar }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
                                     <th>{{ $item->role == 2001 ? "Instansi" : "Perorangan" }} </th>

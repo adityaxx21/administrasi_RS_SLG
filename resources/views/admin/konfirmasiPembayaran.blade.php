@@ -43,6 +43,7 @@
                         <tbody>
                             @foreach ($instansi as $item)
                                 <tr>
+                                    
                                     <th>{{ $item->id }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
                                     <th>{{ $item->jenis_pelayanan }}</th>
