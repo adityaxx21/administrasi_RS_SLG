@@ -24,7 +24,7 @@
                 <div>
                     
                 </div>
-                <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
+                <div class="table-responsive" style="text-overflow:ellipsis;white-space:nowrap;">
 
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <div>
@@ -45,6 +45,7 @@
                                 <tr>
                                     
                                     <th>{{ $item->id }}</th>
+                                    <th>{{ $item->nama_pendaftar }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
                                     <th>{{ $item->jenis_pelayanan }}</th>
                                     <th><span class="{{$item->style}}">{{$item->text}}</span>  </th>

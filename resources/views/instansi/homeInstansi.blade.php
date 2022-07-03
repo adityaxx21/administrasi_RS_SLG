@@ -82,7 +82,7 @@
                         <tbody>
                             @foreach ($instansi as $item)
                                 <tr>
-                                    <th>Id</th>
+                                    <th>{{$item->id}}</th>
                                     <th>{{ $item->jenis_pelayanan }}</th>
                                     <th>{{ $item->jumlah_pelayanan }}</th>
                                     <th>{{ $item->total_biaya_pelayanan }}</th>
