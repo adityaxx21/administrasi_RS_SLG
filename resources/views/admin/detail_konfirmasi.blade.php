@@ -113,14 +113,14 @@
                                 <th>{{ $item->nama_siswa }}</th>
                                 <th>{{ $item->nomor_induk }}</th>
                                 <th>{{ $item->jenis_kelamin }}</th>
-                                <th><button type="button" class="btn btn-success"
-                                        onclick="success_form({{ $item->id }})"><i class="fas fa-file fa-sm "></i>
+                                <th><button type="button" class="btn btn-success trgt_download"
+                                        onclick="download('{{$item->berkas1}}')" {{$item->berkas1 == null ? "hidden" : ""}}><i class="fas fa-file fa-sm "></i>
                                     </button> </th>
                                 <th><button type="button" class="btn btn-success"
-                                        onclick="success_form({{ $item->id }})"><i class="fas fa-file fa-sm "></i>
+                                    onclick="download('{{$item->berkas2}}')" {{$item->berkas2 == null ? "hidden" : ""}}><i class="fas fa-file fa-sm "></i>
                                     </button> </th>
                                 <th><button type="button" class="btn btn-success"
-                                        onclick="success_form({{ $item->id }})"><i class="fas fa-file fa-sm "></i>
+                                        onclick="download('{{$item->berkas3}}')" {{$item->berkas3 == null ? "hidden" : ""}}><i class="fas fa-file fa-sm "></i>
                                     </button> </th>
                             </tr>
                         @endforeach
@@ -145,6 +145,10 @@
             </form>
         </div>
         <script>
+            function download(params) {
+                window.open(params, '_blank');
+            }
+           
             var id_data;
             var role;
             var gambar;

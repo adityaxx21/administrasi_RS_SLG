@@ -176,7 +176,7 @@
                                     <label for="gambar_instansi_update">File Pendukung 1</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc1" name="doc1"
-                                            onchange="input_gb('1','doc1')">
+                                            onchange="input_gb('1','doc1')" accept="image/*, application/pdf, application/doc">
                                         <label class="custom-file-label" for="doc1" id="change_name1">Choose
                                             file</label>
                                     </div>
@@ -185,7 +185,7 @@
                                     <label for="gambar_instansi_update">File Pendukung 2</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc2" name="doc2"
-                                            onchange="input_gb('2','doc2')">
+                                            onchange="input_gb('2','doc2')" accept="image/*, application/pdf, application/doc, application/docx">
                                         <label class="custom-file-label" for="doc2" id="change_name2">Choose
                                             file</label>
                                     </div>
@@ -194,7 +194,7 @@
                                     <label for="gambar_instansi_update">File Pendukung 3</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc3" name="doc3"
-                                            onchange="input_gb('3','doc3')">
+                                            onchange="input_gb('3','doc3')" accept="image/*, application/pdf, application/doc">
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name3">Choose
                                             file</label>
                                     </div>
@@ -227,6 +227,7 @@
                                 </div>
                                 <thead>
                                     <tr>
+                                        <th>Id</th>
                                         <th>Nama Pendaftar</th>
                                         <th>Nomor Induk</th>
                                         <th>Jenis Kelamin</th>
@@ -272,11 +273,11 @@
                                             <th>
                                                 <button type="button" class="btn btn-warning"
                                                     onclick="success_form({{ $item->berkas3 }})"><i
-                                                        class="fas fa-edit fa-sm "></i>update
+                                                        class="fas fa-edit fa-sm "></i> update
                                                 </button>
                                                 <button type="button" class="btn btn-danger"
                                                     onclick="success_form({{ $item->berkas3 }})"><i
-                                                        class="fas fa-ban fa-sm "></i>delete
+                                                        class="fas fa-ban fa-sm "></i> delete
                                                 </button>
                                             </th>
                                     @endforeach
