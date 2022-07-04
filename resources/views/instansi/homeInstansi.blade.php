@@ -89,7 +89,7 @@
                                     <th>
                                         @if ($item->id_status_pembayaran == 0)
                                             <button type="button" class="btn btn-success"
-                                                onclick="success_form({{ $item->id }})"><i
+                                                onclick="window.open('invoice/{{ $item->id }}','_blank' )"><i
                                                     class="fas fa-file fa-sm "></i>
                                             </button>
                                         @endif

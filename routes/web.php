@@ -72,3 +72,7 @@ Route::post('/pegawai_delete', [Pegawai_Controller::class, 'index_delete']);
 Route::get('/verifikasi', [Verifikator_Controller::class, 'index']);
 Route::post('/verifikasi_post', [Verifikator_Controller::class, 'index_post']);
 // Verifikator End
+
+// Invoice 
+Route::get('/invoice/{id}', [Instansi_Controller::class, 'invoice']);
+// End Invoice

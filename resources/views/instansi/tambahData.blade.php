@@ -202,7 +202,7 @@
                             </form>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                                <button class="btn btn-primary" onclick="$('#tambah_data').submit()">Save</button>
+                                <button class="btn btn-primary" onclick="$('#tambah_data').submit();">Save</button>
                             </div>
                         </div>
                     </div>
