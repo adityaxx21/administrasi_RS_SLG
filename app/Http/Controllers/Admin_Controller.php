@@ -86,4 +86,9 @@ class Admin_Controller extends Controller
         
         return Response()->json($data);
     }
+    public function delete_instansi(Request $request)
+    {
+        DB::table('tb_instansi')->where('id',$request->id_hapus)->update(['is_deleted'=>0]);
+        return redirect('/admin');
+    }
 }

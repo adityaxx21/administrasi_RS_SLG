@@ -33,6 +33,7 @@ Route::post('/login', [Register_Controller::class, 'loginAdmin_post']);
 
 Route::get('/admin', [Admin_Controller::class, 'index']);
 Route::post('/admin', [Admin_Controller::class, 'tambah_data']);
+Route::post('/delete_instansi', [Admin_Controller::class, 'delete_instansi']);
 Route::get('/find_data/{id}', [Admin_Controller::class, 'find_data']);
 Route::post('/updateAkun', [Admin_Controller::class, 'update_data']);
 Route::get('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index']);
@@ -48,6 +49,8 @@ Route::get('/instansi/tambahData/{id}', [Instansi_Controller::class, 'tambahData
 Route::post('/instansi/tambahData', [Instansi_Controller::class, 'tambahData_post']);
 Route::post('/tambahSiswa_post', [Instansi_Controller::class, 'tambahSiswa_post']);
 Route::post('/bayar', [Instansi_Controller::class, 'bayar']);
+Route::post('/hapus_pelayanan', [Instansi_Controller::class, 'hapus_pelayanan']);
+Route::post('/hapus_siswa', [Instansi_Controller::class, 'hapus_siswa']);
 
 // Route::get('/instansi', [Admin_Controller::class, 'index']);
 

@@ -118,6 +118,10 @@
                         </tbody>
                     </table>
                 </div>
+                <form action="hapus_pelayanan" method="post" id="hapus_pelayanan">
+                    @csrf
+                    <input type="hidden" id="id_hapus" name="id_hapus">
+                </form>
             </div>
         </div>
         <script>
@@ -166,6 +170,11 @@
                         }
                     }
                 });
+            }
+
+            function reject_form(params) {
+                $('#id_hapus').val(params);
+                $('#hapus_pelayanan').submit();
             }
         </script>
     </div>

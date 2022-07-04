@@ -155,7 +155,6 @@
                                     <div class="input-group mb-3">
                                         <select class="custom-select" id="jenis_instansi_update" name="jenis_instansi_update">
                                             <option value="2001" >Instansi</option>
-                                            <option value="2002"  >Perorangan</option>
                                         </select>
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="inputGroupSelect02">Options</label>
@@ -214,6 +213,10 @@
 
                         </tbody>
                     </table>
+                    <form action="/delete_instansi" method="post" id="hapus">
+                    @csrf
+                    <input type="hidden" id="id_hapus" name="id_hapus">
+                    </form>
                 </div>
             </div>
         </div>
@@ -260,6 +263,10 @@
                         }
                     }
                 });
+            }
+            function remove(id) {
+                $('#id_hapus').val(id);
+                $('#hapus').submit();
             }
         </script>
     </div>

@@ -4,7 +4,6 @@
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Detail Transaiksi Pelayanan</h1>
 
-
         </div>
         <!-- DataTales Example -->
         <div class="card shadow mb-4" style="padding: 10px">
@@ -20,7 +19,7 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
-                        aria-controls="contact" aria-selected="false">Bayar</a>
+                        aria-controls="contact" aria-selected="false">Detail Pembayaran</a>
                 </li>
             </ul>
             <div class="tab-content" id="myTabContent">
@@ -28,8 +27,18 @@
                     <div class="card shadow mb-4" style="padding: 10px">
 
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Detail Transaiksi Pelayanan</h6>
+                            <div class="row">
+                                <div class="col-md-11">
+                                    <h6 class="m-0 font-weight-bold text-primary">Detail Transaiksi Pelayanan</h6>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <h6 class="m-0 font-weight-bold text-primary">Id :
+                                        {{ $instansi->id }}</h6>
+                                </div>
+                            </div>
                         </div>
+
                         <form class="modal-body" method="POST" id="add_data" action="/instansi/tambahData"
                             enctype="multipart/form-data">
                             @csrf
@@ -80,8 +89,7 @@
                                             <label for="exampleInputEmail1">Biaya Per Orang</label>
                                             <input type="text" class="form-control" id="biaya_orang"
                                                 name="biaya_orang" aria-describedby="emailHelp"
-                                                placeholder="Masukan Nama Pendaftar"
-                                                value="" readonly>
+                                                placeholder="Masukan Nama Pendaftar" value="" readonly>
                                         </div>
                                     </div>
                                 </div>
@@ -107,7 +115,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Total Biaya</label>
-                                    <input readonly type="text" value="{{  $instansi->total_biaya_pelayanan }}"
+                                    <input readonly type="text" value="{{ $instansi->total_biaya_pelayanan }}"
                                         class="form-control" id="biaya" name="biaya" aria-describedby="emailHelp"
                                         placeholder="Durasi Pelayanan">
                                 </div>
@@ -116,9 +124,10 @@
                                         <div class="col">
                                         </div>
                                         <div class="col text-right">
-                                            <a href="/instansi" class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
-                                           ><i class="fas fa-arrow-left fa-sm "></i>
-                                            Kembali </a>
+                                            <a href="/instansi"
+                                                class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"><i
+                                                    class="fas fa-arrow-left fa-sm "></i>
+                                                Kembali </a>
                                             <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                                                 onclick=" $('#add_data').submit();"><i
                                                     class="fas fa-plus fa-sm text-white-50"></i> Ubah Data</button>
@@ -176,7 +185,8 @@
                                     <label for="gambar_instansi_update">File Pendukung 1</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc1" name="doc1"
-                                            onchange="input_gb('1','doc1')" accept="image/*, application/pdf, application/doc">
+                                            onchange="input_gb('1','doc1')"
+                                            accept="image/*, application/pdf, application/doc">
                                         <label class="custom-file-label" for="doc1" id="change_name1">Choose
                                             file</label>
                                     </div>
@@ -185,7 +195,8 @@
                                     <label for="gambar_instansi_update">File Pendukung 2</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc2" name="doc2"
-                                            onchange="input_gb('2','doc2')" accept="image/*, application/pdf, application/doc, application/docx">
+                                            onchange="input_gb('2','doc2')"
+                                            accept="image/*, application/pdf, application/doc, application/docx">
                                         <label class="custom-file-label" for="doc2" id="change_name2">Choose
                                             file</label>
                                     </div>
@@ -194,7 +205,8 @@
                                     <label for="gambar_instansi_update">File Pendukung 3</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc3" name="doc3"
-                                            onchange="input_gb('3','doc3')" accept="image/*, application/pdf, application/doc">
+                                            onchange="input_gb('3','doc3')"
+                                            accept="image/*, application/pdf, application/doc">
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name3">Choose
                                             file</label>
                                     </div>
@@ -211,10 +223,15 @@
                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                     <div class="card shadow mb-4" style="padding: 10px">
 
-                        <div class="card-header py-3" style="margin-bottom: 10px">
+                        <div class="card-header py-3">
                             <div class="row">
-                                <div class="col">
-                                    <h6 class="m-0 font-weight-bold text-primary" style="margin: 10px">Detail Siswa</h6>
+                                <div class="col-md-11">
+                                    <h6 class="m-0 font-weight-bold text-primary">Detail Siswa</h6>
+                                </div>
+
+                                <div class="col-md-1">
+                                    <h6 class="m-0 font-weight-bold text-primary">Id :
+                                        {{ $instansi->id }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -240,7 +257,7 @@
                                 <tbody>
                                     @foreach ($siswa as $item)
                                         <tr>
-                                            <th>{{$item->id}}</th>
+                                            <th>{{ $item->id }}</th>
                                             <th>{{ $item->nama_siswa }}</th>
                                             <th>{{ $item->nomor_induk }}</th>
                                             <th>{{ $item->jenis_kelamin }}</th>
@@ -271,12 +288,8 @@
                                                 @endif
                                             </th>
                                             <th>
-                                                <button type="button" class="btn btn-warning"
-                                                    onclick="success_form({{ $item->berkas3 }})"><i
-                                                        class="fas fa-edit fa-sm "></i> update
-                                                </button>
                                                 <button type="button" class="btn btn-danger"
-                                                    onclick="success_form({{ $item->berkas3 }})"><i
+                                                    onclick="hapus_siswa({{ $item->id }},{{ $instansi->id }})"><i
                                                         class="fas fa-ban fa-sm "></i> delete
                                                 </button>
                                             </th>
@@ -285,7 +298,12 @@
 
                                 </tbody>
                             </table>
+                            <form action="/hapus_siswa" method="post" id="hapus_siswa">
+                                @csrf
+                                <input type="hidden" id="id_hapus" name="id_hapus">
+                                <input type="hidden" id="id_inst" name="id_inst">
 
+                            </form>
                         </div>
                         <div class="card-header py-3" style="margin-bottom: 10px">
                             <div class="row">
@@ -293,8 +311,8 @@
 
                                 </div>
                                 <div class="col text-right">
-                                    <a class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
-                                        href="/instansi"><i class="fas fa-arrow-left fa-sm "></i>
+                                    <a class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm" href="/instansi"><i
+                                            class="fas fa-arrow-left fa-sm "></i>
                                         Kembali </a>
                                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                                         onclick=" $('#tambahData').modal('show');"><i
@@ -307,9 +325,17 @@
                 <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
                         <div class="card shadow mb-4" style="padding: 10px">
-
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Proses Bayar</h6>
+                                <div class="row">
+                                    <div class="col-md-11">
+                                        <h6 class="m-0 font-weight-bold text-primary">Detail Pembayaran</h6>
+                                    </div>
+
+                                    <div class="col-md-1">
+                                        <h6 class="m-0 font-weight-bold text-primary">Id :
+                                            {{ $instansi->id }}</h6>
+                                    </div>
+                                </div>
                             </div>
                             <form class="modal-body" method="POST" id="bayar_sekarang" action="/bayar"
                                 enctype="multipart/form-data">
@@ -336,8 +362,8 @@
                                 <div class="form-group">
                                     <label for="gambar_instansi_update">Upload Bukti Bayar</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="bukti_bayar" name="bukti_bayar"
-                                            onchange="input_gb('4','bukti_bayar')">
+                                        <input type="file" class="custom-file-input" id="bukti_bayar"
+                                            name="bukti_bayar" onchange="input_gb('4','bukti_bayar')">
                                         <label class="custom-file-label" for="bukti_bayar" id="change_name4">Choose
                                             file</label>
                                     </div>
@@ -350,10 +376,11 @@
 
                                 </div>
                                 <div class="col text-right">
-                                    <a class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm"
-                                        href="/instansi"><i class="fas fa-arrow-left fa-sm "></i> Kembali </a>
+                                    <a class="d-none d-sm-inline-block btn btn-sm btn-white shadow-sm" href="/instansi"><i
+                                            class="fas fa-arrow-left fa-sm "></i> Kembali </a>
                                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                                        onclick=" $('#bayar_sekarang').submit();"><i class="fas fa-plus fa-sm text-white-50"></i> Bayar Sekarang</button>
+                                        onclick=" $('#bayar_sekarang').submit();"><i
+                                            class="fas fa-plus fa-sm text-white-50"></i> Bayar Sekarang</button>
                                 </div>
                             </div>
                         </div>
@@ -414,39 +441,17 @@
                 }
             });
         }
-        // $(document).ready(function(){
-        //     alert('jajaal');
 
-        //     // var tesss = JSON.parse({{ $jenis_pelayanan }});
-        //     // alert(tesss);
-        //     // console.log(tesss);
-        // })
-        // var JSONArray = $.parseJSON('{{ $jenis_pelayanan }}');
-        // var id_data;
-        // var role;
-        // var gambar;
-
-
-        // function intup() {
-        //     alert(JSONArray);
-        //     console.log("Hello world!");
-        // }
 
         function input_gb(i, id) {
             gambar = $('#' + id).val().replace(/C:\\fakepath\\/i, '')
             $("#change_name" + i).html(gambar);
         }
 
-        // function success_form(id) {
-        //     $('#id_data').val(id);
-        //     $('#status').val(0);
-        //     $('#submit_it').submit();
-        // }
-        function reject_form(id) {
-            $('#id_data').val(id);
-            $('#status').val(3);
-            alert($('#status').val());
-            $('#submit_it').submit();
+        function hapus_siswa(id,id_data) {
+            $('#id_hapus').val(id);
+            $('#id_inst').val(id_data);
+            $('#hapus_siswa').submit();
         }
     </script>
     </div>

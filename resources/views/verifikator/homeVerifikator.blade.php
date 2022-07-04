@@ -57,12 +57,12 @@
                                     @endforeach
                                     <th>
                                         <button type="button" class="btn btn-success"
-                                            onclick="success_form({{ $item->id }})"><i class="fas fa-file fa-sm "></i>
+                                            onclick="window.open('{{URL::asset($item->berkas1)}}', '_blank');"><i class="fas fa-file fa-sm "></i>
                                         </button>
                                     </th>
                                     <th>
                                         <button type="button" class="btn btn-success"
-                                            onclick="success_form({{ $item->id }})"><i class="fas fa-file fa-sm "></i>
+                                            onclick="window.open('{{URL::asset($item->berkas2)}}', '_blank');"><i class="fas fa-file fa-sm "></i>
                                         </button>
                                     </th>
                                     <th>

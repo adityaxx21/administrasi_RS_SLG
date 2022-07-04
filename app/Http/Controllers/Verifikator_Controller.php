@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Dompdf\Dompdf;
 
 class Verifikator_Controller extends Controller
 {
@@ -48,4 +49,6 @@ class Verifikator_Controller extends Controller
      DB::table('tb_pegawai')->where('id',$request->id_data)->update($get_data);
      return redirect('/verifikasi');
    }
+
+ 
 }
