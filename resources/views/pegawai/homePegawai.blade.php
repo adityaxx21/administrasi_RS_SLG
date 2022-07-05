@@ -307,7 +307,7 @@
                                     <th>
                                         @if ($item->verifikasi_1 == 10 && $item->verifikasi_2 == 10 && $item->verifikasi_3 == 10)
                                             <button type="button" class="btn btn-success"
-                                                onclick="success_form({{ $item->id }})"><i
+                                                onclick="window.open('/surat/'.{{ $item->id }},)"><i
                                                     class="fas fa-file fa-sm "></i>
                                             </button>
                                         @endif

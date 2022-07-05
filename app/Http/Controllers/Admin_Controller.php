@@ -10,6 +10,7 @@ class Admin_Controller extends Controller
     var $location = "admin";
     public function index(Request $request)
     {
+        $data['jenis'] =   DB::table('tb_role')->where([['is_deleted',1],['id','>','2000']])->get();
         $data['instansi'] = DB::table('tb_instansi')->where('is_deleted',1)->get();
         return view('admin.homeAdmin',$data);
     }

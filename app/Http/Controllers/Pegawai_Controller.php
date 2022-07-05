@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Dompdf\Dompdf; 
 class Pegawai_Controller extends Controller
 {
     var $location = "pegawai";
@@ -106,6 +106,21 @@ class Pegawai_Controller extends Controller
 
     public function surat($id)
     {
-        return view('invoice.surat');
+        $data['pegawai'] = DB::table('tb_pegawai')->where('id',$id)->first();
+        $view = view("invoice.surat", $data);
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml($view);
+        $customPaper = array(0,0,1100,750);
+        // (Optional) Setup the paper size and orientation
+        // $dompdf->setPaper('a4', 'landscape');
+        $dompdf->setPaper($customPaper);
+
+        // Render the HTML as PDF
+        $dompdf->render();
+
+        // Output the generated PDF to Browser
+        $dompdf->stream("Surat Permohonan");
+
+        return view('invoice.surat',$data);
     }
 }

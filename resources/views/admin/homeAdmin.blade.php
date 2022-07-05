@@ -75,8 +75,9 @@
                                     <label for="exampleInputPassword1">Jenis</label>
                                     <div class="input-group mb-3">
                                         <select class="custom-select" id="jenis_instansi" name="jenis_instansi">
-                                            <option value="2001">Instansi</option>
-                                            <option value="2002">Perorangan</option>
+                                            @foreach ($jenis as $item)
+                                                <option value="{{ $item->id }}">{{ $item->role_nama }}</option>
+                                            @endforeach
                                         </select>
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="inputGroupSelect02">Options</label>
@@ -109,7 +110,8 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <form id="update_form" method="POST" action="updateAkun" enctype="multipart/form-data" style="
+                            <form id="update_form" method="POST" action="updateAkun" enctype="multipart/form-data"
+                                style="
                             margin: 20px;">
                                 @csrf
                                 <input type="hidden" id="id_data" name="id_data">
@@ -134,7 +136,8 @@
                                     <label for="gambar_instansi_update">Gambar Instansi</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="gambar_instansi_update"
-                                            name="gambar_instansi_update" onchange="input_gb('2','gambar_instansi_update')">
+                                            name="gambar_instansi_update"
+                                            onchange="input_gb('2','gambar_instansi_update')">
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name2">Choose
                                             file</label>
                                     </div>
@@ -153,8 +156,12 @@
                                 <div class="form-group">
                                     <label for="jenis_instansi_update">Jenis</label>
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="jenis_instansi_update" name="jenis_instansi_update">
-                                            <option value="2001" >Instansi</option>
+                                        <select class="custom-select" id="jenis_instansi_update"
+                                            name="jenis_instansi_update">
+                                            @foreach ($jenis as $item)
+                                                <option value="{{ $item->id }}">{{ $item->role_nama }}</option>
+                                            @endforeach
+
                                         </select>
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="inputGroupSelect02">Options</label>
@@ -197,7 +204,7 @@
                                     <th>{{ $item->id }}</th>
                                     <th>{{ $item->nama_pendaftar }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
-                                    <th>{{ $item->role == 2001 ? "Instansi" : "Perorangan" }} </th>
+                                    <th>{{ $item->role == 2001 ? 'Instansi' : 'Perorangan' }} </th>
                                     <th>{{ $item->email }}</th>
                                     <th>
                                         <button type="button" class="btn btn-warning"
@@ -214,8 +221,8 @@
                         </tbody>
                     </table>
                     <form action="/delete_instansi" method="post" id="hapus">
-                    @csrf
-                    <input type="hidden" id="id_hapus" name="id_hapus">
+                        @csrf
+                        <input type="hidden" id="id_hapus" name="id_hapus">
                     </form>
                 </div>
             </div>
@@ -223,15 +230,16 @@
         <script>
             var id_data;
             var role;
-            var gambar ;
-            function input_gb(i,id) {
-                gambar = $('#'+id).val().replace(/C:\\fakepath\\/i, '')
+            var gambar;
+
+            function input_gb(i, id) {
+                gambar = $('#' + id).val().replace(/C:\\fakepath\\/i, '')
                 $("#change_name" + i).html(gambar);
             }
 
             function get_data(id) {
                 id_data = id;
-                
+
                 $('#updateData').modal('show');
                 $.ajax({
                     type: 'GET',
@@ -249,8 +257,8 @@
                             $('#jenis_instansi_update').val(data.data.role)
                             // $('#'+data.data.role).attr('selected');
                             // role = data.data.role;
-                            
-                            
+
+
                             // $('#jenis_instansi_update option:eq(1)');
                             // const text = data.data.role;
                             // const $select = document.querySelector('#jenis_instansi_update');
@@ -264,6 +272,7 @@
                     }
                 });
             }
+
             function remove(id) {
                 $('#id_hapus').val(id);
                 $('#hapus').submit();
