@@ -78,4 +78,5 @@ Route::post('/verifikasi_post', [Verifikator_Controller::class, 'index_post']);
 
 // Invoice 
 Route::get('/invoice/{id}', [Instansi_Controller::class, 'invoice']);
+Route::get('/surat/{id}', [Pegawai_Controller::class, 'surat']);
 // End Invoice

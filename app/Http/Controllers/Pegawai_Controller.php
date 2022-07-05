@@ -103,4 +103,9 @@ class Pegawai_Controller extends Controller
         }
         return $get_data;
     }
+
+    public function surat($id)
+    {
+        return view('invoice.surat');
+    }
 }

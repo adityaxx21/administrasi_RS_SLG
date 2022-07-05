@@ -264,7 +264,7 @@
                                             <th>
                                                 @if ($item->berkas1 != null)
                                                     <button type="button" class="btn btn-success"
-                                                        onclick="success_form({{ $item->berkas1 }})"><i
+                                                        onclick="window.open('{{URL::asset($item->berkas1)}}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
@@ -273,7 +273,7 @@
 
                                                 @if ($item->berkas2 != null)
                                                     <button type="button" class="btn btn-success"
-                                                        onclick="success_form({{ $item->berkas2 }})"><i
+                                                        onclick="window.open('{{URL::asset($item->berkas2)}}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
@@ -282,7 +282,7 @@
 
                                                 @if ($item->berkas3 != null)
                                                     <button type="button" class="btn btn-success"
-                                                        onclick="success_form({{ $item->berkas3 }})"><i
+                                                        onclick="window.open('{{URL::asset($item->berkas3)}}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
