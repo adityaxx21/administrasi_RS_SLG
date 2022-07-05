@@ -81,7 +81,7 @@
 								<td class="text-center">{{$instansi->durasi_pelayanan}}</td>
 								<td class="text-center">{{$instansi->satuan_waktu}}</td>
 								<td class="text-right">Rp. {{$instansi->biaya}}</td>
-								<td class="text-right">Rp. {{$instansi->biaya * $instansi->jumlah_pelayanan}}</td>
+								<td class="text-right">Rp. {{$instansi->biaya * $instansi->durasi_pelayanan}}</td>
 							</tr>
 							@endforeach
 							<tr>
