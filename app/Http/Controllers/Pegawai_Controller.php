@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\DB;
 use Dompdf\Dompdf; 
 class Pegawai_Controller extends Controller
 {
+    // Fungsi ini dipa
     var $location = "pegawai";
     public function index()
     {
+        // Berfungsi untuk menampilkan data pengajuan inhouse atau exhouse dari database
         $data['pegawai'] = DB::table('tb_pegawai')
             ->selectRaw('tb_pegawai.*,
                     tb_user.nama as nama,
@@ -25,12 +27,14 @@ class Pegawai_Controller extends Controller
     }
     public function find_data($id)
     {
+        // fungsi ajax untuk menampilkan detail data dari salah satu pengajuan berdasarkan id jika akan dilakukan pengupdate an
         $data['data'] = DB::table('tb_pegawai')->where('id',$id)->first();
         $data['data']->waktu_pelaksanaan = date("Y-m-d", strtotime($data['data']->waktu_pelaksanaan));
         return response()->json($data);
     }
     public function index_post(Request $request)
     {
+        // berfungsi untuk menambahkan pengajuan surat ex/in house
         $get_data = [
             'id_pegawai' => $request->id_pegawai,
             'keperluan' => $request->keperluan,
@@ -55,6 +59,7 @@ class Pegawai_Controller extends Controller
 
     public function index_update(Request $request)
     {
+        // berfungsi untuk memperbarui salah satu pengajuan dan disimpan dalam table tb_pegawai
         $id = $request->id_pegawai_update;
         $get_data = [
             'keperluan' => $request->keperluan_update,
@@ -82,11 +87,13 @@ class Pegawai_Controller extends Controller
 
     public function index_delete(Request $request)
     {
+        // berfungsi untuk mengahapus salah satu data pengajuan suran in / ex berdasarkan idnya
         $id = $request->id_delete;
         DB::table('tb_pegawai')->where('id',$id)->update(['is_deleted'=>0]);
         return redirect('/pegawai');
     }
 
+    // Jangan dimasukan laporan
     public function doc_input($data, $get_data, $i)
     {
         try {
@@ -106,6 +113,8 @@ class Pegawai_Controller extends Controller
 
     public function surat($id)
     {
+        // fungsi pembuatan surat berdasarkan detail - detail yang diambil dari tb_pegawai
+        // output dari fungsi ini berupa pdf
         $data['pegawai'] = DB::table('tb_pegawai')->where('id',$id)->first();
         $view = view("invoice.surat", $data);
         $dompdf = new Dompdf();

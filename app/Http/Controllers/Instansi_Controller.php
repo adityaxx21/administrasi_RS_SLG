@@ -136,7 +136,8 @@ class Instansi_Controller extends Controller
     }
     public function bayar(Request $request)
     {
-        // fungsi ini dipakai 
+        // fungsi ini dipakai untuk menginputkan data transfer untuk rs berupa transfer bank atau dompet digital
+        // dari proses ini akan menyimpan beberapa data serta foto dari invoice yang dikirimkan instansi
         $metode_pembayaran = $request->metode_pembayaran;
         $kode_bayar = $request->kode_bayar;
         $id = $request->id_inp;
@@ -163,8 +164,10 @@ class Instansi_Controller extends Controller
         return redirect('/instansi');
     }
 
+    // Tidak perlu diinputkan di laporan
     public function doc_input($data, $get_data, $i)
     {
+        // berfungsi sebagai fungsi tambahan untuk input dikumen
         try {
             $name_img =  $data->getClientOriginalName();
         } catch (\Throwable $th) {
@@ -183,6 +186,8 @@ class Instansi_Controller extends Controller
 
     public function invoice($id)
     {
+        // Berfungsi mencetak invoice satelah admin menyetuji pendaftaran peserta pada suatu jenis pelayanan oleh instansi
+        // output berupa pdf yang berisi detail pelayanan dan siswa
         $data['instansi'] = DB::table('tb_transaksi_pelayanan')
             ->selectRaw('tb_transaksi_pelayanan.*,
             tb_instansi.nama_pendaftar as nama_pendaftar,
@@ -226,6 +231,7 @@ class Instansi_Controller extends Controller
 
     public function hapus_siswa(Request $request)
     {
+        // Menghapus siswa jika dianggap tidak sesuai
         $id_hapus = $request->id_hapus;
         $id_data = $request->id_inst;
         DB::table('tb_transaksi_pelayanan')->where('id', $id_data)->decrement('jumlah_pelayanan', 1);
@@ -246,6 +252,7 @@ class Instansi_Controller extends Controller
     }
     public function hapus_pelayanan(Request $request)
     {
+        // Menghapus pelayanan oleh instansi jika dianggap tidak dipakai
         $id_hapus = $request->id_hapus;
 
         DB::table('tb_transaksi_pelayanan')->where('id',$id_hapus)->update(['is_deleted'=>0]);

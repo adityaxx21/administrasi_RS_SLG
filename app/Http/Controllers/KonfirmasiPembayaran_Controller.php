@@ -7,9 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class KonfirmasiPembayaran_Controller extends Controller
 {
+    // Fungsi ini dipakai oleh admin untuk mengkonfirmasi pembayaran
     var $location = "KonfirmasiPembayaran";
     public function index(Request $request)
     {
+        // Menampilkan detail pembayaran oleh instansi yang diambil dengan beberapa query dari tabel tb_transaksi_pelayanan
         $data['instansi'] = DB::table('tb_transaksi_pelayanan')
             ->selectRaw('tb_transaksi_pelayanan.*,
                     tb_instansi.nama_pendaftar as nama_pendaftar,
@@ -32,6 +34,7 @@ class KonfirmasiPembayaran_Controller extends Controller
 
     public function index_post(Request $request)
     {
+        // fungsi ini dipakai untuk melakukan konfirmasi apakah proses tersebut diterima atau ditolak
        $id = $request->id_data;
        $status = $request->status;
        DB::table('tb_transaksi_pelayanan')->where('id',$id)->update(['id_status_pembayaran'=>$status]);
@@ -40,6 +43,7 @@ class KonfirmasiPembayaran_Controller extends Controller
 
     public function detail_pelayanan($id)
     {
+        // Fungsi ini dipakai untuk menampilkan detail pelayanan yang diajukan oleh instansi
         $data['instansi'] = DB::table('tb_transaksi_pelayanan')
         ->selectRaw('tb_transaksi_pelayanan.*,
                 tb_instansi.nama_pendaftar as nama_pendaftar,

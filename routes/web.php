@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin_Controller;
 use App\Http\Controllers\Instansi_Controller;
+use App\Http\Controllers\KelolaPelayanan_Controller;
 use App\Http\Controllers\KonfirmasiPembayaran_Controller;
 use App\Http\Controllers\Pegawai_Controller;
 use App\Http\Controllers\Register_Controller;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/register', [Register_Controller::class, 'register']);
 Route::get('/login', [Register_Controller::class, 'loginAdmin']);
 Route::get('/logout', [Register_Controller::class, 'logout']);
+Route::get('/', [Register_Controller::class, 'redirect']);
 
 Route::post('/login', [Register_Controller::class, 'loginAdmin_post']);
 // Register End
@@ -36,9 +38,17 @@ Route::post('/admin', [Admin_Controller::class, 'tambah_data']);
 Route::post('/delete_instansi', [Admin_Controller::class, 'delete_instansi']);
 Route::get('/find_data/{id}', [Admin_Controller::class, 'find_data']);
 Route::post('/updateAkun', [Admin_Controller::class, 'update_data']);
+
 Route::get('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index']);
 Route::post('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index_post']);
 Route::get('/konfirmasi_pembayaran/detail/{id}', [KonfirmasiPembayaran_Controller::class, 'detail_pelayanan']);
+
+Route::get('/kelolaPelayanan', [KelolaPelayanan_Controller::class, 'kelolaPelayanan']);
+Route::get('/kelolaPelayanan_detail/{id}', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_detail']);
+Route::post('/kelolaPelayanan_post', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_post']);
+Route::post('/kelolaPelayanan_update', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_update']);
+Route::post('/kelolaPelayanan_delete', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_delete']);
+
 // Admin Page End
 
 

@@ -10,7 +10,8 @@ class Verifikator_Controller extends Controller
 {
    public function index()
    {
-    
+   //  Berfungsi untuk menentukan urutan verifikasi, dari Kasi, Kabid, Disposisi Kepegawaian
+   //  Urutan mulai Kasi setelah verifikasi akan dilanjutkan oleh Kabid dan Disposisi Kepegawaian
     if (session()->get('role') == 1003) {
        $cond = [['tb_pegawai.verifikasi_1',11],['tb_pegawai.is_deleted',1]];
     } elseif (session()->get('role') == 1004){
@@ -38,6 +39,7 @@ class Verifikator_Controller extends Controller
 
    public function index_post(Request $request)
    {
+      // Berfungsi untuk memverifikasi apakah berkas layak atau tidak
      if (session()->get('role') == 1003) {
        $get_data = ['verifikasi_1'=>$request->verifikasi];
      } elseif (session()->get('role') == 1004){

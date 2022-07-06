@@ -29,9 +29,9 @@
                                 <th>Nama Pegawai</th>
                                 <th>Nomor Induk</th>
                                 <th>Keperluan</th>
-                                <th>Verifikasi 1</th>
-                                <th>Verifikasi 2</th>
-                                <th>Verifikasi 3</th>
+                                <th>Kasi</th>
+                                <th>Kabid</th>
+                                <th>Disposisi Kepegawaian</th>
                                 <th>Berkas 1</th>
                                 <th>Berkas 2</th>
                                 <th></th>
