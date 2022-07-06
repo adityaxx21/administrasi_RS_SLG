@@ -117,7 +117,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">File Pendukung 1</label>
+                                    <label for="gambar_instansi_update">TNA</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="berkas1" name="berkas1"
                                             onchange="input_gb('1','berkas1')">
@@ -126,11 +126,20 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">File Pendukung 2</label>
+                                    <label for="gambar_instansi_update">Laporan</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="berkas2" name="berkas2"
                                             onchange="input_gb('2','berkas2')">
                                         <label class="custom-file-label" for="berkas2" id="change_name2">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">SPJ</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="berkas3" name="berkas3"
+                                            onchange="input_gb('3','berkas3')">
+                                        <label class="custom-file-label" for="berkas2" id="change_name3">Choose
                                             file</label>
                                     </div>
                                 </div>
@@ -244,20 +253,31 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">File Pendukung 1</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="berkas3" name="berkas3"
-                                            onchange="input_gb('3','berkas3')">
-                                        <label class="custom-file-label" for="berkas3" id="change_name3">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">File Pendukung 2</label>
+                                    <label for="gambar_instansi_update">TNA</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="berkas4" name="berkas4"
                                             onchange="input_gb('4','berkas4')">
                                         <label class="custom-file-label" for="berkas4" id="change_name4">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Laporan</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="berkas5" name="berkas5"
+                                            onchange="input_gb('5','berkas5')">
+                                        <label class="custom-file-label" for="berkas5" id="change_name5">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">SPJ</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="berkas6" name="berkas6"
+                                            onchange="input_gb('6','berkas6')">
+                                        <label class="custom-file-label" for="berkas6" id="change_name6">Choose
                                             file</label>
                                     </div>
                                 </div>

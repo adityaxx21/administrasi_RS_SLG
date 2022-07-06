@@ -13,9 +13,15 @@
 
     <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="/instansi">
+        <a class="nav-link" href="/profileInstansi">
             <i class="fas fa-fw fa-tachometer-alt"></i>
             <span>Dashboard</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/instansi">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Kelola Pelayanan</span></a>
     </li>
     <hr class="sidebar-divider">
     <!-- Divider -->

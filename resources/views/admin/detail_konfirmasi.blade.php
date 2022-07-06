@@ -2,14 +2,14 @@
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Detail Transaiksi Pelayanan</h1>
+            <h1 class="h3 mb-0 text-gray-800">Detail  Pelayanan</h1>
 
 
         </div>
         <!-- DataTales Example -->
         <div class="card shadow mb-4" style="padding: 10px">
             <div class="card-header py-3">
-                <h6 class="m-0 font-weight-bold text-primary">Detail Transaiksi Pelayanan</h6>
+                <h6 class="m-0 font-weight-bold text-primary">Detail  Pelayanan</h6>
             </div>
 
             <table style="margin: 10px">
@@ -90,7 +90,7 @@
                 </tbody>
             </table>
             <hr>
-            <h3 class="m-0 font-weight-bold text-primary" style="margin: 10px">Detail Siswa</h3>
+            <h3 class="m-0 font-weight-bold text-primary" style="margin: 10px">Tambah Data</h3>
             <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
 
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -105,6 +105,8 @@
                             <th>Berkas 1</th>
                             <th>Berkas 2</th>
                             <th>Berkas 3</th>
+                            <th>Berkas 4</th>
+                            <th>Berkas 5</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -121,6 +123,12 @@
                                     </button> </th>
                                 <th><button type="button" class="btn btn-success"
                                         onclick="download('{{$item->berkas3}}')" {{$item->berkas3 == null ? "hidden" : ""}}><i class="fas fa-file fa-sm "></i>
+                                    </button> </th>
+                                    <th><button type="button" class="btn btn-success"
+                                        onclick="download('{{$item->berkas4}}')" {{$item->berkas4 == null ? "hidden" : ""}}><i class="fas fa-file fa-sm "></i>
+                                    </button> </th>
+                                    <th><button type="button" class="btn btn-success"
+                                        onclick="download('{{$item->berkas5}}')" {{$item->berkas5 == null ? "hidden" : ""}}><i class="fas fa-file fa-sm "></i>
                                     </button> </th>
                             </tr>
                         @endforeach

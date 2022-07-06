@@ -52,6 +52,7 @@ class Pegawai_Controller extends Controller
         ];
         $get_data = $this->doc_input( $request->berkas1, $get_data, 1);
         $get_data = $this->doc_input( $request->berkas2, $get_data, 2);
+        $get_data = $this->doc_input( $request->berkas3, $get_data, 3);
         // print_r( $get_data);
         DB::table('tb_pegawai')->insert($get_data);
         return redirect('/pegawai');

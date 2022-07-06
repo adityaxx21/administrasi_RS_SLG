@@ -62,6 +62,9 @@ Route::post('/bayar', [Instansi_Controller::class, 'bayar']);
 Route::post('/hapus_pelayanan', [Instansi_Controller::class, 'hapus_pelayanan']);
 Route::post('/hapus_siswa', [Instansi_Controller::class, 'hapus_siswa']);
 
+Route::get('/profileInstansi', [Instansi_Controller::class, 'profileInstansi']);
+Route::post('/profileInstansi_post', [Instansi_Controller::class, 'profileInstansi_post']);
+
 // Route::get('/instansi', [Admin_Controller::class, 'index']);
 
 // Instansi Page End

@@ -43,8 +43,9 @@ class Register_Controller extends Controller
                 if ($data->role) {
                     session(['username' => $username]);
                     session(['role' => $data->role]);
+                    session(['gambar' => $data->gambar_instansi]);
                     if ($data->role == 2001) {
-                        return redirect('/instansi');
+                        return redirect('/profileInstansi');
                     }
                 }
             }

@@ -121,6 +121,8 @@ class Instansi_Controller extends Controller
         $get_data = $this->doc_input($request->doc1, $get_data, 1);
         $get_data = $this->doc_input($request->doc2, $get_data, 2);
         $get_data =  $this->doc_input($request->doc3, $get_data, 3);
+        $get_data =  $this->doc_input($request->doc4, $get_data, 4);
+        $get_data =  $this->doc_input($request->doc5, $get_data, 5);
         DB::table('tb_transaksi_pelayanan')->where('id', $id)->increment('jumlah_pelayanan', 1);
         DB::table('tb_siswa')->insert($get_data);
         // print_r($get_data);
@@ -263,5 +265,42 @@ class Instansi_Controller extends Controller
       
 
         return redirect('/instansi');
+    }
+
+    public function profileInstansi()
+    {
+        // FUngsi ini berguna untuk menampilkan data dari user instansi yang akan ditampilkan pada halaman profileInstansi
+        $data['instansi'] = DB::table('tb_instansi')->where('username',session()->get('username'))->first();
+        return view('instansi.profileInstansi',$data);
+    }
+
+    public function profileInstansi_post(Request $request)
+    {
+        // Fungsi post yang dilakukan untuk melakukan perubahan pada dua hal, yakni password serta gambar sesuai id dari user instansi tersebut
+        $password = $request->password;
+        $id = $request->id;
+        $get_data = [];
+        try {
+            $name_img =  $request->gambar->getClientOriginalName();
+        } catch (\Throwable $th) {
+            $name_img = "";
+        }
+        if (!empty($name_img)) {
+            $img_loc = "/storage/image/" . $this->location . "/";
+            $img_save = "/public/image/" . $this->location . "/";
+
+            $request->gambar->storeAs($img_save, $name_img);
+            $get_data = array_merge($get_data, array('gambar_instansi' =>  $img_loc . $name_img));
+        }
+        if ($password != null) {
+            $get_data = array_merge($get_data, array('password' =>  md5($password)));
+        }
+        // print_r($get_data);
+        // echo ($id);
+        if ($get_data != null) {
+            DB::table('tb_instansi')->where('id',$id)->update($get_data);
+        }
+        
+        return redirect('/profileInstansi');
     }
 }

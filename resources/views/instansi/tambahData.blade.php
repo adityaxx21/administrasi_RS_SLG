@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Detail Transaiksi Pelayanan</h1>
+            <h1 class="h3 mb-0 text-gray-800">Detail  Pelayanan</h1>
 
         </div>
         <!-- DataTales Example -->
@@ -15,7 +15,7 @@
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab"
-                        aria-controls="profile" aria-selected="false">Detail Siswa</a>
+                        aria-controls="profile" aria-selected="false">Tambah Data</a>
                 </li>
                 <li class="nav-item" role="presentation">
                     <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab"
@@ -29,7 +29,7 @@
                         <div class="card-header py-3">
                             <div class="row">
                                 <div class="col-md-11">
-                                    <h6 class="m-0 font-weight-bold text-primary">Detail Transaiksi Pelayanan</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Detail  Pelayanan</h6>
                                 </div>
 
                                 <div class="col-md-1">
@@ -182,7 +182,7 @@
                                         placeholder="Masukan Alamat Siswa"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">File Pendukung 1</label>
+                                    <label for="gambar_instansi_update">surat rekomendasi dari bakesbangpol</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc1" name="doc1"
                                             onchange="input_gb('1','doc1')"
@@ -192,7 +192,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">File Pendukung 2</label>
+                                    <label for="gambar_instansi_update">Proposal</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc2" name="doc2"
                                             onchange="input_gb('2','doc2')"
@@ -202,12 +202,32 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">File Pendukung 3</label>
+                                    <label for="gambar_instansi_update">Invoice</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc3" name="doc3"
                                             onchange="input_gb('3','doc3')"
                                             accept="image/*, application/pdf, application/doc">
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name3">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Lapooran</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc3" name="doc4"
+                                            onchange="input_gb('4','doc4')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name4">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Mou</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc5" name="doc5"
+                                            onchange="input_gb('5','doc5')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name5">Choose
                                             file</label>
                                     </div>
                                 </div>
@@ -226,7 +246,7 @@
                         <div class="card-header py-3">
                             <div class="row">
                                 <div class="col-md-11">
-                                    <h6 class="m-0 font-weight-bold text-primary">Detail Siswa</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Tambah Data</h6>
                                 </div>
 
                                 <div class="col-md-1">
@@ -251,6 +271,8 @@
                                         <th>Berkas 1</th>
                                         <th>Berkas 2</th>
                                         <th>Berkas 3</th>
+                                        <th>Berkas 4</th>
+                                        <th>Berkas 5</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -283,6 +305,24 @@
                                                 @if ($item->berkas3 != null)
                                                     <button type="button" class="btn btn-success"
                                                         onclick="window.open('{{URL::asset($item->berkas3)}}', '_blank');"><i
+                                                            class="fas fa-file fa-sm "></i>
+                                                    </button>
+                                                @endif
+                                            </th>
+                                            <th>
+
+                                                @if ($item->berkas4 != null)
+                                                    <button type="button" class="btn btn-success"
+                                                        onclick="window.open('{{URL::asset($item->berkas4)}}', '_blank');"><i
+                                                            class="fas fa-file fa-sm "></i>
+                                                    </button>
+                                                @endif
+                                            </th>
+                                            <th>
+
+                                                @if ($item->berkas5 != null)
+                                                    <button type="button" class="btn btn-success"
+                                                        onclick="window.open('{{URL::asset($item->berkas5)}}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
