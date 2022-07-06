@@ -12,6 +12,10 @@ class Instansi_Controller extends Controller
     var $location = "Instansi";
     public function index(Request $request)
     {
+        // fungsi untuk menampilkan pelayanan pada user instansi
+        // dimana akan menampilkan seluruh proses pelayanan oleh instansi tersebut
+        
+        // tabel dibawah merupakan left join dari beberapa tabel berdasarkan id nya
         $data['instansi'] = DB::table('tb_transaksi_pelayanan')
             ->selectRaw('tb_transaksi_pelayanan.*,
                 tb_instansi.nama_pendaftar as nama_pendaftar,
@@ -34,6 +38,7 @@ class Instansi_Controller extends Controller
 
     public function index_post(Request $request)
     {
+        // bagian ini berfungsi untuk membuat data pelayanan baru
         $get_data = [
             'id_instansi' => $request->id_instansi,
             'id_jenis_pelayanan' => $request->jenis_pelayanan,
@@ -46,6 +51,8 @@ class Instansi_Controller extends Controller
 
     public function tambahData($id)
     {
+        // fungsi ini menampilkan data dari pelayanan yang dipilih oleh instansi
+        // tabel dibawah merupakan left join dari beberapa tabel transaksi_pelayanan berdasarkan id nya
         $data['instansi'] = DB::table('tb_transaksi_pelayanan')
             ->selectRaw('tb_transaksi_pelayanan.*,
                 tb_instansi.nama_pendaftar as nama_pendaftar,
@@ -62,6 +69,8 @@ class Instansi_Controller extends Controller
             ->groupByRaw('tb_transaksi_pelayanan.id')
             ->first();
             // echo($id);
+
+            // sedangkan tabel dibawah ini untuk menampilkan list siswa dan jenis pelayanan
         $data['siswa'] = DB::table('tb_siswa')->where([['is_deleted', 1], ['id_pelayanan', $id]])->get();
         $data['jenis_pelayanan'] = DB::table('tb_jenis_pelayanan')->where('is_deleted', 1)->get();
                       // print_r($data['instansi']);
@@ -71,6 +80,9 @@ class Instansi_Controller extends Controller
     }
     public function tambahData_post(Request $request)
     {
+        // fungsi ini dipakai untuk melakukan perubahan data untuk menambahkan nilai dari durasi pelayanan serta biaya
+        // output dari fungsi ini berupa pemberian nilai berdasarkan inputan instansi pada jumlah peserta, durasi, serta total biaya
+        
         $jumlah_pelayan = $request->jumlah_pelayanan;
         $durasi_pelayanan = $request->durasi_pelayanan;
         $biaya_orang = $request->biaya_orang;
@@ -90,6 +102,8 @@ class Instansi_Controller extends Controller
 
     public function tambahSiswa_post(Request $request)
     {
+        // fungsi ini dipakai untuk menambahkan peserta berdasarkan inputan dari instansi, hasil output dari proses ini adalah penambahan data pada
+        // tabel tb_transaksi_pelayanan untuk jumlah pelayanan serta penambahan peserta pada tb_siswa
         $nama_siswa = $request->nama_siswa;
         $nomor_induk = $request->nomor_induk;
         $alamat = $request->alamat;
@@ -122,6 +136,7 @@ class Instansi_Controller extends Controller
     }
     public function bayar(Request $request)
     {
+        // fungsi ini dipakai 
         $metode_pembayaran = $request->metode_pembayaran;
         $kode_bayar = $request->kode_bayar;
         $id = $request->id_inp;
