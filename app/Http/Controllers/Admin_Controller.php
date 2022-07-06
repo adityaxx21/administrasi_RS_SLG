@@ -10,6 +10,7 @@ class Admin_Controller extends Controller
     var $location = "admin";
     public function index(Request $request)
     {
+        // Bagian ini berfungsi untuk menampilkan data - dat instansi serta pengambilan list role dari database
         $data['jenis'] =   DB::table('tb_role')->where([['is_deleted',1],['id','>','2000']])->get();
         $data['instansi'] = DB::table('tb_instansi')->where('is_deleted',1)->get();
         return view('admin.homeAdmin',$data);
@@ -17,6 +18,8 @@ class Admin_Controller extends Controller
     // Tambah Data
     public function tambah_data(Request $request)
     {
+        // Bagian ini berfungsi untuk menambahkan data berupa modal yang dipanggil dari halaman admin untuk menambahkan instansi
+        // yang nantinya data tersebut akan disimpan pada database
         $get_data = [
             'nama_pendaftar'=>$request->nama_pendaftar,
             'nama_instansi'=>$request->nama_instansi,
@@ -46,6 +49,7 @@ class Admin_Controller extends Controller
     // Update Data
     public function update_data(Request $request)
     {
+        // Berfungsi untuk melakukan perubahan data pada instansi oleh admin berdasarkan dari id instansi tersebut
         if (session()->get('username') == "") {
             return redirect('/login')->with('alert-notif', 'Anda Harus Login Terlebih Dahulu');
         }
@@ -83,12 +87,14 @@ class Admin_Controller extends Controller
     // Cari Data
     public function find_data($id)
     {
+        // fitur berupa ajax dengan return berupa json yang dipakai untuk mempilkan data pada modal update data instansi
         $data['data'] = DB::table('tb_instansi')->where([['id', $id], ['is_deleted', 1]])->first();
         
         return Response()->json($data);
     }
     public function delete_instansi(Request $request)
     {
+        // fungsi untuk menghapus data berdasarkan id pada table 
         DB::table('tb_instansi')->where('id',$request->id_hapus)->update(['is_deleted'=>0]);
         return redirect('/admin');
     }

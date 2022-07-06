@@ -1,51 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Laporan Transaksi</title>
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.1.1/css/all.css"
-        integrity="sha384-/frq1SRXYH/bSyou/HUp/hib7RVN1TawQYja658FEOodR/FQBKVqT9Ol+Oz3Olq5" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-</head>
+    <head>
+        <meta charset="utf-8">
+        <!--  This file has been downloaded from bootdey.com @bootdey on twitter -->
+        <!--  All snippets are MIT license http://bootdey.com/license -->
+        <title>invoice order receipt - Bootdey.com</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+        <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    
+    </head>
 
 <body>
-    <div class="text-center mt-5">
-        <h1>History Chat Contact Us</h1>
-        <h1>Project Land Metaverse</h1>
-
-
-        <table class="table table-bordered mt-2" style="font-size: 12px">
-            <thead class="text-center">
-                <tr>
-                    <th scope="col" id="ubah">No</th>
-                    <th scope="col">Username</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Message</th>
-                    <th scope="col">Answere</th>
-                </tr>
-            </thead>
-            <tbody> 
-                {{-- @foreach ($mail as $key=>$item)
-                <th>{{$key+1}}</th>
-                <th>{{$item->username}}</th>
-                <th>{{$item->email}}</th>
-                <th>{{$item->message}}</th>
-                <th>{{$item->answere}}</th>
-                @endforeach --}}
-
-
-            </tbody>
+    <div class="container">
+        <table>
+            <tr>
+                <td>
+                    <center>
+                        <font size="5"><b>RSUD SIMPANG LIMA GUMUL</b></font><br>
+                        <font size="2"><i>Jl. Galuh Candrakirana, Tugurejo, Kec. Ngasem, Kabupaten Kediri, Jawa Timur 64182</i></font>
+                    </center>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <hr>
+                </td>
+            </tr>
         </table>
+     
+        <div class="row" >
+            <div class="col">Hari Tanggal : </div> <div class="col">Selasa/16 mei 2019</div>
+        </div>
+       
         <br>
-
-        <img src="{{ URL::asset('img/logo-RSUD-SLG.png') }}" width="90" height="90">
-
-    </div>
-    {{-- <strong style="text-align: left !important;margin-top:20px">Total tiket terjual = {{ $transaksi->count() }}
-    <strong style="text-align: left !important;margin-top:20px">Total Pengunjung = {{ $transaksi->count() }} --}}
+        <br>
+        <div class="row">
+            <div class="col">
+                Wali kelas<br><br><br><br>Bpk Fauzy.s.kom
+            </div>
+            <div class="col">
+                Wali kelas<br><br><br><br>Bpk Fauzy.s.kom
+            </div>
+        </div>
+      </div>
 
 </body>
 

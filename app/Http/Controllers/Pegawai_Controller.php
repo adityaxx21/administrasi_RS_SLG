@@ -110,10 +110,10 @@ class Pegawai_Controller extends Controller
         $view = view("invoice.surat", $data);
         $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
-        $customPaper = array(0,0,1100,750);
+        // $customPaper = array(0,0,1100,750);
         // (Optional) Setup the paper size and orientation
-        // $dompdf->setPaper('a4', 'landscape');
-        $dompdf->setPaper($customPaper);
+        $dompdf->setPaper('a4', 'landscape');
+        // $dompdf->setPaper($customPaper);
 
         // Render the HTML as PDF
         $dompdf->render();
