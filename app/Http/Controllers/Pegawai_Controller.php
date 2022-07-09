@@ -117,13 +117,14 @@ class Pegawai_Controller extends Controller
         // fungsi pembuatan surat berdasarkan detail - detail yang diambil dari tb_pegawai
         // output dari fungsi ini berupa pdf
         $data['pegawai'] = DB::table('tb_pegawai')->where('id',$id)->first();
+        // print_r($data['pegawai']);
         $view = view("invoice.surat", $data);
         $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
-        // $customPaper = array(0,0,1100,750);
+        $customPaper = array(0,0,700,750);
         // (Optional) Setup the paper size and orientation
-        $dompdf->setPaper('a4', 'landscape');
-        // $dompdf->setPaper($customPaper);
+        // $dompdf->setPaper('a4', 'potrait');
+        $dompdf->setPaper($customPaper);
 
         // Render the HTML as PDF
         $dompdf->render();

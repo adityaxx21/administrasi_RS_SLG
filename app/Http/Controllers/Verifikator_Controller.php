@@ -47,6 +47,8 @@ class Verifikator_Controller extends Controller
      } elseif (session()->get('role') == 1005) {
         $get_data = ['verifikasi_3'=>$request->verifikasi];
      }
+     $get_data = array_merge($get_data, array('msg_fail' =>  $request->msg_fail));
+
     //  echo (session()->get('role'));
      DB::table('tb_pegawai')->where('id',$request->id_data)->update($get_data);
      return redirect('/verifikasi');

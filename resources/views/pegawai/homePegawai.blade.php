@@ -165,8 +165,7 @@
                             <form class="modal-body" method="POST" id="update_data" action="/pegawai_update"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="id_pegawai_update" id="id_pegawai_update"
-                                    >
+                                <input type="hidden" name="id_pegawai_update" id="id_pegawai_update">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Penyelenggaraan Pelatihan</label>
                                     <div class="input-group mb-3">
@@ -310,24 +309,41 @@
                                     <th>{{ $item->keperluan }}</th>
                                     @foreach ($style as $value)
                                         @if ($item->verifikasi_1 == $value->id_status)
-                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
+                                            @if ($item->verifikasi_1 != 12)
+                                                <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
+                                            @else
+                                                <th> <span class="{{ $value->style }}">{{ $value->text }}
+                                                        {{ $item->msg_fail }}</span> </th>
+                                            @endif
                                         @endif
                                     @endforeach
                                     @foreach ($style as $value)
                                         @if ($item->verifikasi_2 == $value->id_status)
-                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
+                                            @if ($item->verifikasi_2 != 12)
+                                                <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
+                                            @else
+                                                <th> <span class="{{ $value->style }}">{{ $value->text }}
+                                                        {{ $item->msg_fail }}</span> </th>
+                                            @endif
                                         @endif
                                     @endforeach
                                     @foreach ($style as $value)
                                         @if ($item->verifikasi_3 == $value->id_status)
-                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
+                                            @if ($item->verifikasi_3 != 12)
+                                                <th> <span class="{{ $value->style }}">{{ $value->text }}</span>
+                                                </th>
+                                            @else
+                                                <th> <span class="{{ $value->style }}">{{ $value->text }}
+                                                        {{ $item->msg_fail }}</span> </th>
+                                            @endif
                                         @endif
                                     @endforeach
 
                                     <th>
                                         @if ($item->verifikasi_1 == 10 && $item->verifikasi_2 == 10 && $item->verifikasi_3 == 10)
-                                            <a href="/surat/.{{ $item->id }}" class="btn btn-success"><i class="fas fa-file fa-sm "></i>
-                                    </a>
+                                            <a href="/surat/{{ $item->id }}" class="btn btn-success"><i
+                                                    class="fas fa-file fa-sm "></i>
+                                            </a>
                                         @endif
                                     </th>
 
@@ -392,7 +408,6 @@
                             $('#keperluan_update').val(data.data.keperluan);
                             $('#tema_pelatihan_update').val(data.data.tema_pelatihan);
                             $('#waktu_pelaksanaan_update').val(data.data.waktu_pelaksanaan);
-                            alert(data.data.waktu_pelaksanaan);
                             $('#narasumber_update').val(data.data.narasumber);
                             $('#sasaran_pelatihan_update').val(data.data.sasaran_pelatihan);
                             $('#nama_jabatan_update').val(data.data.nama_jabatan);

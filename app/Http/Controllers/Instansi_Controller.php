@@ -117,6 +117,10 @@ class Instansi_Controller extends Controller
             'jenis_kelamin' => $jenis_kelamin,
             'created_at' => date("Y-m-d H:i:s"),
         ];
+        $cond = DB::table('tb_siswa')->where([['id_pelayanan',$id],['nomor_induk',$nomor_induk]])->select('nomor_induk');
+        if ($cond != null) {
+            return redirect('/instansi/tambahData/' . $id)->with('alert-notif', 'ID sudah terdaftar');
+        }
 
         $get_data = $this->doc_input($request->doc1, $get_data, 1);
         $get_data = $this->doc_input($request->doc2, $get_data, 2);
@@ -136,6 +140,7 @@ class Instansi_Controller extends Controller
         $this->tambahData_post($request);
         return redirect('/instansi/tambahData/' . $id);
     }
+    
     public function bayar(Request $request)
     {
         // fungsi ini dipakai untuk menginputkan data transfer untuk rs berupa transfer bank atau dompet digital
@@ -252,6 +257,25 @@ class Instansi_Controller extends Controller
 
         return redirect('/instansi/tambahData/' . $id_data);
     }
+
+    public function update_siswa(Request $request)
+    {
+        // Menghapus siswa jika dianggap tidak sesuai
+        $id_hapus = $request->id_hapus;
+        $id_data = $request->id_inst;
+        DB::table('tb_transaksi_pelayanan')->where('id', $id_data)->decrement('jumlah_pelayanan', 1);
+        DB::table('tb_siswa')->where('id',$id_hapus)->update(['is_deleted'=>0]);
+        // echo($id_hapus."    ".$id_data);
+
+        // if ( $id_data == 10006) {
+        // }
+        $data['intansi'] = DB::table('tb_transaksi_pelayanan')->where([['is_deleted', 1], ['id', $id_data]])->first();
+        $data['jenis_pelayanan'] = DB::table('tb_jenis_pelayanan')->where([['is_deleted', 1], ['id',  $data['intansi']->id_jenis_pelayanan]])->first();
+        // print_r( $data['intansi']);
+        DB::table('tb_transaksi_pelayanan')->where('id', $id_data)->update(['total_biaya_pelayanan'=>( $data['intansi']->durasi_pelayanan * $data['intansi']->jumlah_pelayanan * $data['jenis_pelayanan']->biaya )]);
+        return redirect('/instansi/tambahData/' . $id_data);
+    }
+
     public function hapus_pelayanan(Request $request)
     {
         // Menghapus pelayanan oleh instansi jika dianggap tidak dipakai

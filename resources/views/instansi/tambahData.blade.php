@@ -2,7 +2,7 @@
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-            <h1 class="h3 mb-0 text-gray-800">Detail  Pelayanan</h1>
+            <h1 class="h3 mb-0 text-gray-800">Detail Pelayanan</h1>
 
         </div>
         <!-- DataTales Example -->
@@ -29,7 +29,7 @@
                         <div class="card-header py-3">
                             <div class="row">
                                 <div class="col-md-11">
-                                    <h6 class="m-0 font-weight-bold text-primary">Detail  Pelayanan</h6>
+                                    <h6 class="m-0 font-weight-bold text-primary">Detail Pelayanan</h6>
                                 </div>
 
                                 <div class="col-md-1">
@@ -182,7 +182,7 @@
                                         placeholder="Masukan Alamat Siswa"></textarea>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">surat rekomendasi dari bakesbangpol</label>
+                                    <label for="gambar_instansi_update">Berkas 1</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc1" name="doc1"
                                             onchange="input_gb('1','doc1')"
@@ -192,7 +192,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">Proposal</label>
+                                    <label for="gambar_instansi_update">Berkas 2</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc2" name="doc2"
                                             onchange="input_gb('2','doc2')"
@@ -202,7 +202,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">Invoice</label>
+                                    <label for="gambar_instansi_update">Berkas 3</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc3" name="doc3"
                                             onchange="input_gb('3','doc3')"
@@ -212,7 +212,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">Lapooran</label>
+                                    <label for="gambar_instansi_update">Berkas 4</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc3" name="doc4"
                                             onchange="input_gb('4','doc4')"
@@ -222,7 +222,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="gambar_instansi_update">Mou</label>
+                                    <label for="gambar_instansi_update">Berkas 5</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc5" name="doc5"
                                             onchange="input_gb('5','doc5')"
@@ -273,6 +273,7 @@
                                         <th>Berkas 3</th>
                                         <th>Berkas 4</th>
                                         <th>Berkas 5</th>
+                                        <th>Status</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -286,7 +287,7 @@
                                             <th>
                                                 @if ($item->berkas1 != null)
                                                     <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{URL::asset($item->berkas1)}}', '_blank');"><i
+                                                        onclick="window.open('{{ URL::asset($item->berkas1) }}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
@@ -295,7 +296,7 @@
 
                                                 @if ($item->berkas2 != null)
                                                     <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{URL::asset($item->berkas2)}}', '_blank');"><i
+                                                        onclick="window.open('{{ URL::asset($item->berkas2) }}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
@@ -304,7 +305,7 @@
 
                                                 @if ($item->berkas3 != null)
                                                     <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{URL::asset($item->berkas3)}}', '_blank');"><i
+                                                        onclick="window.open('{{ URL::asset($item->berkas3) }}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
@@ -313,21 +314,29 @@
 
                                                 @if ($item->berkas4 != null)
                                                     <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{URL::asset($item->berkas4)}}', '_blank');"><i
+                                                        onclick="window.open('{{ URL::asset($item->berkas4) }}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
                                             </th>
                                             <th>
-
                                                 @if ($item->berkas5 != null)
                                                     <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{URL::asset($item->berkas5)}}', '_blank');"><i
+                                                        onclick="window.open('{{ URL::asset($item->berkas5) }}', '_blank');"><i
                                                             class="fas fa-file fa-sm "></i>
                                                     </button>
                                                 @endif
                                             </th>
                                             <th>
+                                                @if ($item->id_status != null)
+                                                    <span class="{{ $item->style }}">{{ $item->text }}</span>
+                                                @endif
+                                            </th>
+                                            <th>
+                                                <button type="button" class="btn btn-warning"
+                                                    onclick="update_siswa({{ $item->id }},{{ $instansi->id }})"><i
+                                                        class="fas fa-edit fa-sm "></i> update
+                                                </button>
                                                 <button type="button" class="btn btn-danger"
                                                     onclick="hapus_siswa({{ $item->id }},{{ $instansi->id }})"><i
                                                         class="fas fa-ban fa-sm "></i> delete
@@ -427,6 +436,84 @@
                     </div>
                 </div>
             </div>
+            @if (session('alert-notif'))
+                <script>
+                    alert("{{ session('alert-notif') }}")
+                </script>
+            @endif
+
+            <span> <b>Syarat Ketentuan File Pendukung, File pendukung yang di perlukan untuk pendaftaran :</b> </span>
+            <span> <b>Note : File pendukung berbentuk PDF </b></span>
+            <div class="bd-example bd-example-tabs">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist"
+                            aria-orientation="vertical">
+                            <a class="nav-link" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home"
+                                role="tab" aria-controls="v-pills-home" aria-selected="true">Praktek Lapangan</a>
+                            <a class="nav-link active show" id="v-pills-profile-tab" data-toggle="pill"
+                                href="#v-pills-profile" role="tab" aria-controls="v-pills-profile"
+                                aria-selected="false">Magang </a>
+                            <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages"
+                                role="tab" aria-controls="v-pills-messages" aria-selected="false">Uji Kopetensi</a>
+                            <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings"
+                                role="tab" aria-controls="v-pills-settings" aria-selected="false">Pelayanan
+                                Penelitian</a>
+                            <a class="nav-link" id="v-pills-plis-tab" data-toggle="pill" href="#v-pills-plis"
+                                role="tab" aria-controls="v-pills-plis" aria-selected="false">Study Banding Antar
+                                Instansi</a>
+                        </div>
+                    </div>
+                    <br> <br>
+                    <div class="col-9">
+                        <div class="tab-content" id="v-pills-tabContent">
+                            <div class="tab-pane fade" id="v-pills-home" role="tabpanel"
+                                aria-labelledby="v-pills-home-tab">
+                                <p>+ Akreditasi</p>
+                                <p>+ Surat rekomendasi dari bakesbangpol</p>
+                                <p>+ Invoice</p>
+                                <p>+ Laporan</p>
+                                <p>+ MOU</p>
+
+                            </div>
+                            <div class="tab-pane fade active show" id="v-pills-profile" role="tabpanel"
+                                aria-labelledby="v-pills-profile-tab">
+                                <p>+ Akreditasi</p>
+                                <p>+ Surat rekomendasi dari bakesbangpol</p>
+                                <p>+ Invoice</p>
+                                <p>+ Laporan</p>
+                                <p>+ MOU</p>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-messages" role="tabpanel"
+                                aria-labelledby="v-pills-messages-tab">
+                                <p>+ Akreditasi</p>
+                                <p>+ Surat rekomendasi dari bakesbangpol</p>
+                                <p>+ Invoice</p>
+                                <p>+ Laporan</p>
+                                <p>+ MOU</p>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-settings" role="tabpanel"
+                                aria-labelledby="v-pills-settings-tab">
+                                <p>+ Akreditasi</p>
+                                <p>+ Surat rekomendasi dari bakesbangpol</p>
+                                <p>+ Invoice</p>
+                                <p>+ Laporan</p>
+                                <p>+ MOU</p>
+                            </div>
+                            <div class="tab-pane fade" id="v-pills-plis" role="tabpanel"
+                                aria-labelledby="v-pills-plis-tab">
+                                <p>+ Proposal</p>
+                                <p>+ Invoice</p>
+                                <p>+ Laporan</p>
+                                <p>+ Surat masuk </p>
+                                <p>+ Surat keluar</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
 
         </div>
 
@@ -488,7 +575,7 @@
             $("#change_name" + i).html(gambar);
         }
 
-        function hapus_siswa(id,id_data) {
+        function hapus_siswa(id, id_data) {
             $('#id_hapus').val(id);
             $('#id_inst').val(id_data);
             $('#hapus_siswa').submit();

@@ -21,7 +21,7 @@
     <li class="nav-item active">
         <a class="nav-link" href="/konfirmasi_pembayaran">
             <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Konfirmasi Pembayaran</span></a>
+            <span>Daftar Pengajuan</span></a>
     </li>
     <hr class="sidebar-divider">
     <li class="nav-item active">

@@ -3,9 +3,6 @@
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
-                onclick=" $('#tambahData').modal('show');"><i class="fas fa-plus fa-sm text-white-50"></i> Buat
-                Permohonan</button>
 
 
         </div>
@@ -34,6 +31,7 @@
                                 <th>Disposisi Kepegawaian</th>
                                 <th>Berkas 1</th>
                                 <th>Berkas 2</th>
+                                <th>Berkas 3</th>
                                 <th></th>
                                 {{-- <th></th> --}}
                             </tr>
@@ -57,23 +55,29 @@
                                     @endforeach
                                     <th>
                                         <button type="button" class="btn btn-success"
-                                            onclick="window.open('{{URL::asset($item->berkas1)}}', '_blank');"><i class="fas fa-file fa-sm "></i>
+                                            onclick="window.open('{{ URL::asset($item->berkas1) }}', '_blank');"><i
+                                                class="fas fa-file fa-sm "></i>
                                         </button>
                                     </th>
                                     <th>
                                         <button type="button" class="btn btn-success"
-                                            onclick="window.open('{{URL::asset($item->berkas2)}}', '_blank');"><i class="fas fa-file fa-sm "></i>
+                                            onclick="window.open('{{ URL::asset($item->berkas2) }}', '_blank');"><i
+                                                class="fas fa-file fa-sm "></i>
                                         </button>
                                     </th>
                                     <th>
-                                            <button type="button" class="btn btn-success"
-                                                onclick=" sumbit_it({{ $item->id }},10)"><i
-                                                    class="fas fa-edit fa-sm "></i>
-                                                Setujui</button>
-                                            <button type="button" class="btn btn-danger"
-                                                onclick=" sumbit_it({{ $item->id }},12)"><i
-                                                    class="fas fa-ban fa-sm "></i>
-                                                Tolak</button>
+                                        <button type="button" class="btn btn-success"
+                                            onclick="window.open('{{ URL::asset($item->berkas3) }}', '_blank');"><i
+                                                class="fas fa-file fa-sm "></i>
+                                        </button>
+                                    </th>
+                                    <th>
+                                        <button type="button" class="btn btn-success"
+                                            onclick=" sumbit_it({{ $item->id }},10)"><i class="fas fa-edit fa-sm "></i>
+                                            Setujui</button>
+                                        <button type="button" class="btn btn-danger"
+                                            onclick=" sumbit_it({{ $item->id }},12)"><i class="fas fa-ban fa-sm "></i>
+                                            Tolak</button>
                                     </th>
 
 
@@ -94,24 +98,52 @@
                                     </th> --}}
                                 </tr>
                             @endforeach
-                          
+
 
                         </tbody>
                     </table>
                 </div>
             </div>
-            <form action="/verifikasi_post" method="post" id="post_it" hidden>
-                @csrf
-                <input type="text" name="verifikasi" id="verifikasi" >
-                <input type="text" name="id_data" id="id_data">
-            </form>
+            <div class="modal fade" id="tambahData" tabindex="-1" aria-labelledby="tambahDataTitle" style="display: none;"
+                aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" style="max-width:50%">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Tambah Data Instansi</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <form class="modal-body" method="POST" id="add_data" action="/verifikasi_post"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="hidden" name="verifikasi" id="verifikasi">
+                            <input type="hidden" name="id_data" id="id_data">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Alasan Penolakan</label>
+                                <input type="text" class="form-control" id="msg_fail" name="msg_fail"
+                                    aria-describedby="emailHelp" placeholder="Alasan Penolakan">
+                            </div>
+
+                        </form>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" onclick="$('#add_data').submit()">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <script>
             function sumbit_it(id, status) {
                 $('#verifikasi').val(status);
                 $('#id_data').val(id);
                 // alert($('#verifikasi').val());
-                $('#post_it').submit();       
+                if (status == 12) {
+                    $('#tambahData').modal('show');
+                } else {
+                    $('#add_data').submit()
+                }
             }
         </script>
     </div>
