@@ -42,12 +42,16 @@ Route::post('/updateAkun', [Admin_Controller::class, 'update_data']);
 Route::get('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index']);
 Route::post('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index_post']);
 Route::get('/konfirmasi_pembayaran/detail/{id}', [KonfirmasiPembayaran_Controller::class, 'detail_pelayanan']);
+Route::post('/tolakSIswa', [KonfirmasiPembayaran_Controller::class, 'tolakSIswa']);
+
 
 Route::get('/kelolaPelayanan', [KelolaPelayanan_Controller::class, 'kelolaPelayanan']);
 Route::get('/kelolaPelayanan_detail/{id}', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_detail']);
 Route::post('/kelolaPelayanan_post', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_post']);
 Route::post('/kelolaPelayanan_update', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_update']);
 Route::post('/kelolaPelayanan_delete', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_delete']);
+
+
 
 // Admin Page End
 
