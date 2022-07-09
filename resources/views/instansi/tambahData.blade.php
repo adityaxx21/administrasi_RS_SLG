@@ -115,8 +115,8 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Total Biaya</label>
-                                    <input readonly type="text" value="{{ $instansi->total_biaya_pelayanan }}"
-                                        class="form-control" id="biaya" name="biaya" aria-describedby="emailHelp"
+                                    <input readonly type="text" value="{{$instansi->total_biaya_pelayanan}} " class="form-control"
+                                        id="biaya" name="biaya" aria-describedby="emailHelp"
                                         placeholder="Durasi Pelayanan">
                                 </div>
                                 <div class="card-header py-3" style="margin-bottom: 10px">
@@ -155,9 +155,9 @@
                                 @csrf
                                 <input type="hidden" id="id_ins" name="id_ins" value="{{ $instansi->id }}">
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nama Siswa</label>
+                                    <label for="exampleInputEmail1">Nama Peserta </label>
                                     <input type="text" class="form-control" id="nama_siswa" name="nama_siswa"
-                                        aria-describedby="emailHelp" placeholder="Masukan Nama Siswa">
+                                        aria-describedby="emailHelp" placeholder="Masukan Nama Peserta">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Jenis Kelamin</label>
@@ -172,14 +172,14 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputEmail1">Nomor Induk Siswa</label>
+                                    <label for="exampleInputEmail1">Nomor Induk Peserta </label>
                                     <input type="text" class="form-control" id="nomor_induk" name="nomor_induk"
-                                        aria-describedby="emailHelp" placeholder="Masukan Nomor Induk Siswa">
+                                        aria-describedby="emailHelp" placeholder="Masukan Nomor Induk Peserta ">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Alamat Instansi</label>
                                     <textarea type="text" class="form-control" id="alamat" name="alamat" aria-describedby="emailHelp"
-                                        placeholder="Masukan Alamat Siswa"></textarea>
+                                        placeholder="Masukan Alamat Peserta "></textarea>
                                 </div>
                                 <div class="form-group">
                                     <label for="gambar_instansi_update">Berkas 1</label>
@@ -214,7 +214,7 @@
                                 <div class="form-group">
                                     <label for="gambar_instansi_update">Berkas 4</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc3" name="doc4"
+                                        <input type="file" class="custom-file-input" id="doc4" name="doc4"
                                             onchange="input_gb('4','doc4')"
                                             accept="image/*, application/pdf, application/doc">
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name4">Choose
@@ -235,6 +235,108 @@
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                                 <button class="btn btn-primary" onclick="$('#tambah_data').submit();">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- Update Data --}}
+                <div class="modal fade" id="updateData" tabindex="-1" aria-labelledby="updateDataTitle"
+                    style="display: none;" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" style="max-width:50%">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Instansi</h5>
+                                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                            </div>
+                            <form class="modal-body" method="POST" id="update_data" action="/tambahSiswa_update"
+                                enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" id="id_ins_update" name="id_ins_update" value="{{ $instansi->id }}">
+                                <input type="hidden" id="id_siswa_update" name="id_siswa_update">
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nama Peserta </label>
+                                    <input type="text" class="form-control" id="nama_siswa_update" name="nama_siswa_update"
+                                        aria-describedby="emailHelp" placeholder="Masukan Nama Peserta ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Jenis Kelamin</label>
+                                    <div class="input-group mb-3">
+                                        <select class="custom-select" id="jenis_kelamin_update" name="jenis_kelamin_update">
+                                            <option value="Perempuan">Perempuan</option>
+                                            <option value="Laki - Laki">Laki - Laki</option>
+                                        </select>
+                                        <div class="input-group-append">
+                                            <label class="input-group-text" for="inputGroupSelect02">Options</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Nomor Induk Peserta </label>
+                                    <input type="text" class="form-control" id="nomor_induk_update" name="nomor_induk_update"
+                                        aria-describedby="emailHelp" placeholder="Masukan Nomor Induk Peserta ">
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Alamat Instansi</label>
+                                    <textarea type="text" class="form-control" id="alamat_update" name="alamat_update" aria-describedby="emailHelp"
+                                        placeholder="Masukan Alamat Peserta "></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Berkas 1</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc1_update" name="doc1_update"
+                                            onchange="update_gb('1','doc1_update')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="doc1" id="change_name_1">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Berkas 2</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc2_update" name="doc2_update"
+                                            onchange="update_gb('2','doc2_update')"
+                                            accept="image/*, application/pdf, application/doc, application/docx">
+                                        <label class="custom-file-label" for="doc2" id="change_name_2">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Berkas 3</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc3_update" name="doc3_update"
+                                            onchange="update_gb('3','doc3_update')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_3">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Berkas 4</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc4_update" name="doc4_update"
+                                            onchange="update_gb('4','doc4_update')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_4">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Berkas 5</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc5_update" name="doc5_update"
+                                            onchange="update_gb('5','doc5_update')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_5">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                            </form>
+                            <div class="modal-footer">
+                                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                                <button class="btn btn-primary" onclick="$('#update_data').submit();">Save</button>
                             </div>
                         </div>
                     </div>
@@ -329,12 +431,12 @@
                                             </th>
                                             <th>
                                                 @if ($item->id_status != null)
-                                                    <span class="{{ $item->style }}">{{ $item->text }}</span>
+                                                    <span class="{{ $item->style }}">{{ $item->text }}{{" ".$item->msg_fail }}</span>
                                                 @endif
                                             </th>
                                             <th>
                                                 <button type="button" class="btn btn-warning"
-                                                    onclick="update_siswa({{ $item->id }},{{ $instansi->id }})"><i
+                                                    onclick="update_siswa({{ $item->id}})"><i
                                                         class="fas fa-edit fa-sm "></i> update
                                                 </button>
                                                 <button type="button" class="btn btn-danger"
@@ -347,6 +449,7 @@
 
                                 </tbody>
                             </table>
+                            {{-- Hapus Siswa --}}
                             <form action="/hapus_siswa" method="post" id="hapus_siswa">
                                 @csrf
                                 <input type="hidden" id="id_hapus" name="id_hapus">
@@ -412,8 +515,8 @@
                                     <label for="gambar_instansi_update">Upload Bukti Bayar</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="bukti_bayar"
-                                            name="bukti_bayar" onchange="input_gb('4','bukti_bayar')">
-                                        <label class="custom-file-label" for="bukti_bayar" id="change_name4">Choose
+                                            name="bukti_bayar" onchange="input_gb('6','bukti_bayar')">
+                                        <label class="custom-file-label" for="bukti_bayar" id="change_name6">Choose
                                             file</label>
                                     </div>
                                 </div>
@@ -568,11 +671,16 @@
                 }
             });
         }
-
+        
 
         function input_gb(i, id) {
             gambar = $('#' + id).val().replace(/C:\\fakepath\\/i, '')
             $("#change_name" + i).html(gambar);
+        }
+
+        function update_gb(i, id) {
+            gambar = $('#' + id).val().replace(/C:\\fakepath\\/i, '')
+            $("#change_name_" + i).html(gambar);
         }
 
         function hapus_siswa(id, id_data) {
@@ -580,6 +688,57 @@
             $('#id_inst').val(id_data);
             $('#hapus_siswa').submit();
         }
+
+        function formatRupiah(angka, prefix) {
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+                split = number_string.split(','),
+                sisa = split[0].length % 3,
+                rupiah = split[0].substr(0, sisa),
+                ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+            // tambahkan titik jika yang di input sudah menjadi angka ribuan
+            if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        }
+        // Update Pengguna
+        function update_siswa(id) {
+                id_data = id;
+
+                $('#updateData').modal('show');
+                $.ajax({
+                    type: 'GET',
+                    url: "/find_data_siswa/" + id,
+                    success: function(data) {
+
+                        if ($.isEmptyObject(data.error)) {
+                            // alert(data.data.owner);
+                            $('#id_siswa_update').val(id);
+                            $('#nama_siswa_update').val(data.data.nama_siswa);
+                            $('#jenis_kelamin_update').val(data.data.jenis_kelamin);
+                            $('#nomor_induk_update').val(data.data.nomor_induk);
+                            $('#alamat_update').val(data.data.alamat);
+                            // $('#'+data.data.role).attr('selected');
+                            // role = data.data.role;
+
+
+                            // $('#jenis_instansi_update option:eq(1)');
+                            // const text = data.data.role;
+                            // const $select = document.querySelector('#jenis_instansi_update');
+                            // const $options = Array.from($select.options);
+                            // const optionToSelect = $options.find(item => item.text === text);
+                            // $select.value = optionToSelect.value;
+                            // alert(role);
+                        } else {
+                            printErrorMsg(data.error);
+                        }
+                    }
+                });
+            }
     </script>
     </div>
 @endsection

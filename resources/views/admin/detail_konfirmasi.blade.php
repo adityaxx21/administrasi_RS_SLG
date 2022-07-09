@@ -99,7 +99,7 @@
                     </div>
                     <thead>
                         <tr>
-                            <th>Nama Pendaftar</th>
+                            <th>Nama Peserta</th>
                             <th>Nomor Induk</th>
                             <th>Jenis Kelamin</th>
                             <th>Berkas 1</th>

@@ -64,6 +64,10 @@ Route::post('/hapus_siswa', [Instansi_Controller::class, 'hapus_siswa']);
 
 Route::get('/profileInstansi', [Instansi_Controller::class, 'profileInstansi']);
 Route::post('/profileInstansi_post', [Instansi_Controller::class, 'profileInstansi_post']);
+Route::post('/tambahSiswa_update', [Instansi_Controller::class, 'tambahSiswa_update']);
+
+
+Route::get('/find_data_siswa/{id}', [Instansi_Controller::class, 'find_data']);
 
 // Route::get('/instansi', [Admin_Controller::class, 'index']);
 

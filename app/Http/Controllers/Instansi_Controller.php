@@ -14,7 +14,7 @@ class Instansi_Controller extends Controller
     {
         // fungsi untuk menampilkan pelayanan pada user instansi
         // dimana akan menampilkan seluruh proses pelayanan oleh instansi tersebut
-        
+
         // tabel dibawah merupakan left join dari beberapa tabel berdasarkan id nya
         $data['instansi'] = DB::table('tb_transaksi_pelayanan')
             ->selectRaw('tb_transaksi_pelayanan.*,
@@ -46,7 +46,7 @@ class Instansi_Controller extends Controller
         ];
         DB::table('tb_transaksi_pelayanan')->insert($get_data);
         $id = DB::table('tb_transaksi_pelayanan')->max('id');
-        return redirect('/instansi/tambahData/'.$id);
+        return redirect('/instansi/tambahData/' . $id);
     }
 
     public function tambahData($id)
@@ -68,21 +68,25 @@ class Instansi_Controller extends Controller
             ->where([['tb_transaksi_pelayanan.is_deleted', 1], ['tb_transaksi_pelayanan.id', $id]])
             ->groupByRaw('tb_transaksi_pelayanan.id')
             ->first();
-            // echo($id);
+        // echo($id);
 
-            // sedangkan tabel dibawah ini untuk menampilkan list siswa dan jenis pelayanan
-        $data['siswa'] = DB::table('tb_siswa')->where([['is_deleted', 1], ['id_pelayanan', $id]])->get();
+        // sedangkan tabel dibawah ini untuk menampilkan list siswa dan jenis pelayanan
+        $data['siswa'] = DB::table('tb_siswa')
+            ->selectRaw('tb_siswa.*,
+                    tb_text_status.style as style,
+                    tb_text_status.text as text')
+            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_siswa.id_status')
+            ->where([['tb_siswa.is_deleted', 1], ['tb_siswa.id_pelayanan', $id]])->get();
         $data['jenis_pelayanan'] = DB::table('tb_jenis_pelayanan')->where('is_deleted', 1)->get();
-                      // print_r($data['instansi']);
+        // print_r($data['instansi']);
         return view('instansi.tambahData', $data);
         return response()->json($data);
-
     }
     public function tambahData_post(Request $request)
     {
         // fungsi ini dipakai untuk melakukan perubahan data untuk menambahkan nilai dari durasi pelayanan serta biaya
         // output dari fungsi ini berupa pemberian nilai berdasarkan inputan instansi pada jumlah peserta, durasi, serta total biaya
-        
+
         $jumlah_pelayan = $request->jumlah_pelayanan;
         $durasi_pelayanan = $request->durasi_pelayanan;
         $biaya_orang = $request->biaya_orang;
@@ -117,8 +121,9 @@ class Instansi_Controller extends Controller
             'jenis_kelamin' => $jenis_kelamin,
             'created_at' => date("Y-m-d H:i:s"),
         ];
-        $cond = DB::table('tb_siswa')->where([['id_pelayanan',$id],['nomor_induk',$nomor_induk]])->select('nomor_induk');
+        $cond = DB::table('tb_siswa')->where([['id_pelayanan', $id], ['nomor_induk', $nomor_induk]])->first();
         if ($cond != null) {
+            // echo( $cond->nomor_induk);
             return redirect('/instansi/tambahData/' . $id)->with('alert-notif', 'ID sudah terdaftar');
         }
 
@@ -134,13 +139,13 @@ class Instansi_Controller extends Controller
         $data['jenis_pelayanan'] = DB::table('tb_jenis_pelayanan')->where([['is_deleted', 1], ['id',  $data['intansi']->id_jenis_pelayanan]])->first();
 
 
-        DB::table('tb_transaksi_pelayanan')->where('id', $id)->update(['total_biaya_pelayanan'=>( $data['intansi']->durasi_pelayanan * $data['intansi']->jumlah_pelayanan * $data['jenis_pelayanan']->biaya )]);
+        DB::table('tb_transaksi_pelayanan')->where('id', $id)->update(['total_biaya_pelayanan' => ($data['intansi']->durasi_pelayanan * $data['intansi']->jumlah_pelayanan * $data['jenis_pelayanan']->biaya)]);
 
 
         $this->tambahData_post($request);
         return redirect('/instansi/tambahData/' . $id);
     }
-    
+
     public function bayar(Request $request)
     {
         // fungsi ini dipakai untuk menginputkan data transfer untuk rs berupa transfer bank atau dompet digital
@@ -222,7 +227,7 @@ class Instansi_Controller extends Controller
         $view = view("invoice.invoice", $data);
         $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
-        $customPaper = array(0,0,1100,750);
+        $customPaper = array(0, 0, 1100, 750);
         // (Optional) Setup the paper size and orientation
         // $dompdf->setPaper('a4', 'landscape');
         $dompdf->setPaper($customPaper);
@@ -242,7 +247,7 @@ class Instansi_Controller extends Controller
         $id_hapus = $request->id_hapus;
         $id_data = $request->id_inst;
         DB::table('tb_transaksi_pelayanan')->where('id', $id_data)->decrement('jumlah_pelayanan', 1);
-        DB::table('tb_siswa')->where('id',$id_hapus)->update(['is_deleted'=>0]);
+        DB::table('tb_siswa')->where('id', $id_hapus)->update(['is_deleted' => 0]);
         // echo($id_hapus."    ".$id_data);
 
         // if ( $id_data == 10006) {
@@ -251,29 +256,51 @@ class Instansi_Controller extends Controller
         $data['jenis_pelayanan'] = DB::table('tb_jenis_pelayanan')->where([['is_deleted', 1], ['id',  $data['intansi']->id_jenis_pelayanan]])->first();
         // print_r( $data['intansi']);
 
-        DB::table('tb_transaksi_pelayanan')->where('id', $id_data)->update(['total_biaya_pelayanan'=>( $data['intansi']->durasi_pelayanan * $data['intansi']->jumlah_pelayanan * $data['jenis_pelayanan']->biaya )]);
+        DB::table('tb_transaksi_pelayanan')->where('id', $id_data)->update(['total_biaya_pelayanan' => ($data['intansi']->durasi_pelayanan * $data['intansi']->jumlah_pelayanan * $data['jenis_pelayanan']->biaya)]);
 
 
 
         return redirect('/instansi/tambahData/' . $id_data);
     }
 
-    public function update_siswa(Request $request)
+    public function find_data($id)
+    {
+        $data['data'] = DB::table('tb_siswa')->where('id',$id)->first();
+        return response()->json($data);
+    }
+
+    public function tambahSiswa_update(Request $request)
     {
         // Menghapus siswa jika dianggap tidak sesuai
-        $id_hapus = $request->id_hapus;
-        $id_data = $request->id_inst;
-        DB::table('tb_transaksi_pelayanan')->where('id', $id_data)->decrement('jumlah_pelayanan', 1);
-        DB::table('tb_siswa')->where('id',$id_hapus)->update(['is_deleted'=>0]);
-        // echo($id_hapus."    ".$id_data);
 
-        // if ( $id_data == 10006) {
-        // }
-        $data['intansi'] = DB::table('tb_transaksi_pelayanan')->where([['is_deleted', 1], ['id', $id_data]])->first();
-        $data['jenis_pelayanan'] = DB::table('tb_jenis_pelayanan')->where([['is_deleted', 1], ['id',  $data['intansi']->id_jenis_pelayanan]])->first();
-        // print_r( $data['intansi']);
-        DB::table('tb_transaksi_pelayanan')->where('id', $id_data)->update(['total_biaya_pelayanan'=>( $data['intansi']->durasi_pelayanan * $data['intansi']->jumlah_pelayanan * $data['jenis_pelayanan']->biaya )]);
-        return redirect('/instansi/tambahData/' . $id_data);
+        $id = $request->id_siswa_update;
+        $nama_siswa = $request->nama_siswa_update;
+        $nomor_induk = $request->nomor_induk_update;
+        $alamat = $request->alamat_update;
+        $jenis_kelamin = $request->jenis_kelamin_update;
+        $id_ins = $request->id_ins_update;
+        $get_data = [
+            'nama_siswa' => $nama_siswa,
+            'nomor_induk' => $nomor_induk,
+            'alamat' => $alamat,
+            'jenis_kelamin' => $jenis_kelamin,
+            'created_at' => date("Y-m-d H:i:s"),
+            'id_status' =>''
+        ];
+        $cond = DB::table('tb_siswa')->where([['id_pelayanan', $id_ins], ['nomor_induk', $nomor_induk]])->count();
+        if ($cond+1 > 1) {
+            // echo( $cond->nomor_induk);
+            return redirect('/instansi/tambahData/' . $id_ins)->with('alert-notif', 'ID sudah terdaftar');
+        }
+
+        $get_data = $this->doc_input($request->doc1_update, $get_data, 1);
+        $get_data = $this->doc_input($request->doc2_update, $get_data, 2);
+        $get_data =  $this->doc_input($request->doc3_update, $get_data, 3);
+        $get_data =  $this->doc_input($request->doc4_update, $get_data, 4);
+        $get_data =  $this->doc_input($request->doc5_update, $get_data, 5);
+        DB::table('tb_siswa')->where('id',$id)->update($get_data);
+        // print_r($get_data);
+        return redirect('/instansi/tambahData/' . $id_ins);
     }
 
     public function hapus_pelayanan(Request $request)
@@ -281,12 +308,7 @@ class Instansi_Controller extends Controller
         // Menghapus pelayanan oleh instansi jika dianggap tidak dipakai
         $id_hapus = $request->id_hapus;
 
-        DB::table('tb_transaksi_pelayanan')->where('id',$id_hapus)->update(['is_deleted'=>0]);
-        // echo($id_hapus."    ".$id_data);
-
-        // if ( $id_data == 10006) {
-        // }
-      
+        DB::table('tb_transaksi_pelayanan')->where('id', $id_hapus)->update(['is_deleted' => 0]);
 
         return redirect('/instansi');
     }
@@ -294,8 +316,8 @@ class Instansi_Controller extends Controller
     public function profileInstansi()
     {
         // FUngsi ini berguna untuk menampilkan data dari user instansi yang akan ditampilkan pada halaman profileInstansi
-        $data['instansi'] = DB::table('tb_instansi')->where('username',session()->get('username'))->first();
-        return view('instansi.profileInstansi',$data);
+        $data['instansi'] = DB::table('tb_instansi')->where('username', session()->get('username'))->first();
+        return view('instansi.profileInstansi', $data);
     }
 
     public function profileInstansi_post(Request $request)
@@ -322,9 +344,9 @@ class Instansi_Controller extends Controller
         // print_r($get_data);
         // echo ($id);
         if ($get_data != null) {
-            DB::table('tb_instansi')->where('id',$id)->update($get_data);
+            DB::table('tb_instansi')->where('id', $id)->update($get_data);
         }
-        
+
         return redirect('/profileInstansi');
     }
 }
