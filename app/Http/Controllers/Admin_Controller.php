@@ -35,6 +35,7 @@ class Admin_Controller extends Controller
             'role'=>$request->jenis_instansi,
             'created_at'=>date("Y-m-d H:i:s"),
         ];
+        
         try {
             $name_img =  $request->file('gambar_instansi')->getClientOriginalName();
         } catch (\Throwable $th) {

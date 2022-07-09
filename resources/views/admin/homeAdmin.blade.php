@@ -254,18 +254,7 @@
                             $('#alamat_instansi_update').val(data.data.alamat_instansi);
                             $('#email_update').val(data.data.email);
                             $('#username_update').val(data.data.username);
-                            $('#jenis_instansi_update').val(data.data.role)
-                            // $('#'+data.data.role).attr('selected');
-                            // role = data.data.role;
-
-
-                            // $('#jenis_instansi_update option:eq(1)');
-                            // const text = data.data.role;
-                            // const $select = document.querySelector('#jenis_instansi_update');
-                            // const $options = Array.from($select.options);
-                            // const optionToSelect = $options.find(item => item.text === text);
-                            // $select.value = optionToSelect.value;
-                            // alert(role);
+                            $('#jenis_instansi_update').val(data.data.role);
                         } else {
                             printErrorMsg(data.error);
                         }

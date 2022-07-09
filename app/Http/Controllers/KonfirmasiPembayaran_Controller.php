@@ -44,6 +44,7 @@ class KonfirmasiPembayaran_Controller extends Controller
     public function detail_pelayanan($id)
     {
         // Fungsi ini dipakai untuk menampilkan detail pelayanan yang diajukan oleh instansi
+        // Status 
         $data['instansi'] = DB::table('tb_transaksi_pelayanan')
         ->selectRaw('tb_transaksi_pelayanan.*,
                 tb_instansi.nama_pendaftar as nama_pendaftar,
@@ -75,7 +76,6 @@ class KonfirmasiPembayaran_Controller extends Controller
         $id_hapus = $request->id_data;
         $id_data = $request->id_pelayanan;
         $msg = $request->msg;
-        // print_r($id_hapus . "  " . $id_data . "  " . $msg . "  ");
         DB::table('tb_siswa')->where('id',$id_hapus)->update(['id_status'=>22,'msg_fail'=>$msg]);
 
         return redirect('/konfirmasi_pembayaran/detail/' . $id_data);

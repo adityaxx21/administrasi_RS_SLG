@@ -50,9 +50,6 @@ Route::get('/kelolaPelayanan_detail/{id}', [KelolaPelayanan_Controller::class, '
 Route::post('/kelolaPelayanan_post', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_post']);
 Route::post('/kelolaPelayanan_update', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_update']);
 Route::post('/kelolaPelayanan_delete', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_delete']);
-
-
-
 // Admin Page End
 
 

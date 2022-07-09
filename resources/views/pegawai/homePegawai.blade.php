@@ -52,7 +52,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Tema Pelatihan</label>
                                     <input type="text" class="form-control" id="tema_pelatihan" name="tema_pelatihan"
-                                        aria-describedby="emailHelp" placeholder="Narasumber">
+                                        aria-describedby="emailHelp" placeholder="Tema Pelatihan">
                                 </div>
                                 <div class="form-group">
                                     <label for="waktu_pelaksanaan" class="label-form">Waktu Pelaksanaan</label>
@@ -64,39 +64,34 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Narasumber</label>
                                     <input type="text" class="form-control" id="narasumber" name="narasumber"
-                                        aria-describedby="emailHelp" placeholder="Narasumber">
+                                        aria-describedby="emailHelp" placeholder="Masukan Narasumber">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Sasaran Pelatihan</label>
                                     <input type="text" class="form-control" id="sasaran_pelatihan"
                                         name="sasaran_pelatihan" aria-describedby="emailHelp"
-                                        placeholder="Masukan Alamat Instansi">
+                                        placeholder="Masukan Sasaran Pelatihan">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nama Jabatan</label>
                                     <input type="text" class="form-control" id="nama_jabatan" name="nama_jabatan"
-                                        aria-describedby="emailHelp" placeholder="Masukan Alamat Instansi">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Jumlah Peserta</label>
-                                    <input type="text" class="form-control" id="jumlah_peserta" name="jumlah_peserta"
-                                        aria-describedby="emailHelp" placeholder="Masukan Alamat Instansi">
+                                        aria-describedby="emailHelp" placeholder="Masukan Nama Jabatan">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Materi</label>
                                     <input type="text" class="form-control" id="materi" name="materi"
-                                        aria-describedby="emailHelp" placeholder="Masukan Alamat Instansi">
+                                        aria-describedby="emailHelp" placeholder="Masukan Materi">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Indikator Kebutuhan</label>
                                     <input type="text" class="form-control" id="indikator_kebutuhan"
                                         name="indikator_kebutuhan" aria-describedby="emailHelp"
-                                        placeholder="Masukan Alamat Instansi">
+                                        placeholder="Masukan Indikator Kebutuhan">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Anggaran</label>
                                     <input type="text" class="form-control" id="anggaran" name="anggaran"
-                                        aria-describedby="emailHelp" placeholder="Masukan Alamat Instansi">
+                                        aria-describedby="emailHelp" placeholder="Masukan Anggaran">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Periode Evaluasi</label>
@@ -182,7 +177,7 @@
                                     <label for="exampleInputEmail1">Tema Pelatihan</label>
                                     <input type="text" class="form-control" id="tema_pelatihan_update"
                                         name="tema_pelatihan_update" aria-describedby="emailHelp"
-                                        placeholder="Narasumber">
+                                        placeholder="Tema Pelatihan">
                                 </div>
                                 <div class="form-group">
                                     <label for="waktu_pelaksanaan" class="label-form">Waktu Pelaksanaan</label>
@@ -195,42 +190,36 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Narasumber</label>
                                     <input type="text" class="form-control" id="narasumber_update"
-                                        name="narasumber_update" aria-describedby="emailHelp" placeholder="Narasumber">
+                                        name="narasumber_update" aria-describedby="emailHelp" placeholder="Masukan Narasumber">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Sasaran Pelatihan</label>
                                     <input type="text" class="form-control" id="sasaran_pelatihan_update"
                                         name="sasaran_pelatihan_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Alamat Instansi">
+                                        placeholder="Masukan Sasaran Pelatihan">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nama Jabatan</label>
                                     <input type="text" class="form-control" id="nama_jabatan_update"
                                         name="nama_jabatan_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Alamat Instansi">
-                                </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Jumlah Peserta</label>
-                                    <input type="text" class="form-control" id="jumlah_peserta_update"
-                                        name="jumlah_peserta_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Alamat Instansi">
+                                        placeholder="Masukan Nama Jabatan">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Materi</label>
                                     <input type="text" class="form-control" id="materi_update" name="materi_update"
-                                        aria-describedby="emailHelp" placeholder="Masukan Alamat Instansi">
+                                        aria-describedby="emailHelp" placeholder="Masukan Materi">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Indikator Kebutuhan</label>
                                     <input type="text" class="form-control" id="indikator_kebutuhan_update"
                                         name="indikator_kebutuhan_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Alamat Instansi">
+                                        placeholder="Masukan Indikator Kebutuhan">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Anggaran</label>
                                     <input type="text" class="form-control" id="anggaran_update"
                                         name="anggaran_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Alamat Instansi">
+                                        placeholder="Masukan Anggaran">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Periode Evaluasi</label>

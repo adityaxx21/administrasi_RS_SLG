@@ -468,7 +468,7 @@
                                         Kembali </a>
                                     <button class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"
                                         onclick=" $('#tambahData').modal('show');"><i
-                                            class="fas fa-plus fa-sm text-white-50"></i> Tambah Siswa</button>
+                                            class="fas fa-plus fa-sm text-white-50"></i> Tambah Peserta</button>
                                 </div>
                             </div>
                         </div>
