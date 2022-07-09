@@ -12,7 +12,12 @@ class Admin_Controller extends Controller
     {
         // Bagian ini berfungsi untuk menampilkan data - dat instansi serta pengambilan list role dari database
         $data['jenis'] =   DB::table('tb_role')->where([['is_deleted',1],['id','>','2000']])->get();
-        $data['instansi'] = DB::table('tb_instansi')->where('is_deleted',1)->get();
+        $data['instansi'] = DB::table('tb_instansi')
+        ->selectRaw('tb_instansi.*,
+                    tb_role.role_nama as role_nama')
+        ->leftJoin('tb_role','tb_role.id','tb_instansi.role')
+        ->where('tb_instansi.is_deleted',1)->get();
+        // print_r( $data['instansi']);
         return view('admin.homeAdmin',$data);
     }
     // Tambah Data
@@ -54,7 +59,7 @@ class Admin_Controller extends Controller
             return redirect('/login')->with('alert-notif', 'Anda Harus Login Terlebih Dahulu');
         }
         $id =  $request->id_data;
-        $password = $request->password_instansi_update;
+        $password = $request->password_update;
         $get_data = [
             'nama_pendaftar'=>$request->nama_pendaftar_update,
             'nama_instansi'=>$request->nama_instansi_update,
@@ -65,7 +70,7 @@ class Admin_Controller extends Controller
             'updated_at'=>$request->date("Y-m-d H:i:s"),
         ];
         if ($password != null) {
-            $get_data = array_merge($get_data, ['password_update' => md5($password)]);
+            $get_data = array_merge($get_data, ['password' => md5($password)]);
         }
         try {
             $name_img =  $request->file('gambar_instansi_update')->getClientOriginalName();

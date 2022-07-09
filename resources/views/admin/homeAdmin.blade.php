@@ -170,7 +170,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control" id="password_update"
+                                    <input type="password" class="form-control" id="password_update" name="password_update"
                                         placeholder="Kosongkan Jika tidak ingin mengganti password">
                                 </div>
 
@@ -204,7 +204,7 @@
                                     <th>{{ $item->id }}</th>
                                     <th>{{ $item->nama_pendaftar }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
-                                    <th>{{ $item->role == 2001 ? 'Instansi' : 'Perorangan' }} </th>
+                                    <th>{{ $item->role_nama}} </th>
                                     <th>{{ $item->email }}</th>
                                     <th>
                                         <button type="button" class="btn btn-warning"
