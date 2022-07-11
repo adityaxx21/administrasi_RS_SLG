@@ -17,76 +17,89 @@
 
                 </thead>
                 <tbody style="text-align: left">
+                    <br>
                     <tr>
-                        <td style="width:20%">
-                            <h4>Nama Pendaftar </h4>
-                        </td>
-                        <td>
-                            <h4>: {{ $instansi->nama_pendaftar }}</h4>
-                        </td>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Nama Pendaftar </h4>
+                            </div>
+                            <div class="col-8">
+                                <h4>: {{ $instansi->nama_pendaftar }}</h4>
+                            </div>
+                        </div>
                     </tr>
                     <tr>
-                        <td style="width:20%">
-                            <h4>Nama Instansi
-                        </td>
-                        <td>
-                            <h4>: {{ $instansi->nama_instansi }}
-                        </td>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Nama Instansi</h4>
+                            </div>
+                            <div class="col-8">
+                                <h4>: {{$instansi->nama_instansi }}</h4>
+                            </div>
+                        </div>
                     </tr>
                     <tr>
-                        <td style="width:20%">
-                            <h4>Jenis Pelayanan
-                        </td>
-                        <td>
-                            <h4>: {{ $instansi->jenis_pelayanan }}
-                        </td>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Jenis Pelayanan </h4>
+                            </div>
+                            <div class="col-8">
+                                <h4>: {{$instansi->jenis_pelayanan  }}</h4>
+                            </div>
+                        </div>
                     </tr>
                     <tr>
-                        <td style="width:20%">
-                            <h4>Durasi Pelayanan
-                        </td>
-                        <td>
-                            <h4>: {{ $instansi->durasi_pelayanan }} {{ $instansi->satuan_waktu }}
-                        </td>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Durasi Pelayanan</h4>
+                            </div>
+                            <div class="col-8">
+                                <h4>:  {{ $instansi->durasi_pelayanan }} {{ $instansi->satuan_waktu }}</h4>
+                            </div>
+                        </div>
                     </tr>
                     <tr>
-                        <td style="width:20%">
-                            <h4>Jumlah Pelayanan
-                        </td>
-                        <td>
-                            <h4>: {{ $instansi->jumlah_pelayanan }}
-                        </td>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Jumlah Pelayanan </h4>
+                            </div>
+                            <div class="col-8">
+                                <h4>: {{ $instansi->jumlah_pelayanan }}</h4>
+                            </div>
+                        </div>
                     </tr>
                     <tr>
-                        <td style="width:20%">
-                            <h4>Total Biaya Pelayanan
-                        </td>
-                        <td>
-                            <h4>: Rp. {{ $instansi->total_biaya_pelayanan }}
-                        </td>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Total Biaya Pelayanan</h4>
+                            </div>
+                            <div class="col-8">
+                                <h4>: Rp. {{$instansi->total_biaya_pelayanan}} </h4>
+                            </div>
+                        </div>
                     </tr>
                     <tr>
-                        <td style="width:20%">
-                            <h4>Kode Pembayaran
-                        </td>
-                        <td>
-                            <h4>: {{ $instansi->kode_pembayaran }}
-                        </td>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Durasi Pelayanan</h4>
+                            </div>
+                            <div class="col-8">
+                                <h4>:  {{ $instansi->durasi_pelayanan }} {{ $instansi->satuan_waktu }}</h4>
+                            </div>
+                        </div>
                     </tr>
                     <tr>
-                        <td style="width:20%">
-                            <h4>Metode Pembayaran
-                        </td>
-                        <td>
-                            <h4>: {{ $instansi->metode_pembayaran }}
-                        </td>
+                        <div class="row">
+                            <div class="col-2">
+                                <h4>Bukti Pembayaran </h4>
+                            </div>
+                            <div class="col-8">
+                           
+                                <h4> :     <a class="btn btn-primary" href="{{ URL::asset($instansi->bukti_pembayaran) }}" target="_blank"><i class="fas fa-file fa-sm "></i> Lihat Gambar</a>
+                            </div>
+                        </div>
                     </tr>
-                    <tr>
-                        <td style="width:20%">
-                            <h4>Bukti Pembayaran : </h4>
-                        </td>
-                        <td> <img src="{{ URL::asset($instansi->bukti_pembayaran) }}" alt="" srcset=""> </td>
-                    </tr>
+                    
                 </tbody>
             </table>
             <hr>
