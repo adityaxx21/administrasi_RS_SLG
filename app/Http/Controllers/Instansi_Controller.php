@@ -288,7 +288,7 @@ class Instansi_Controller extends Controller
             'id_status' =>''
         ];
         $cond = DB::table('tb_siswa')->where([['id_pelayanan', $id_ins], ['nomor_induk', $nomor_induk]])->count();
-        if ($cond+1 > 1) {
+        if ($cond > 1) {
             // echo( $cond->nomor_induk);
             return redirect('/instansi/tambahData/' . $id_ins)->with('alert-notif', 'ID sudah terdaftar');
         }
@@ -300,6 +300,7 @@ class Instansi_Controller extends Controller
         $get_data =  $this->doc_input($request->doc5_update, $get_data, 5);
         DB::table('tb_siswa')->where('id',$id)->update($get_data);
         // print_r($get_data);
+        // echo ($cond);
         return redirect('/instansi/tambahData/' . $id_ins);
     }
 
