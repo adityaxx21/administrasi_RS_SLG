@@ -50,4 +50,50 @@ class KelolaPelayanan_Controller extends Controller
 
         return redirect('/kelolaPelayanan');
     }
+
+    public function laporanPelayanan(Request $request)
+    {
+        // $data['search'] = $request->input('search');
+        // // pencarian data jika diinputkan
+        // $date = $data['date'] !== "" ? ['tb_transaksi.tanggal_kedatangan', 'LIKE', $data['date'] . '%'] : "";
+        // $date_end = $data['date_end'] !== "" ?  [$data['date'],$data['date_end']] : "";
+        $data['date'] = $request->min;
+        $data['date_end'] = $request->max;
+        // $cond="";
+        if ( $data['date'] != null &&  $data['date_end'] != null) {
+            $cond = [[$data['date']],$data['date_end']];
+            $data['pelayanan'] = DB::table('tb_transaksi_pelayanan')
+            ->selectRaw('tb_transaksi_pelayanan.*,
+                tb_instansi.nama_instansi as nama_instansi,
+                tb_jenis_pelayanan.jenis_pelayanan as jenis_pelayanan,
+                tb_jenis_pelayanan.satuan_waktu as satuan_waktu,
+                tb_text_status.style as style,
+                tb_text_status.text as text')
+            ->leftJoin('tb_instansi', 'tb_instansi.id', '=', 'tb_transaksi_pelayanan.id_instansi')
+            ->leftJoin('tb_jenis_pelayanan', 'tb_jenis_pelayanan.id', '=', 'tb_transaksi_pelayanan.id_jenis_pelayanan')
+            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_transaksi_pelayanan.id_status_pembayaran')
+            ->orderBy('tb_transaksi_pelayanan.id', 'ASC')
+            ->where('tb_transaksi_pelayanan.is_deleted', 1)
+            ->whereBetween('tb_transaksi_pelayanan.updated_at',$cond)
+            ->groupByRaw('tb_transaksi_pelayanan.id')
+            ->get();
+        } else{
+            $data['pelayanan'] = DB::table('tb_transaksi_pelayanan')
+            ->selectRaw('tb_transaksi_pelayanan.*,
+                tb_instansi.nama_instansi as nama_instansi,
+                tb_jenis_pelayanan.jenis_pelayanan as jenis_pelayanan,
+                tb_jenis_pelayanan.satuan_waktu as satuan_waktu,
+                tb_text_status.style as style,
+                tb_text_status.text as text')
+            ->leftJoin('tb_instansi', 'tb_instansi.id', '=', 'tb_transaksi_pelayanan.id_instansi')
+            ->leftJoin('tb_jenis_pelayanan', 'tb_jenis_pelayanan.id', '=', 'tb_transaksi_pelayanan.id_jenis_pelayanan')
+            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_transaksi_pelayanan.id_status_pembayaran')
+            ->orderBy('tb_transaksi_pelayanan.id', 'ASC')
+            ->where('tb_transaksi_pelayanan.is_deleted', 1)
+            ->groupByRaw('tb_transaksi_pelayanan.id')
+            ->get();
+        }
+
+        return view('admin.laporanPelayanan',$data);
+    }
 }

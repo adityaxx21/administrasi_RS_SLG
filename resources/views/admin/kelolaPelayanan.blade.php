@@ -48,9 +48,9 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <select class="custom-select" id="satuan_waktu" name="satuan_waktu">
-                                            <option value="minggu">minggu</option>
-                                            <option value="bulan">bulan</option>
-                                            <option value="hari">hari</option>
+                                        <option value="minggu">minggu</option>
+                                        <option value="bulan">bulan</option>
+                                        <option value="hari">hari</option>
                                     </select>
                                     <div class="input-group-append">
                                         <label class="input-group-text" for="inputGroupSelect02">Options</label>
@@ -75,15 +75,16 @@
                                     <span aria-hidden="true">×</span>
                                 </button>
                             </div>
-                            <form id="update_form" method="POST" action="/kelolaPelayanan_update" enctype="multipart/form-data"
-                                style="
+                            <form id="update_form" method="POST" action="/kelolaPelayanan_update"
+                                enctype="multipart/form-data" style="
                             margin: 20px;">
                                 @csrf
                                 <input type="hidden" id="id_data_update" name="id_data_update">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Jenis Pelayanan</label>
-                                    <input type="text" class="form-control" id="jenis_pelayanan_update" name="jenis_pelayanan_update"
-                                        aria-describedby="emailHelp" placeholder="Masukan Jenis Pelayanan">
+                                    <input type="text" class="form-control" id="jenis_pelayanan_update"
+                                        name="jenis_pelayanan_update" aria-describedby="emailHelp"
+                                        placeholder="Masukan Jenis Pelayanan">
                                 </div>
 
                                 <div class="form-group">
@@ -93,9 +94,9 @@
                                 </div>
                                 <div class="input-group mb-3">
                                     <select class="custom-select" id="satuan_waktu_update" name="satuan_waktu_update">
-                                            <option value="minggu">minggu</option>
-                                            <option value="bulan">bulan</option>
-                                            <option value="hari">hari</option>
+                                        <option value="minggu">minggu</option>
+                                        <option value="bulan">bulan</option>
+                                        <option value="hari">hari</option>
                                     </select>
                                     <div class="input-group-append">
                                         <label class="input-group-text" for="inputGroupSelect02">Options</label>
@@ -133,14 +134,13 @@
 
                                     <th>
                                         <button type="button" class="btn btn-warning"
-                                            onclick="get_data({{ $item->id }})"><i
-                                                class="fas fa-file fa-sm "></i> Update
+                                            onclick="get_data({{ $item->id }})"><i class="fas fa-file fa-sm "></i>
+                                            Update
                                         </button>
                                         <button type="button" class="btn btn-danger"
-                                            onclick="remove({{ $item->id }})"><i
-                                                class="fas fa-ban fa-sm "></i> delete
+                                            onclick="remove({{ $item->id }})"><i class="fas fa-ban fa-sm "></i> delete
                                         </button>
-                                        
+
                                     </th>
                                 </tr>
                             @endforeach
@@ -191,6 +191,14 @@
                 $('#id_hapus').val(id);
                 $('#hapus').submit();
             }
+
+            $(document).ready(function() {
+                $('#dataTable').DataTable({
+                    order: [
+                        [1, 'asc']
+                    ],
+                });
+            });
         </script>
     </div>
 @endsection

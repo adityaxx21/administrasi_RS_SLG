@@ -50,6 +50,9 @@ Route::get('/kelolaPelayanan_detail/{id}', [KelolaPelayanan_Controller::class, '
 Route::post('/kelolaPelayanan_post', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_post']);
 Route::post('/kelolaPelayanan_update', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_update']);
 Route::post('/kelolaPelayanan_delete', [KelolaPelayanan_Controller::class, 'kelolaPelayanan_delete']);
+Route::get('/laporanPelayanan', [KelolaPelayanan_Controller::class, 'laporanPelayanan']);
+Route::get('/laporanPelayanan_unduh', [KelolaPelayanan_Controller::class, 'laporanPelayanan_unduh']);
+
 // Admin Page End
 
 
@@ -82,10 +85,6 @@ Route::get('/find_data_pegawai/{id}', [Pegawai_Controller::class, 'find_data']);
 Route::post('/pegawai_post', [Pegawai_Controller::class, 'index_post']);
 Route::post('/pegawai_update', [Pegawai_Controller::class, 'index_update']);
 Route::post('/pegawai_delete', [Pegawai_Controller::class, 'index_delete']);
-
-
-
-
 // Pegawai Page End
 
 

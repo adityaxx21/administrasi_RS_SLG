@@ -30,6 +30,12 @@
             <span>Kelola Pelayanan</span></a>
     </li>
     <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/laporanPelayanan">
+            <i class="fa-solid fa-file "></i>
+            <span>Laporan Pelayanan</span></a>
+    </li>
+    <hr class="sidebar-divider">
     <!-- Divider -->
     
 
