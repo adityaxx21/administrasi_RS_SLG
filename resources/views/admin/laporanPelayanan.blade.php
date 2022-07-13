@@ -23,16 +23,16 @@
                     <form class="row" action="/laporanPelayanan" id="submit_it" method="get">
                         <div class="col">
                             <div class="form-group">
-                                <label for="min" class="label-form">Tanggal Min</label>
-                                <input id="min" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
+                                <label for="min" class="label-form">Tanggal Mulai</label>
+                                <input id="min" name="min" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
                                     required="required" onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
                                     name="min" value="{{$date}}">
                             </div>
                         </div>
                         <div class="col">
                             <div class="form-group">
-                                <label for="max" class="label-form">Tanggal Max</label>
-                                <input id="max" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
+                                <label for="max" class="label-form">Tanggal Selesai</label>
+                                <input id="max" name="max" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
                                     required="required" onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
                                     name="max" value="{{$date_end}}">
                             </div>
@@ -57,6 +57,7 @@
                                 <td class="text-center">JENIS PELAYANAN</td>
                                 <td class="text-right">DURASI PELAYANAN</td>
                                 <td class="text-right">JUMLAH PELAYANAN</td>
+                                <td class="text-right">TANGGAL PELAYANAN</td>
                                 <td class="text-right">STATUS PEMBAYARAN</td>
                                 <td class="text-right">TOTAL PEMBAYARAN</td>
                             </tr>
@@ -69,6 +70,7 @@
                                     <td>{{ $item->jenis_pelayanan }}</td>
                                     <td>{{ $item->durasi_pelayanan }} {{$item->satuan_waktu}}</td>
                                     <td>{{ $item->jumlah_pelayanan }}</td>
+                                    <td>{{ date("d-m-Y", strtotime($item->updated_at))}}</td>
                                     <td><span class="{{$item->style}}">{{$item->text}}</span>  </td>
                                     <td>Rp. {{ $item->total_biaya_pelayanan }}</td>
 
