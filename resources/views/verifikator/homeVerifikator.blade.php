@@ -17,6 +17,31 @@
                 }
             </style>
             <div class="card-body">
+                <form class="row" action="/verifikasi" id="submit_it" method="get">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="min" class="label-form">Tanggal Mulai</label>
+                            <input id="min" name="min" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
+                                required="required" onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
+                                name="min" value="{{$date}}">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="max" class="label-form">Tanggal Selesai</label>
+                            <input id="max" name="max" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
+                                required="required" onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
+                                name="max" value="{{$date_end}}">
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <div class="form-group">
+                        <label for="max" class="label-form">Search :</label>
+                        <button type="button" class="btn btn-primary form-control" onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
+                        </button>
+                        </div>
+                    </div>
+                </form>
 
                 <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
 
@@ -32,6 +57,7 @@
                                 <th>Berkas 1</th>
                                 <th>Berkas 2</th>
                                 <th>Berkas 3</th>
+                                <th>Waktu Pelaksanaan</th>
                                 <th></th>
                                 {{-- <th></th> --}}
                             </tr>
@@ -70,6 +96,9 @@
                                             onclick="window.open('{{ URL::asset($item->berkas3) }}', '_blank');"><i
                                                 class="fas fa-file fa-sm "></i>
                                         </button>
+                                    </th>
+                                    <th>
+                                        {{date('d-m-Y', strtotime($item->waktu_pelaksanaan))}}
                                     </th>
                                     <th>
                                         <button type="button" class="btn btn-success"
