@@ -56,7 +56,7 @@
                                 <td class="text-center">NAMA INSTANSI</td>
                                 <td class="text-center">JENIS PELAYANAN</td>
                                 <td class="text-right">DURASI PELAYANAN</td>
-                                <td class="text-right">JUMLAH PELAYANAN</td>
+                                <td class="text-right">Jumlah Pendaftar</td>
                                 <td class="text-right">TANGGAL PELAYANAN</td>
                                 <td class="text-right">STATUS PEMBAYARAN</td>
                                 <td class="text-right">TOTAL PEMBAYARAN</td>

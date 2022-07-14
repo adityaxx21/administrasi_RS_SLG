@@ -61,7 +61,7 @@
                     <tr>
                         <div class="row">
                             <div class="col-2">
-                                <h4>Jumlah Pelayanan </h4>
+                                <h4>Jumlah Pendaftar </h4>
                             </div>
                             <div class="col-8">
                                 <h4>: {{ $instansi->jumlah_pelayanan }}</h4>

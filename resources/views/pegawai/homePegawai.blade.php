@@ -40,6 +40,7 @@
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Penyelenggaraan Pelatihan</label>
                                     <div class="input-group mb-3">
+
                                         <select class="custom-select" id="keperluan" name="keperluan">
                                             <option value="Ex House">Ex House</option>
                                             <option value="In House">In House</option>
@@ -160,14 +161,11 @@
                             <form class="modal-body" method="POST" id="update_data" action="/pegawai_update"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" name="id_pegawai_update" id="id_pegawai_update">
+                                <input type="hidden" name="id_pegawai_update" id="id_pegawai_update" readonly>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Penyelenggaraan Pelatihan</label>
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="keperluan_update" name="keperluan_update">
-                                            <option value="Ex House">Ex House</option>
-                                            <option value="In House">In House</option>
-                                        </select>
+                                        <input type="text" id="keperluan_update" name="keperluan_update" class="form-control" readonly>
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="inputGroupSelect02">Options</label>
                                         </div>
@@ -177,64 +175,54 @@
                                     <label for="exampleInputEmail1">Tema Pelatihan</label>
                                     <input type="text" class="form-control" id="tema_pelatihan_update"
                                         name="tema_pelatihan_update" aria-describedby="emailHelp"
-                                        placeholder="Tema Pelatihan">
+                                        placeholder="Tema Pelatihan" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="waktu_pelaksanaan" class="label-form">Waktu Pelaksanaan</label>
                                     <input id="waktu_pelaksanaan_update" class="date-picker form-control"
                                         placeholder="dd-mm-yyyy" type="date" required="required"
                                         onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
-                                        name="waktu_pelaksanaan_update" value="">
+                                        name="waktu_pelaksanaan_update" value="" readonly>
                                 </div>
 
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Narasumber</label>
                                     <input type="text" class="form-control" id="narasumber_update"
-                                        name="narasumber_update" aria-describedby="emailHelp" placeholder="Masukan Narasumber">
+                                        name="narasumber_update" aria-describedby="emailHelp" placeholder="Masukan Narasumber" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Sasaran Pelatihan</label>
                                     <input type="text" class="form-control" id="sasaran_pelatihan_update"
                                         name="sasaran_pelatihan_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Sasaran Pelatihan">
+                                        placeholder="Masukan Sasaran Pelatihan" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nama Jabatan</label>
                                     <input type="text" class="form-control" id="nama_jabatan_update"
                                         name="nama_jabatan_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Nama Jabatan">
+                                        placeholder="Masukan Nama Jabatan" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Materi</label>
                                     <input type="text" class="form-control" id="materi_update" name="materi_update"
-                                        aria-describedby="emailHelp" placeholder="Masukan Materi">
+                                        aria-describedby="emailHelp" placeholder="Masukan Materi" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Indikator Kebutuhan</label>
                                     <input type="text" class="form-control" id="indikator_kebutuhan_update"
                                         name="indikator_kebutuhan_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Indikator Kebutuhan">
+                                        placeholder="Masukan Indikator Kebutuhan" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Anggaran</label>
                                     <input type="text" class="form-control" id="anggaran_update"
                                         name="anggaran_update" aria-describedby="emailHelp"
-                                        placeholder="Masukan Anggaran">
+                                        placeholder="Masukan Anggaran" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Periode Evaluasi</label>
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="periode_evaluasi_update"
-                                            name="periode_evaluasi_update">
-                                            <option value="1 Bulan Setelah Pelatihan Diselenggarakan">1 Bulan Setelah
-                                                Pelatihan Diselenggarakan</option>
-                                            <option value="3 Bulan Setelah Pelatihan Diselenggarakan">3 Bulan Setelah
-                                                Pelatihan Diselenggarakan</option>
-                                            <option value="6 Bulan Setelah Pelatihan Diselenggarakan">6 Bulan Setelah
-                                                Pelatihan Diselenggarakan</option>
-                                            <option value="12 Bulan Setelah Pelatihan Diselenggarakan">12 Bulan Setelah
-                                                Pelatihan Diselenggarakan</option>
-                                        </select>
+                                        <input type="text" id="periode_evaluasi_update" name="periode_evaluasi_update" class="form-control" readonly>
                                         <div class="input-group-append">
                                             <label class="input-group-text" for="inputGroupSelect02">Options</label>
                                         </div>

@@ -77,8 +77,9 @@ class Pegawai_Controller extends Controller
             'verifikasi_3' => 11,
             'updated_at' => date("Y-m-d H:i:s")
         ];
-        $get_data = $this->doc_input( $request->berkas3, $get_data, 1);
-        $get_data = $this->doc_input( $request->berkas4, $get_data, 2);
+        $get_data = $this->doc_input( $request->berkas4, $get_data, 1);
+        $get_data = $this->doc_input( $request->berkas5, $get_data, 2);
+        $get_data = $this->doc_input( $request->berkas6, $get_data, 3);
 
         DB::table('tb_pegawai')->where('id',$id)->update($get_data);
         return redirect('/pegawai');

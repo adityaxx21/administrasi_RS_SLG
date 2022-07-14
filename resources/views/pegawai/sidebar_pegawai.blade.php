@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon rotate-n-15">
             <img src="{{URL::asset('storage/image/Instansi/logo-RSUD-SLG.png')}}" width="50px" alt="" srcset="">
         </div>
-        <div class="sidebar-brand-text mx-3">Project RS SLG</sup></div>
+        <div class="sidebar-brand-text mx-3">RUMAH SAKIT SLG</sup></div>
     </a>
 
     <!-- Divider -->

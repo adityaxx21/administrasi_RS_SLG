@@ -61,7 +61,7 @@
                                 <div class="row">
                                     <div class="col">
                                         <div class="form-group">
-                                            <label for="exampleInputEmail1">Jumlah Pelayanan</label>
+                                            <label for="exampleInputEmail1">Jumlah Pendaftar</label>
                                             <input type="text" class="form-control" id="jumlah_pelayanan"
                                                 name="jumlah_pelayanan" aria-describedby="emailHelp"
                                                 placeholder="Durasi Pelayanan" value="{{ $siswa->count() }}" readonly>

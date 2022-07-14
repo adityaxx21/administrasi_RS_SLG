@@ -72,7 +72,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Jenis Pelayanan</th>
-                                <th>Jumlah Pelayanan</th>
+                                <th>Jumlah Pendaftar</th>
                                 <th>Total Biaya Pelayanan</th>
                                 <th>Nota</th>
                                 <th>Status</th>

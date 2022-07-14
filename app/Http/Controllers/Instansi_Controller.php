@@ -107,7 +107,7 @@ class Instansi_Controller extends Controller
     public function tambahSiswa_post(Request $request)
     {
         // fungsi ini dipakai untuk menambahkan peserta berdasarkan inputan dari instansi, hasil output dari proses ini adalah penambahan data pada
-        // tabel tb_transaksi_pelayanan untuk jumlah pelayanan serta penambahan peserta pada tb_siswa
+        // tabel tb_transaksi_pelayanan untuk Jumlah Pendaftar serta penambahan peserta pada tb_siswa
         $nama_siswa = $request->nama_siswa;
         $nomor_induk = $request->nomor_induk;
         $alamat = $request->alamat;
