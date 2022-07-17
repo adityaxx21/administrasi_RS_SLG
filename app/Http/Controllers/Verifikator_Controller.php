@@ -22,7 +22,8 @@ class Verifikator_Controller extends Controller
 
       $data['date'] = $request->min;
       $data['date_end'] = $request->max;
-
+      // if else disini berguna untuk melakukan filter sesuai data awal dan akhir yang diinputkan, dika data sesuai akan menampilkan return sesuai input sedang jika tidak sesuai hanya 
+      // akan  menampilkan data awal sebelum difilter, untuk range sendiri dengan range  sehingga jika input 1 juni - 6 juni maka data yang ditampilkan 1 juni - 5 juni 
       if ($data['date'] != null &&  $data['date_end'] != null) {
          $date = [[$data['date']], $data['date_end']];
 
