@@ -44,7 +44,7 @@ class Register_Controller extends Controller
                     session(['username' => $username]);
                     session(['role' => $data->role]);
                     session(['gambar' => $data->gambar_instansi]);
-                    if ($data->role == 2001) {
+                    if ($data->role >= 2001) {
                         return redirect('/profileInstansi');
                     }
                 }

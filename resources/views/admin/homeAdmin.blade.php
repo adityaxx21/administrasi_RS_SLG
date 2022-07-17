@@ -237,6 +237,8 @@
                 $("#change_name" + i).html(gambar);
             }
 
+            
+
             function get_data(id) {
                 id_data = id;
 
