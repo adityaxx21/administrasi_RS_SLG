@@ -16,23 +16,53 @@ class Instansi_Controller extends Controller
         // dimana akan menampilkan seluruh proses pelayanan oleh instansi tersebut
 
         // tabel dibawah merupakan left join dari beberapa tabel berdasarkan id nya
-        $data['instansi'] = DB::table('tb_transaksi_pelayanan')
-            ->selectRaw('tb_transaksi_pelayanan.*,
+        $data['date'] = $request->min;
+        $data['date_end'] = $request->max;
+        $data['status_'] = $request->status;
+        if ($data['status_'] != null) {
+            $stat = [['tb_transaksi_pelayanan.is_deleted', 1], ['tb_instansi.username', session()->get('username')],['tb_transaksi_pelayanan.id_status_pembayaran',$data['status_']]]; 
+        } else {
+            $stat = [['tb_transaksi_pelayanan.is_deleted', 1], ['tb_instansi.username', session()->get('username')]]; 
+        }
+        if ($data['date'] != null &&  $data['date_end'] != null) {
+            $cond = [[$data['date']], $data['date_end']];
+            $data['instansi'] = DB::table('tb_transaksi_pelayanan')
+                ->selectRaw('tb_transaksi_pelayanan.*,
                 tb_instansi.nama_pendaftar as nama_pendaftar,
                 tb_instansi.nama_instansi as nama_instansi,
                 tb_jenis_pelayanan.jenis_pelayanan as jenis_pelayanan,
                 tb_text_status.style as style,
                 tb_text_status.text as text')
-            ->leftJoin('tb_instansi', 'tb_instansi.id', '=', 'tb_transaksi_pelayanan.id_instansi')
-            ->leftJoin('tb_jenis_pelayanan', 'tb_jenis_pelayanan.id', '=', 'tb_transaksi_pelayanan.id_jenis_pelayanan')
-            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_transaksi_pelayanan.id_status_pembayaran')
-            ->orderBy('tb_transaksi_pelayanan.id', 'ASC')
-            ->where([['tb_transaksi_pelayanan.is_deleted', 1], ['tb_instansi.username', session()->get('username')]])
-            ->groupByRaw('tb_transaksi_pelayanan.id')
-            ->get();
+                ->leftJoin('tb_instansi', 'tb_instansi.id', '=', 'tb_transaksi_pelayanan.id_instansi')
+                ->leftJoin('tb_jenis_pelayanan', 'tb_jenis_pelayanan.id', '=', 'tb_transaksi_pelayanan.id_jenis_pelayanan')
+                ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_transaksi_pelayanan.id_status_pembayaran')
+                ->orderBy('tb_transaksi_pelayanan.id', 'ASC')
+                ->where($stat)
+                ->whereBetween('tb_transaksi_pelayanan.updated_at', $cond)
+                ->groupByRaw('tb_transaksi_pelayanan.id')
+                ->get();
+        } else {
+            $data['instansi'] = DB::table('tb_transaksi_pelayanan')
+                ->selectRaw('tb_transaksi_pelayanan.*,
+                tb_instansi.nama_pendaftar as nama_pendaftar,
+                tb_instansi.nama_instansi as nama_instansi,
+                tb_jenis_pelayanan.jenis_pelayanan as jenis_pelayanan,
+                tb_text_status.style as style,
+                tb_text_status.text as text')
+                ->leftJoin('tb_instansi', 'tb_instansi.id', '=', 'tb_transaksi_pelayanan.id_instansi')
+                ->leftJoin('tb_jenis_pelayanan', 'tb_jenis_pelayanan.id', '=', 'tb_transaksi_pelayanan.id_jenis_pelayanan')
+                ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_transaksi_pelayanan.id_status_pembayaran')
+                ->orderBy('tb_transaksi_pelayanan.id', 'ASC')
+                ->where($stat)
+
+                ->groupByRaw('tb_transaksi_pelayanan.id')
+                ->get();
+        }
+        $data['status'] = DB::table('tb_text_status')->where('id_status','<','10')->get();
         $data['data_instansi'] = DB::table('tb_instansi')->where('username', session()->get('username'))->first();
         $data['jenis_pelayanan'] = DB::table('tb_jenis_pelayanan')->where('is_deleted', 1)->get();
 
+        // print_r($data['instansi']);
         return view('instansi.homeInstansi', $data);
     }
 
@@ -265,7 +295,7 @@ class Instansi_Controller extends Controller
 
     public function find_data($id)
     {
-        $data['data'] = DB::table('tb_siswa')->where('id',$id)->first();
+        $data['data'] = DB::table('tb_siswa')->where('id', $id)->first();
         return response()->json($data);
     }
 
@@ -285,7 +315,7 @@ class Instansi_Controller extends Controller
             'alamat' => $alamat,
             'jenis_kelamin' => $jenis_kelamin,
             'created_at' => date("Y-m-d H:i:s"),
-            'id_status' =>''
+            'id_status' => ''
         ];
         $cond = DB::table('tb_siswa')->where([['id_pelayanan', $id_ins], ['nomor_induk', $nomor_induk]])->count();
         if ($cond > 1) {
@@ -293,12 +323,12 @@ class Instansi_Controller extends Controller
             return redirect('/instansi/tambahData/' . $id_ins)->with('alert-notif', 'ID sudah terdaftar');
         }
 
-        $get_data = $this->doc_input($request->doc1_update, $get_data, 1);
-        $get_data = $this->doc_input($request->doc2_update, $get_data, 2);
-        $get_data =  $this->doc_input($request->doc3_update, $get_data, 3);
-        $get_data =  $this->doc_input($request->doc4_update, $get_data, 4);
-        $get_data =  $this->doc_input($request->doc5_update, $get_data, 5);
-        DB::table('tb_siswa')->where('id',$id)->update($get_data);
+        // $get_data = $this->doc_input($request->doc1_update, $get_data, 1);
+        // $get_data = $this->doc_input($request->doc2_update, $get_data, 2);
+        // $get_data =  $this->doc_input($request->doc3_update, $get_data, 3);
+        // $get_data =  $this->doc_input($request->doc4_update, $get_data, 4);
+        // $get_data =  $this->doc_input($request->doc5_update, $get_data, 5);
+        DB::table('tb_siswa')->where('id', $id)->update($get_data);
         // print_r($get_data);
         // echo ($cond);
         return redirect('/instansi/tambahData/' . $id_ins);

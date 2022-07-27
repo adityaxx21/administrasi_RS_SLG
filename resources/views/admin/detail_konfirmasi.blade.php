@@ -115,11 +115,6 @@
                             <th>Nama Peserta</th>
                             <th>Nomor Induk</th>
                             <th>Jenis Kelamin</th>
-                            <th>Berkas 1</th>
-                            <th>Berkas 2</th>
-                            <th>Berkas 3</th>
-                            <th>Berkas 4</th>
-                            <th>Berkas 5</th>
                             <th>Status</th>
                             <th></th>
                         </tr>
@@ -130,31 +125,12 @@
                                 <th>{{ $item->nama_siswa }}</th>
                                 <th>{{ $item->nomor_induk }}</th>
                                 <th>{{ $item->jenis_kelamin }}</th>
-                                <th><button type="button" class="btn btn-success trgt_download"
-                                        onclick="download('{{ $item->berkas1 }}')"
-                                        {{ $item->berkas1 == null ? 'hidden' : '' }}><i class="fas fa-file fa-sm "></i>
-                                    </button> </th>
-                                <th><button type="button" class="btn btn-success"
-                                        onclick="download('{{ $item->berkas2 }}')"
-                                        {{ $item->berkas2 == null ? 'hidden' : '' }}><i class="fas fa-file fa-sm "></i>
-                                    </button> </th>
-                                <th><button type="button" class="btn btn-success"
-                                        onclick="download('{{ $item->berkas3 }}')"
-                                        {{ $item->berkas3 == null ? 'hidden' : '' }}><i class="fas fa-file fa-sm "></i>
-                                    </button> </th>
-                                <th><button type="button" class="btn btn-success"
-                                        onclick="download('{{ $item->berkas4 }}')"
-                                        {{ $item->berkas4 == null ? 'hidden' : '' }}><i class="fas fa-file fa-sm "></i>
-                                    </button> </th>
-                                <th><button type="button" class="btn btn-success"
-                                        onclick="download('{{ $item->berkas5 }}')"
-                                        {{ $item->berkas5 == null ? 'hidden' : '' }}><i class="fas fa-file fa-sm "></i>
-                                    </button> </th>
                                 <th>
                                     @if ($item->id_status != null)
                                         <span
                                             class="{{ $item->style }}">{{ $item->text }}{{ ' ' . $item->msg_fail }}</span>
                                     @endif
+                                </th>
                                 </th>
                                 <th>
                                     <button type="button" class="btn btn-danger"

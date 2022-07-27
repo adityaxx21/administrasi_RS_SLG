@@ -12,16 +12,17 @@ class Verifikator_Controller extends Controller
    {
       //  Berfungsi untuk menentukan urutan verifikasi, dari Kasi, Kabid, Disposisi Kepegawaian
       //  Urutan mulai Kasi setelah verifikasi akan dilanjutkan oleh Kabid dan Disposisi Kepegawaian
-      if (session()->get('role') == 1003) {
-         $cond = [['tb_pegawai.verifikasi_1', 11], ['tb_pegawai.is_deleted', 1]];
-      } elseif (session()->get('role') == 1004) {
-         $cond = [['tb_pegawai.verifikasi_1', 10], ['tb_pegawai.verifikasi_2', 11], ['tb_pegawai.is_deleted', 1]];
-      } elseif (session()->get('role') == 1005) {
-         $cond = [['tb_pegawai.verifikasi_1', 10], ['tb_pegawai.verifikasi_2', 10], ['tb_pegawai.verifikasi_3', 11], ['tb_pegawai.is_deleted', 1]];
-      }
 
       $data['date'] = $request->min;
       $data['date_end'] = $request->max;
+      $data['status_'] = $request->status;
+
+      if ($data['status_'] != null) {
+         $stat = [['tb_pegawai.is_deleted', 1], ['tb_pegawai.verifikasi_3',$data['status_']]]; 
+      } else {
+         $stat = [['tb_pegawai.is_deleted', 1]]; 
+      }
+
       // if else disini berguna untuk melakukan filter sesuai data awal dan akhir yang diinputkan, dika data sesuai akan menampilkan return sesuai input sedang jika tidak sesuai hanya 
       // akan  menampilkan data awal sebelum difilter, untuk range sendiri dengan range  sehingga jika input 1 juni - 6 juni maka data yang ditampilkan 1 juni - 5 juni 
       if ($data['date'] != null &&  $data['date_end'] != null) {
@@ -30,10 +31,13 @@ class Verifikator_Controller extends Controller
          $data['pegawai'] = DB::table('tb_pegawai')
             ->selectRaw('tb_pegawai.*,
           tb_user.nama as nama,
-          tb_user.nomor_induk as nomor_induk')
+          tb_user.nomor_induk as nomor_induk,
+          tb_text_status.style as style,
+          tb_text_status.text as text')
             ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
+            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_pegawai.verifikasi_3')
             ->orderBy('tb_pegawai.id', 'ASC')
-            ->where($cond)
+            ->where( $stat)
             ->whereBetween('tb_pegawai.waktu_pelaksanaan', $date)
             ->groupByRaw('tb_pegawai.id')
             ->get();
@@ -41,33 +45,32 @@ class Verifikator_Controller extends Controller
          $data['pegawai'] = DB::table('tb_pegawai')
             ->selectRaw('tb_pegawai.*,
                tb_user.nama as nama,
-               tb_user.nomor_induk as nomor_induk')
+               tb_user.nomor_induk as nomor_induk,
+               tb_text_status.style as style,
+              tb_text_status.text as text')
             ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
+            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_pegawai.verifikasi_3')
             ->orderBy('tb_pegawai.id', 'ASC')
-            ->where($cond)
+            ->where( $stat)
             ->groupByRaw('tb_pegawai.id')
             ->get();
       }
+      $data['style'] = DB::table('tb_text_status')->where([['id_status','>=','10'],['id_status','<=','12']])->get();
 
-
-      $data['style'] = DB::table('tb_text_status')->where([['is_deleted', 1], ['id_status', '>=', 10]])->get();
+      // print_r($data['pegawai']);
       return view('verifikator.homeVerifikator', $data);
    }
 
    public function index_post(Request $request)
    {
       // Berfungsi untuk memverifikasi apakah berkas layak atau tidak
-      if (session()->get('role') == 1003) {
-         $get_data = ['verifikasi_1' => $request->verifikasi];
-      } elseif (session()->get('role') == 1004) {
-         $get_data = ['verifikasi_2' => $request->verifikasi];
-      } elseif (session()->get('role') == 1005) {
-         $get_data = ['verifikasi_3' => $request->verifikasi];
-      }
-      $get_data = array_merge($get_data, array('msg_fail' =>  $request->msg_fail));
-
-      //  echo (session()->get('role'));
+      $get_data = array(
+         'verifikasi_1' => $request->verifikasi,
+         'verifikasi_2' => $request->verifikasi,
+         'verifikasi_3' => $request->verifikasi,
+         'msg_fail' =>  $request->msg_fail
+      );
       DB::table('tb_pegawai')->where('id', $request->id_data)->update($get_data);
-      return redirect('/verifikasi');
+      return redirect('/verifikasiPengajuan');
    }
 }

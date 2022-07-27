@@ -21,27 +21,41 @@
                 {{-- Input Data --}}
                 {{-- Update Data --}}
                     <form class="row" action="/laporanPelayanan" id="submit_it" method="get">
-                        <div class="col">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="min" class="label-form">Tanggal Mulai</label>
-                                <input id="min" name="min" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
-                                    required="required" onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
-                                    name="min" value="{{$date}}">
+                                <input id="min" name="min" class="date-picker form-control"
+                                    placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                    onclick="this.type='date'" onkeyup="" name="min" value="{{ $date }}">
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label for="max" class="label-form">Tanggal Selesai</label>
-                                <input id="max" name="max" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
-                                    required="required" onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
-                                    name="max" value="{{$date_end}}">
+                                <input id="max" name="max" class="date-picker form-control"
+                                    placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                    onclick="this.type='date'" onkeyup="" name="max" value="{{ $date_end }}">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Filter Stastus</label>
+                                <select class="form-select form-control" name="status">
+                                    <option value="" >[No Filter]</option>
+
+                                    @foreach ($status as $item)
+                                        <option value="{{$item->id_status}}" style="{{$item->style}}" {{$status_ == $item->id_status ? "selected" : ""}}>{{$item->text}}</option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="col-1">
                             <div class="form-group">
-                            <label for="max" class="label-form">Search :</label>
-                            <button type="button" class="btn btn-primary form-control" onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
-                            </button>
+                                <label for="max" class="label-form">Search :</label>
+                                <br>
+                                <button type="button" class="btn btn-primary form-control"
+                                    onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
+                                </button>
                             </div>
                         </div>
                     </form>

@@ -181,56 +181,6 @@
                                     <textarea type="text" class="form-control" id="alamat" name="alamat" aria-describedby="emailHelp"
                                         placeholder="Masukan Alamat Peserta "></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 1</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc1" name="doc1"
-                                            onchange="input_gb('1','doc1')"
-                                            accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="doc1" id="change_name1">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 2</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc2" name="doc2"
-                                            onchange="input_gb('2','doc2')"
-                                            accept="image/*, application/pdf, application/doc, application/docx">
-                                        <label class="custom-file-label" for="doc2" id="change_name2">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 3</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc3" name="doc3"
-                                            onchange="input_gb('3','doc3')"
-                                            accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="gambar_instansi" id="change_name3">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 4</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc4" name="doc4"
-                                            onchange="input_gb('4','doc4')"
-                                            accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="gambar_instansi" id="change_name4">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 5</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc5" name="doc5"
-                                            onchange="input_gb('5','doc5')"
-                                            accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="gambar_instansi" id="change_name5">Choose
-                                            file</label>
-                                    </div>
-                                </div>
                             </form>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -283,56 +233,7 @@
                                     <textarea type="text" class="form-control" id="alamat_update" name="alamat_update" aria-describedby="emailHelp"
                                         placeholder="Masukan Alamat Peserta "></textarea>
                                 </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 1</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc1_update" name="doc1_update"
-                                            onchange="update_gb('1','doc1_update')"
-                                            accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="doc1" id="change_name_1">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 2</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc2_update" name="doc2_update"
-                                            onchange="update_gb('2','doc2_update')"
-                                            accept="image/*, application/pdf, application/doc, application/docx">
-                                        <label class="custom-file-label" for="doc2" id="change_name_2">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 3</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc3_update" name="doc3_update"
-                                            onchange="update_gb('3','doc3_update')"
-                                            accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_3">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 4</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc4_update" name="doc4_update"
-                                            onchange="update_gb('4','doc4_update')"
-                                            accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_4">Choose
-                                            file</label>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="gambar_instansi_update">Berkas 5</label>
-                                    <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc5_update" name="doc5_update"
-                                            onchange="update_gb('5','doc5_update')"
-                                            accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_5">Choose
-                                            file</label>
-                                    </div>
-                                </div>
+  
                             </form>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -370,11 +271,6 @@
                                         <th>Nama Pendaftar</th>
                                         <th>Nomor Induk</th>
                                         <th>Jenis Kelamin</th>
-                                        <th>Berkas 1</th>
-                                        <th>Berkas 2</th>
-                                        <th>Berkas 3</th>
-                                        <th>Berkas 4</th>
-                                        <th>Berkas 5</th>
                                         <th>Status</th>
                                         <th></th>
                                     </tr>
@@ -386,49 +282,7 @@
                                             <th>{{ $item->nama_siswa }}</th>
                                             <th>{{ $item->nomor_induk }}</th>
                                             <th>{{ $item->jenis_kelamin }}</th>
-                                            <th>
-                                                @if ($item->berkas1 != null)
-                                                    <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{ URL::asset($item->berkas1) }}', '_blank');"><i
-                                                            class="fas fa-file fa-sm "></i>
-                                                    </button>
-                                                @endif
-                                            </th>
-                                            <th>
-
-                                                @if ($item->berkas2 != null)
-                                                    <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{ URL::asset($item->berkas2) }}', '_blank');"><i
-                                                            class="fas fa-file fa-sm "></i>
-                                                    </button>
-                                                @endif
-                                            </th>
-                                            <th>
-
-                                                @if ($item->berkas3 != null)
-                                                    <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{ URL::asset($item->berkas3) }}', '_blank');"><i
-                                                            class="fas fa-file fa-sm "></i>
-                                                    </button>
-                                                @endif
-                                            </th>
-                                            <th>
-
-                                                @if ($item->berkas4 != null)
-                                                    <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{ URL::asset($item->berkas4) }}', '_blank');"><i
-                                                            class="fas fa-file fa-sm "></i>
-                                                    </button>
-                                                @endif
-                                            </th>
-                                            <th>
-                                                @if ($item->berkas5 != null)
-                                                    <button type="button" class="btn btn-success"
-                                                        onclick="window.open('{{ URL::asset($item->berkas5) }}', '_blank');"><i
-                                                            class="fas fa-file fa-sm "></i>
-                                                    </button>
-                                                @endif
-                                            </th>
+                                            
                                             <th>
                                                 @if ($item->id_status != null)
                                                     <span class="{{ $item->style }}">{{ $item->text }}{{" ".$item->msg_fail }}</span>

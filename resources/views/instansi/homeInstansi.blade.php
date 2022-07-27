@@ -39,8 +39,7 @@
                             <form class="modal-body" method="POST" id="add_data" action="/instansi"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" id="id_instansi" name="id_instansi"
-                                    value="{{$data_instansi->id }}">
+                                <input type="hidden" id="id_instansi" name="id_instansi" value="{{ $data_instansi->id }}">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Jenis</label>
                                     <div class="input-group mb-3">
@@ -66,7 +65,44 @@
                 {{-- Update Data --}}
 
                 <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
-
+                    <form class="row" action="/instansi" id="submit_it" method="get">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="min" class="label-form">Tanggal Mulai</label>
+                                <input id="min" name="min" class="date-picker form-control"
+                                    placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                    onclick="this.type='date'" onkeyup="" name="min" value="{{ $date }}">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Tanggal Selesai</label>
+                                <input id="max" name="max" class="date-picker form-control"
+                                    placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                    onclick="this.type='date'" onkeyup="" name="max" value="{{ $date_end }}">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Filter Stastus</label>
+                                <select class="form-select form-control" name="status">
+                                    @foreach ($status as $item)
+                                        <option value="{{$item->id_status}}" style="{{$item->style}}" {{$status_ == $item->id_status ? "selected" : ""}}>{{$item->text}}</option>
+                                    @endforeach
+                                    <option value="" >[No Filter]</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Search :</label>
+                                <br>
+                                <button type="button" class="btn btn-primary form-control"
+                                    onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
@@ -82,7 +118,7 @@
                         <tbody>
                             @foreach ($instansi as $item)
                                 <tr>
-                                    <th>{{$item->id}}</th>
+                                    <th>{{ $item->id }}</th>
                                     <th>{{ $item->jenis_pelayanan }}</th>
                                     <th>{{ $item->jumlah_pelayanan }}</th>
                                     <th>{{ $item->total_biaya_pelayanan }}</th>
@@ -103,7 +139,9 @@
                                                 class="fas fa-check fa-sm "></i>
                                             Bayar</button> --}}
                                         <button type="button" class="btn btn-warning"
-                                            onclick="location.replace('/instansi/tambahData/'+{{$item->id}})" {{ $item->id_status_pembayaran != 0 && $item->id_status_pembayaran != 2 ? '' : 'disabled' }}><i class="fas fa-edit fa-sm "></i>
+                                            onclick="location.replace('/instansi/tambahData/'+{{ $item->id }})"
+                                            {{ $item->id_status_pembayaran != 0 && $item->id_status_pembayaran != 2 ? '' : 'disabled' }}><i
+                                                class="fas fa-edit fa-sm "></i>
                                             Update</button>
                                         <button type="button" class="btn btn-danger"
                                             onclick="reject_form({{ $item->id }})"

@@ -25,17 +25,53 @@
                     
                 </div>
                 <div class="table-responsive" style="text-overflow:ellipsis;white-space:nowrap;">
-
-                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                        <div>
-                           
+                    <form class="row" action="/konfirmasi_pembayaran" id="submit_it" method="get">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="min" class="label-form">Tanggal Mulai</label>
+                                <input id="min" name="min" class="date-picker form-control"
+                                    placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                    onclick="this.type='date'" onkeyup="" name="min" value="{{ $date }}">
+                            </div>
                         </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Tanggal Selesai</label>
+                                <input id="max" name="max" class="date-picker form-control"
+                                    placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                    onclick="this.type='date'" onkeyup="" name="max" value="{{ $date_end }}">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Filter Stastus</label>
+                                <select class="form-select form-control" name="status">
+                                    <option value="" >[No Filter]</option>
+
+                                    @foreach ($status as $item)
+                                        <option value="{{$item->id_status}}" style="{{$item->style}}" {{$status_ == $item->id_status ? "selected" : ""}}>{{$item->text}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Search :</label>
+                                <br>
+                                <button type="button" class="btn btn-primary form-control"
+                                    onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th>Id</th>
                                 <th>Nama Pendaftar</th>
                                 <th>Instansi</th>
                                 <th>Jenis Pelayanan</th>
+                                <th>Tanggal Pembayaran</th>
                                 <th>Status</th>
                                 <th></th>
                             </tr>
@@ -48,6 +84,7 @@
                                     <th>{{ $item->nama_pendaftar }}</th>
                                     <th>{{ $item->nama_instansi }}</th>
                                     <th>{{ $item->jenis_pelayanan }}</th>
+                                    <th>{{  date('d-m-Y', strtotime( $item->updated_at ))}}</th>
                                     <th><span class="{{$item->style}}">{{$item->text}}</span>  </th>
                                     <th>
                                         <button type="button" class="btn btn-success"

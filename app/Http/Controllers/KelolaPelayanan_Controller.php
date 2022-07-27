@@ -59,6 +59,12 @@ class KelolaPelayanan_Controller extends Controller
         // $date_end = $data['date_end'] !== "" ?  [$data['date'],$data['date_end']] : "";
         $data['date'] = $request->min;
         $data['date_end'] = $request->max;
+        $data['status_'] = $request->status;
+        if ($data['status_'] != null) {
+            $stat = [['tb_transaksi_pelayanan.is_deleted', 1], ['tb_transaksi_pelayanan.id_status_pembayaran',$data['status_']]]; 
+        } else {
+            $stat = [['tb_transaksi_pelayanan.is_deleted', 1]]; 
+        }
         // $cond="";
               // if else disini berguna untuk melakukan filter sesuai data awal dan akhir yang diinputkan, dika data sesuai akan menampilkan return sesuai input sedang jika tidak sesuai hanya 
       // akan  menampilkan data awal sebelum difilter, untuk range sendiri dengan range  sehingga jika input 1 juni - 6 juni maka data yang ditampilkan 1 juni - 5 juni 
@@ -76,7 +82,7 @@ class KelolaPelayanan_Controller extends Controller
             ->leftJoin('tb_jenis_pelayanan', 'tb_jenis_pelayanan.id', '=', 'tb_transaksi_pelayanan.id_jenis_pelayanan')
             ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_transaksi_pelayanan.id_status_pembayaran')
             ->orderBy('tb_transaksi_pelayanan.id', 'ASC')
-            ->where('tb_transaksi_pelayanan.is_deleted', 1)
+            ->where($stat)
             ->whereBetween('tb_transaksi_pelayanan.updated_at',$cond)
             ->groupByRaw('tb_transaksi_pelayanan.id')
             ->get();
@@ -92,10 +98,11 @@ class KelolaPelayanan_Controller extends Controller
             ->leftJoin('tb_jenis_pelayanan', 'tb_jenis_pelayanan.id', '=', 'tb_transaksi_pelayanan.id_jenis_pelayanan')
             ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_transaksi_pelayanan.id_status_pembayaran')
             ->orderBy('tb_transaksi_pelayanan.id', 'ASC')
-            ->where('tb_transaksi_pelayanan.is_deleted', 1)
+            ->where($stat)
             ->groupByRaw('tb_transaksi_pelayanan.id')
             ->get();
         }
+        $data['status'] = DB::table('tb_text_status')->where([['id_status','<','10']])->get();
 
         return view('admin.laporanPelayanan',$data);
     }

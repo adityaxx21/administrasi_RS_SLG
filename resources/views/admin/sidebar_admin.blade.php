@@ -31,6 +31,12 @@
     </li>
     <hr class="sidebar-divider">
     <li class="nav-item active">
+        <a class="nav-link" href="/verifikasiPengajuan">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Verifikasi Pengajuan</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item active">
         <a class="nav-link" href="/laporanPelayanan">
             <i class="fa-solid fa-file "></i>
             <span>Laporan Pelayanan</span></a>

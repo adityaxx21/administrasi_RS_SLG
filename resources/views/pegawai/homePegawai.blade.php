@@ -35,8 +35,15 @@
                             <form class="modal-body" method="POST" id="add_data" action="/pegawai_post"
                                 enctype="multipart/form-data">
                                 @csrf
+                                @php
+                                 try {
+                                    $pega =  $pegawai[0]->id_pegawai;
+                                 } catch (\Throwable $th) {
+                                    $pega = "";
+                                 }
+                                @endphp
                                 <input type="hidden" name="id_pegawai" id="id_pegawai"
-                                    value="{{ $pegawai[0]->id_pegawai }}">
+                                    value="{{  $pega }}">
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Penyelenggaraan Pelatihan</label>
                                     <div class="input-group mb-3">
@@ -266,7 +273,45 @@
                     </div>
                 </div>
                 <div class="table-responsive" style="text-overflow:ellipsis;overflow:hidden;white-space:nowrap;">
+                    <form class="row" action="/pegawai" id="submit_it" method="get">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="min" class="label-form">Tanggal Mulai</label>
+                                <input id="min" name="min" class="date-picker form-control"
+                                    placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                    onclick="this.type='date'" onkeyup="" name="min" value="{{ $date }}">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Tanggal Selesai</label>
+                                <input id="max" name="max" class="date-picker form-control"
+                                    placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                    onclick="this.type='date'" onkeyup="" name="max" value="{{ $date_end }}">
+                            </div>
+                        </div>
+                        <div class="col-3">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Filter Stastus</label>
+                                <select class="form-select form-control" name="status">
+                                    <option value="" >[No Filter]</option>
 
+                                    @foreach ($status as $item)
+                                        <option value="{{$item->id_status}}" style="{{$item->style}}" {{$status_ == $item->id_status ? "selected" : ""}}>{{$item->text}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-1">
+                            <div class="form-group">
+                                <label for="max" class="label-form">Search :</label>
+                                <br>
+                                <button type="button" class="btn btn-primary form-control"
+                                    onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>

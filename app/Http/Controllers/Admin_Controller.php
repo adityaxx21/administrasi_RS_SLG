@@ -48,6 +48,13 @@ class Admin_Controller extends Controller
             $request->file('gambar_instansi')->storeAs($img_save, $name_img);
             $get_data = array_merge($get_data, array('gambar_instansi' =>  $img_loc . $name_img));
         }
+        $get_data = $this->doc_input($request->doc1_insert, $get_data, 1);
+        $get_data = $this->doc_input($request->doc2_insert, $get_data, 2);
+        $get_data =  $this->doc_input($request->doc3_insert, $get_data, 3);
+        $get_data =  $this->doc_input($request->doc4_insert, $get_data, 4);
+        $get_data =  $this->doc_input($request->doc5_insert, $get_data, 5);
+
+
         // print_r($get_data);
         DB::table('tb_instansi')->insert($get_data);
         return redirect('/admin');
@@ -85,6 +92,11 @@ class Admin_Controller extends Controller
             $request->file('gambar_instansi_update')->storeAs($img_save, $name_img);
             $get_data = array_merge($get_data, array('gambar_instansi' =>  $img_loc . $name_img));
         }
+        $get_data = $this->doc_input($request->doc1_update, $get_data, 1);
+        $get_data = $this->doc_input($request->doc2_update, $get_data, 2);
+        $get_data =  $this->doc_input($request->doc3_update, $get_data, 3);
+        $get_data =  $this->doc_input($request->doc4_update, $get_data, 4);
+        $get_data =  $this->doc_input($request->doc5_update, $get_data, 5);
         // print_r($get_data);
         // echo($id);
         DB::table('tb_instansi')->where('id',$id)->update($get_data);
@@ -104,4 +116,23 @@ class Admin_Controller extends Controller
         DB::table('tb_instansi')->where('id',$request->id_hapus)->update(['is_deleted'=>0]);
         return redirect('/admin');
     }
+    public function doc_input($data, $get_data, $i)
+    {
+        // berfungsi sebagai fungsi tambahan untuk input dikumen
+        try {
+            $name_img =  $data->getClientOriginalName();
+        } catch (\Throwable $th) {
+            $name_img = "";
+        }
+        if (!empty($name_img)) {
+            $img_loc = "/storage/image/" . $this->location . "/";
+            $img_save = "/public/image/" . $this->location . "/";
+
+            $data->storeAs($img_save, $name_img);
+            $get_data = array_merge($get_data, array('berkas' . $i =>  $img_loc . $name_img));
+        }
+        return $get_data;
+    }
+
+    
 }

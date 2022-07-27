@@ -1,10 +1,8 @@
-@extends('verifikator.layout')
+@extends('admin.layout')
 @section('content')
     <div class="container-fluid">
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-
-
         </div>
         <!-- DataTales Example -->
         <div class="card shadow mb-4">
@@ -17,28 +15,42 @@
                 }
             </style>
             <div class="card-body">
-                <form class="row" action="/verifikasi" id="submit_it" method="get">
-                    <div class="col">
+                <form class="row" action="/verifikasiPengajuan" id="submit_it" method="get">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="min" class="label-form">Tanggal Mulai</label>
-                            <input id="min" name="min" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
-                                required="required" onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
-                                name="min" value="{{$date}}">
+                            <input id="min" name="min" class="date-picker form-control"
+                                placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                onclick="this.type='date'" onkeyup="" name="min" value="{{ $date }}">
                         </div>
                     </div>
-                    <div class="col">
+                    <div class="col-4">
                         <div class="form-group">
                             <label for="max" class="label-form">Tanggal Selesai</label>
-                            <input id="max" name="max" class="date-picker form-control" placeholder="dd-mm-yyyy" type="date"
-                                required="required" onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
-                                name="max" value="{{$date_end}}">
+                            <input id="max" name="max" class="date-picker form-control"
+                                placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                onclick="this.type='date'" onkeyup="" name="max" value="{{ $date_end }}">
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="form-group">
+                            <label for="max" class="label-form">Filter Stastus</label>
+                            <select class="form-select form-control" name="status">
+                                <option value="" >[No Filter]</option>
+
+                                @foreach ($style as $item)
+                                    <option value="{{$item->id_status}}" style="{{$item->style}}" {{$status_ == $item->id_status ? "selected" : ""}}>{{$item->text}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="col-1">
                         <div class="form-group">
-                        <label for="max" class="label-form">Search :</label>
-                        <button type="button" class="btn btn-primary form-control" onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
-                        </button>
+                            <label for="max" class="label-form">Search :</label>
+                            <br>
+                            <button type="button" class="btn btn-primary form-control"
+                                onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
+                            </button>
                         </div>
                     </div>
                 </form>
@@ -68,17 +80,9 @@
                                     <th>{{ $item->nama }}</th>
                                     <th>{{ $item->nomor_induk }}</th>
                                     <th>{{ $item->keperluan }}</th>
-                                    @foreach ($style as $value)
-                                        @if ($item->verifikasi_1 == $value->id_status)
-                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
-                                        @endif
-                                        @if ($item->verifikasi_2 == $value->id_status)
-                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
-                                        @endif
-                                        @if ($item->verifikasi_3 == $value->id_status)
-                                            <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
-                                        @endif
-                                    @endforeach
+                                    <th> <span class="{{ $item->style }}">{{ $item->text }}</span> </th>
+                                    <th> <span class="{{ $item->style }}">{{ $item->text }}</span> </th>
+                                    <th> <span class="{{ $item->style }}">{{ $item->text }}</span> </th>
                                     <th>
                                         <button type="button" class="btn btn-success"
                                             onclick="window.open('{{ URL::asset($item->berkas1) }}', '_blank');"><i
@@ -143,7 +147,7 @@
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <form class="modal-body" method="POST" id="add_data" action="/verifikasi_post"
+                        <form class="modal-body" method="POST" id="add_data" action="/verifikasiPengajuan_post"
                             enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="verifikasi" id="verifikasi">
