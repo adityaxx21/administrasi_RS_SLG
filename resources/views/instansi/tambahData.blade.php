@@ -79,7 +79,7 @@
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Satuan Waktu</label>
                                             <input type="text" class="form-control" id="satuan_waktu"
-                                                name="nama_pendaftar_update" aria-describedby="emailHelp"
+                                                name="satuan_waktu" aria-describedby="emailHelp"
                                                 placeholder="Masukan Nama Pendaftar"
                                                 value=" {{ $instansi->nama_instansi }}" readonly>
                                         </div>
@@ -113,12 +113,25 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="exampleInputEmail1">Total Biaya</label>
-                                    <input readonly type="text" value="{{$instansi->total_biaya_pelayanan}} " class="form-control"
-                                        id="biaya" name="biaya" aria-describedby="emailHelp"
-                                        placeholder="Durasi Pelayanan">
+                                <div class="row">
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Total Biaya</label>
+                                            <input readonly type="text" value="{{$instansi->total_biaya_pelayanan}} " class="form-control"
+                                                id="biaya" name="biaya" aria-describedby="emailHelp"
+                                                placeholder="Durasi Pelayanan">
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-group">
+                                            <label for="min" class="label-form">Tanggal Mulai</label>
+                                            <input id="min" name="min" class="date-picker form-control"
+                                                placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
+                                                onclick="this.type='date'" onkeyup="" name="min" value="{{ date("Y-m-d", strtotime( $instansi->tanggal_mulai))}}">
+                                        </div>
+                                    </div>
                                 </div>
+
                                 <div class="card-header py-3" style="margin-bottom: 10px">
                                     <div class="row">
                                         <div class="col">

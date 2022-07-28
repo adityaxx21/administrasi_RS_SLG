@@ -120,13 +120,27 @@ class Instansi_Controller extends Controller
         $jumlah_pelayan = $request->jumlah_pelayanan;
         $durasi_pelayanan = $request->durasi_pelayanan;
         $biaya_orang = $request->biaya_orang;
+        $satuan_waktu = $request->satuan_waktu;
         $id = $request->id_instansi;
         $get_data = [
             'durasi_pelayanan' => $durasi_pelayanan,
             'jumlah_pelayanan' => $jumlah_pelayan,
             'total_biaya_pelayanan' => $durasi_pelayanan * $biaya_orang * $jumlah_pelayan,
+            'tanggal_mulai' => date("Y-m-d H:i:s", strtotime($request->min)), 
             'updated_at' => date("Y-m-d H:i:s"),
         ];
+        // $durasi_pelayanan = '+'.$durasi_pelayanan.' week';
+        echo ($durasi_pelayanan);
+        if ($satuan_waktu == "minggu") {
+            $get_data = array_merge($get_data, array('tanggal_selesai' =>  date("Y-m-d H:i:s", strtotime($request->min.'+'.$durasi_pelayanan.' week'))));
+            
+        } elseif ($satuan_waktu == "bulan") {
+            $get_data = array_merge($get_data, array('tanggal_selesai' =>  date("Y-m-d H:i:s", strtotime($request->min.'+'.$durasi_pelayanan.' month'))));
+
+        } elseif ($satuan_waktu == "hari"){
+            $get_data = array_merge($get_data, array('tanggal_selesai' =>  date("Y-m-d H:i:s", strtotime($request->min.'+'.$durasi_pelayanan.' day'))));
+
+        }
         // print_r($get_data);
         DB::table('tb_transaksi_pelayanan')->where('id', $id)->update($get_data);
         // $id_move = DB::table('tb_transaksi_pelayanan')->max('id');
@@ -157,11 +171,11 @@ class Instansi_Controller extends Controller
             return redirect('/instansi/tambahData/' . $id)->with('alert-notif', 'ID sudah terdaftar');
         }
 
-        $get_data = $this->doc_input($request->doc1, $get_data, 1);
-        $get_data = $this->doc_input($request->doc2, $get_data, 2);
-        $get_data =  $this->doc_input($request->doc3, $get_data, 3);
-        $get_data =  $this->doc_input($request->doc4, $get_data, 4);
-        $get_data =  $this->doc_input($request->doc5, $get_data, 5);
+        // $get_data = $this->doc_input($request->doc1, $get_data, 1);
+        // $get_data = $this->doc_input($request->doc2, $get_data, 2);
+        // $get_data =  $this->doc_input($request->doc3, $get_data, 3);
+        // $get_data =  $this->doc_input($request->doc4, $get_data, 4);
+        // $get_data =  $this->doc_input($request->doc5, $get_data, 5);
         DB::table('tb_transaksi_pelayanan')->where('id', $id)->increment('jumlah_pelayanan', 1);
         DB::table('tb_siswa')->insert($get_data);
         // print_r($get_data);
