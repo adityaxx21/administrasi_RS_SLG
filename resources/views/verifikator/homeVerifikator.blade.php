@@ -15,31 +15,32 @@
                 }
             </style>
             <div class="card-body">
-                <form class="row" action="/verifikasiPengajuan" id="submit_it" method="get">
+                <form class="row" action="/verifikasiPengajuan/{{$id}}" id="submit_it" method="get">
                     <div class="col-4">
                         <div class="form-group">
                             <label for="min" class="label-form">Tanggal Mulai</label>
-                            <input id="min" name="min" class="date-picker form-control"
-                                placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
-                                onclick="this.type='date'" onkeyup="" name="min" value="{{ $date }}">
+                            <input id="min" name="min" class="date-picker form-control" placeholder="dd-mm-yyyy"
+                                type="date" required="required" onfocus="this.type='date'" onclick="this.type='date'"
+                                onkeyup="" name="min" value="{{ $date }}">
                         </div>
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label for="max" class="label-form">Tanggal Selesai</label>
-                            <input id="max" name="max" class="date-picker form-control"
-                                placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
-                                onclick="this.type='date'" onkeyup="" name="max" value="{{ $date_end }}">
+                            <input id="max" name="max" class="date-picker form-control" placeholder="dd-mm-yyyy"
+                                type="date" required="required" onfocus="this.type='date'" onclick="this.type='date'"
+                                onkeyup="" name="max" value="{{ $date_end }}">
                         </div>
                     </div>
                     <div class="col-3">
                         <div class="form-group">
                             <label for="max" class="label-form">Filter Stastus</label>
                             <select class="form-select form-control" name="status">
-                                <option value="" >[No Filter]</option>
+                                <option value="">[No Filter]</option>
 
                                 @foreach ($style as $item)
-                                    <option value="{{$item->id_status}}" style="{{$item->style}}" {{$status_ == $item->id_status ? "selected" : ""}}>{{$item->text}}</option>
+                                    <option value="{{ $item->id_status }}" style="{{ $item->style }}"
+                                        {{ $status_ == $item->id_status ? 'selected' : '' }}>{{ $item->text }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -80,9 +81,26 @@
                                     <th>{{ $item->nama }}</th>
                                     <th>{{ $item->nomor_induk }}</th>
                                     <th>{{ $item->keperluan }}</th>
-                                    <th> <span class="{{ $item->style }}">{{ $item->text }}</span> </th>
-                                    <th> <span class="{{ $item->style }}">{{ $item->text }}</span> </th>
-                                    <th> <span class="{{ $item->style }}">{{ $item->text }}</span> </th>
+                                    @foreach ($style as $value)
+                                        @if ($value->id_status == $item->verifikasi_1)
+                                            <th> <span class="{{ $value->style }}">{{ $value->text }}
+                                                    {{ $item->verifikasi_1 == 12 ?  $item->msg_fail  : ""}}</span> </th>
+                                        @endif
+                                    @endforeach
+                                    @foreach ($style as $value)
+                                        @if ($value->id_status == $item->verifikasi_2)
+                                            <th> <span class="{{ $value->style }}">{{ $value->text }}
+                                                {{ $item->verifikasi_2 == 12 ?  $item->msg_fail  :""}}</span> </th>
+                                        @endif
+                                    @endforeach
+                                    @foreach ($style as $value)
+                                        @if ($value->id_status == $item->verifikasi_3)
+                                            <th> <span class="{{ $value->style }}">{{ $value->text }}
+                                                {{ $item->verifikasi_3 == 12 ?  $item->msg_fail  : ""}}</span> </th>
+                                        @endif
+                                    @endforeach
+
+
                                     <th>
                                         <button type="button" class="btn btn-success"
                                             onclick="window.open('{{ URL::asset($item->berkas1) }}', '_blank');"><i
@@ -102,7 +120,7 @@
                                         </button>
                                     </th>
                                     <th>
-                                        {{date('d-m-Y', strtotime($item->waktu_pelaksanaan))}}
+                                        {{ date('d-m-Y', strtotime($item->waktu_pelaksanaan)) }}
                                     </th>
                                     <th>
                                         <button type="button" class="btn btn-success"
@@ -147,8 +165,8 @@
                                 <span aria-hidden="true">×</span>
                             </button>
                         </div>
-                        <form class="modal-body" method="POST" id="add_data" action="/verifikasiPengajuan_post"
-                            enctype="multipart/form-data">
+                        <form class="modal-body" method="POST" id="add_data"
+                            action="/verifikasiPengajuan_post/{{ $id }}" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="verifikasi" id="verifikasi">
                             <input type="hidden" name="id_data" id="id_data">

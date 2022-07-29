@@ -31,15 +31,27 @@
     </li>
     <hr class="sidebar-divider">
     <li class="nav-item active">
-        <a class="nav-link" href="/verifikasiPengajuan">
-            <i class="fa-solid fa-circle-check"></i>
-            <span>Verifikasi Pengajuan</span></a>
-    </li>
-    <hr class="sidebar-divider">
-    <li class="nav-item active">
         <a class="nav-link" href="/laporanPelayanan">
             <i class="fa-solid fa-file "></i>
             <span>Laporan Pelayanan</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/verifikasiPengajuan/1003">
+            <i class="fa-solid fa-file "></i>
+            <span>Verifikasi Kasi</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/verifikasiPengajuan/1004">
+            <i class="fa-solid fa-file "></i>
+            <span>Verifikasi Kabid</span></a>
+    </li>
+    <hr class="sidebar-divider">
+    <li class="nav-item active">
+        <a class="nav-link" href="/verifikasiPengajuan/1005">
+            <i class="fa-solid fa-file "></i>
+            <span>Verifikasi Disposisi Kepegawaian</span></a>
     </li>
     <hr class="sidebar-divider">
     <!-- Divider -->

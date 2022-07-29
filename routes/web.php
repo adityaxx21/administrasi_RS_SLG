@@ -89,8 +89,8 @@ Route::post('/pegawai_delete', [Pegawai_Controller::class, 'index_delete']);
 
 
 // Verifikator
-Route::get('/verifikasiPengajuan', [Verifikator_Controller::class, 'index']);
-Route::post('/verifikasiPengajuan_post', [Verifikator_Controller::class, 'index_post']);
+Route::get('/verifikasiPengajuan/{id}', [Verifikator_Controller::class, 'index']);
+Route::post('/verifikasiPengajuan_post/{id}', [Verifikator_Controller::class, 'index_post']);
 // Verifikator End
 
 // Invoice 

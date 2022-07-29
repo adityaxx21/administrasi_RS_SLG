@@ -50,10 +50,6 @@ class Admin_Controller extends Controller
         }
         $get_data = $this->doc_input($request->doc1_insert, $get_data, 1);
         $get_data = $this->doc_input($request->doc2_insert, $get_data, 2);
-        $get_data =  $this->doc_input($request->doc3_insert, $get_data, 3);
-        $get_data =  $this->doc_input($request->doc4_insert, $get_data, 4);
-        $get_data =  $this->doc_input($request->doc5_insert, $get_data, 5);
-
 
         // print_r($get_data);
         DB::table('tb_instansi')->insert($get_data);
@@ -94,9 +90,6 @@ class Admin_Controller extends Controller
         }
         $get_data = $this->doc_input($request->doc1_update, $get_data, 1);
         $get_data = $this->doc_input($request->doc2_update, $get_data, 2);
-        $get_data =  $this->doc_input($request->doc3_update, $get_data, 3);
-        $get_data =  $this->doc_input($request->doc4_update, $get_data, 4);
-        $get_data =  $this->doc_input($request->doc5_update, $get_data, 5);
         // print_r($get_data);
         // echo($id);
         DB::table('tb_instansi')->where('id',$id)->update($get_data);

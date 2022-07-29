@@ -173,9 +173,9 @@ class Instansi_Controller extends Controller
 
         // $get_data = $this->doc_input($request->doc1, $get_data, 1);
         // $get_data = $this->doc_input($request->doc2, $get_data, 2);
-        // $get_data =  $this->doc_input($request->doc3, $get_data, 3);
-        // $get_data =  $this->doc_input($request->doc4, $get_data, 4);
-        // $get_data =  $this->doc_input($request->doc5, $get_data, 5);
+        $get_data =  $this->doc_input($request->doc3_insert, $get_data, 3);
+        $get_data =  $this->doc_input($request->doc4_insert, $get_data, 4);
+        $get_data =  $this->doc_input($request->doc5_insert, $get_data, 5);
         DB::table('tb_transaksi_pelayanan')->where('id', $id)->increment('jumlah_pelayanan', 1);
         DB::table('tb_siswa')->insert($get_data);
         // print_r($get_data);
@@ -339,9 +339,9 @@ class Instansi_Controller extends Controller
 
         // $get_data = $this->doc_input($request->doc1_update, $get_data, 1);
         // $get_data = $this->doc_input($request->doc2_update, $get_data, 2);
-        // $get_data =  $this->doc_input($request->doc3_update, $get_data, 3);
-        // $get_data =  $this->doc_input($request->doc4_update, $get_data, 4);
-        // $get_data =  $this->doc_input($request->doc5_update, $get_data, 5);
+        $get_data =  $this->doc_input($request->doc3_update, $get_data, 3);
+        $get_data =  $this->doc_input($request->doc4_update, $get_data, 4);
+        $get_data =  $this->doc_input($request->doc5_update, $get_data, 5);
         DB::table('tb_siswa')->where('id', $id)->update($get_data);
         // print_r($get_data);
         // echo ($cond);

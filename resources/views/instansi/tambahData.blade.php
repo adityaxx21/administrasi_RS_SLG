@@ -78,9 +78,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Satuan Waktu</label>
-                                            <input type="text" class="form-control" id="satuan_waktu"
-                                                name="satuan_waktu" aria-describedby="emailHelp"
-                                                placeholder="Masukan Nama Pendaftar"
+                                            <input type="text" class="form-control" id="satuan_waktu" name="satuan_waktu"
+                                                aria-describedby="emailHelp" placeholder="Masukan Nama Pendaftar"
                                                 value=" {{ $instansi->nama_instansi }}" readonly>
                                         </div>
                                     </div>
@@ -117,7 +116,8 @@
                                     <div class="col">
                                         <div class="form-group">
                                             <label for="exampleInputEmail1">Total Biaya</label>
-                                            <input readonly type="text" value="{{$instansi->total_biaya_pelayanan}} " class="form-control"
+                                            <input readonly type="text"
+                                                value="{{ $instansi->total_biaya_pelayanan }} " class="form-control"
                                                 id="biaya" name="biaya" aria-describedby="emailHelp"
                                                 placeholder="Durasi Pelayanan">
                                         </div>
@@ -126,8 +126,10 @@
                                         <div class="form-group">
                                             <label for="min" class="label-form">Tanggal Mulai</label>
                                             <input id="min" name="min" class="date-picker form-control"
-                                                placeholder="dd-mm-yyyy" type="date" required="required" onfocus="this.type='date'"
-                                                onclick="this.type='date'" onkeyup="" name="min" value="{{ date("Y-m-d", strtotime( $instansi->tanggal_mulai))}}">
+                                                placeholder="dd-mm-yyyy" type="date" required="required"
+                                                onfocus="this.type='date'" onclick="this.type='date'" onkeyup=""
+                                                name="min"
+                                                value="{{ date('Y-m-d', strtotime($instansi->tanggal_mulai)) }}">
                                         </div>
                                     </div>
                                 </div>
@@ -194,6 +196,36 @@
                                     <textarea type="text" class="form-control" id="alamat" name="alamat" aria-describedby="emailHelp"
                                         placeholder="Masukan Alamat Peserta "></textarea>
                                 </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_insert">Surat rekomendasi dari bakesbangpol</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc3_insert"
+                                            name="doc3_insert" onchange="insert_gb('3','doc3_insert')"
+                                            accept="image/*, application/pdf, application/doc, application/docx">
+                                        <label class="custom-file-label" for="doc3" id="change_name__3">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_insert">Invoice</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc4_insert"
+                                            name="doc4_insert" onchange="insert_gb('4','doc4_insert')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name__4">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_insert">Laporan</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc5_insert"
+                                            name="doc5_insert" onchange="insert_gb('5','doc5_insert')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name__5">Choose
+                                            file</label>
+                                    </div>
+                                </div>
                             </form>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -217,17 +249,20 @@
                             <form class="modal-body" method="POST" id="update_data" action="/tambahSiswa_update"
                                 enctype="multipart/form-data">
                                 @csrf
-                                <input type="hidden" id="id_ins_update" name="id_ins_update" value="{{ $instansi->id }}">
+                                <input type="hidden" id="id_ins_update" name="id_ins_update"
+                                    value="{{ $instansi->id }}">
                                 <input type="hidden" id="id_siswa_update" name="id_siswa_update">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nama Peserta </label>
-                                    <input type="text" class="form-control" id="nama_siswa_update" name="nama_siswa_update"
-                                        aria-describedby="emailHelp" placeholder="Masukan Nama Peserta ">
+                                    <input type="text" class="form-control" id="nama_siswa_update"
+                                        name="nama_siswa_update" aria-describedby="emailHelp"
+                                        placeholder="Masukan Nama Peserta ">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Jenis Kelamin</label>
                                     <div class="input-group mb-3">
-                                        <select class="custom-select" id="jenis_kelamin_update" name="jenis_kelamin_update">
+                                        <select class="custom-select" id="jenis_kelamin_update"
+                                            name="jenis_kelamin_update">
                                             <option value="Perempuan">Perempuan</option>
                                             <option value="Laki - Laki">Laki - Laki</option>
                                         </select>
@@ -238,15 +273,46 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Nomor Induk Peserta </label>
-                                    <input type="text" class="form-control" id="nomor_induk_update" name="nomor_induk_update"
-                                        aria-describedby="emailHelp" placeholder="Masukan Nomor Induk Peserta ">
+                                    <input type="text" class="form-control" id="nomor_induk_update"
+                                        name="nomor_induk_update" aria-describedby="emailHelp"
+                                        placeholder="Masukan Nomor Induk Peserta ">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Alamat Instansi</label>
                                     <textarea type="text" class="form-control" id="alamat_update" name="alamat_update" aria-describedby="emailHelp"
                                         placeholder="Masukan Alamat Peserta "></textarea>
                                 </div>
-  
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Surat rekomendasi dari bakesbangpol </label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc3_update"
+                                            name="doc3_update" onchange="update_gb('3','doc3_update')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_3">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Invoice</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc4_update"
+                                            name="doc4_update" onchange="update_gb('4','doc4_update')"
+                                            accept="image/*, application/pdf, application/doc, application/docx">
+                                        <label class="custom-file-label" for="doc4" id="change_name_4">Choose
+                                            file</label>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="gambar_instansi_update">Laporan</label>
+                                    <div class="custom-file">
+                                        <input type="file" class="custom-file-input" id="doc5_update"
+                                            name="doc5_update" onchange="update_gb('5','doc5_update')"
+                                            accept="image/*, application/pdf, application/doc">
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_5">Choose
+                                            file</label>
+                                    </div>
+                                </div>
                             </form>
                             <div class="modal-footer">
                                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
@@ -284,6 +350,9 @@
                                         <th>Nama Pendaftar</th>
                                         <th>Nomor Induk</th>
                                         <th>Jenis Kelamin</th>
+                                        <th>Surat rekomendasi dari bakesbangpol</th>
+                                        <th>Invoice</th>
+                                        <th>Laporan</th>
                                         <th>Status</th>
                                         <th></th>
                                     </tr>
@@ -295,15 +364,40 @@
                                             <th>{{ $item->nama_siswa }}</th>
                                             <th>{{ $item->nomor_induk }}</th>
                                             <th>{{ $item->jenis_kelamin }}</th>
-                                            
+                                            <th>
+                                                @if ($item->berkas3 != null)
+                                                    <button type="button" class="btn btn-success"
+                                                        onclick="window.open('{{ URL::asset($item->berkas3) }}', '_blank');"><i
+                                                            class="fas fa-file fa-sm "></i>
+                                                    </button>
+                                                @endif
+                                            </th>
+                                            <th>
+
+                                                @if ($item->berkas4 != null)
+                                                    <button type="button" class="btn btn-success"
+                                                        onclick="window.open('{{ URL::asset($item->berkas4) }}', '_blank');"><i
+                                                            class="fas fa-file fa-sm "></i>
+                                                    </button>
+                                                @endif
+                                            </th>
+                                            <th>
+                                                @if ($item->berkas5 != null)
+                                                    <button type="button" class="btn btn-success"
+                                                        onclick="window.open('{{ URL::asset($item->berkas5) }}', '_blank');"><i
+                                                            class="fas fa-file fa-sm "></i>
+                                                    </button>
+                                                @endif
+                                            </th>
                                             <th>
                                                 @if ($item->id_status != null)
-                                                    <span class="{{ $item->style }}">{{ $item->text }}{{" ".$item->msg_fail }}</span>
+                                                    <span
+                                                        class="{{ $item->style }}">{{ $item->text }}{{ ' ' . $item->msg_fail }}</span>
                                                 @endif
                                             </th>
                                             <th>
                                                 <button type="button" class="btn btn-warning"
-                                                    onclick="update_siswa({{ $item->id}})"><i
+                                                    onclick="update_siswa({{ $item->id }})"><i
                                                         class="fas fa-edit fa-sm "></i> update
                                                 </button>
                                                 <button type="button" class="btn btn-danger"
@@ -538,11 +632,12 @@
                 }
             });
         }
-        
 
-        function input_gb(i, id) {
+
+
+        function insert_gb(i, id) {
             gambar = $('#' + id).val().replace(/C:\\fakepath\\/i, '')
-            $("#change_name" + i).html(gambar);
+            $("#change_name__" + i).html(gambar);
         }
 
         function update_gb(i, id) {
@@ -574,38 +669,38 @@
         }
         // Update Pengguna
         function update_siswa(id) {
-                id_data = id;
+            id_data = id;
 
-                $('#updateData').modal('show');
-                $.ajax({
-                    type: 'GET',
-                    url: "/find_data_siswa/" + id,
-                    success: function(data) {
+            $('#updateData').modal('show');
+            $.ajax({
+                type: 'GET',
+                url: "/find_data_siswa/" + id,
+                success: function(data) {
 
-                        if ($.isEmptyObject(data.error)) {
-                            // alert(data.data.owner);
-                            $('#id_siswa_update').val(id);
-                            $('#nama_siswa_update').val(data.data.nama_siswa);
-                            $('#jenis_kelamin_update').val(data.data.jenis_kelamin);
-                            $('#nomor_induk_update').val(data.data.nomor_induk);
-                            $('#alamat_update').val(data.data.alamat);
-                            // $('#'+data.data.role).attr('selected');
-                            // role = data.data.role;
+                    if ($.isEmptyObject(data.error)) {
+                        // alert(data.data.owner);
+                        $('#id_siswa_update').val(id);
+                        $('#nama_siswa_update').val(data.data.nama_siswa);
+                        $('#jenis_kelamin_update').val(data.data.jenis_kelamin);
+                        $('#nomor_induk_update').val(data.data.nomor_induk);
+                        $('#alamat_update').val(data.data.alamat);
+                        // $('#'+data.data.role).attr('selected');
+                        // role = data.data.role;
 
 
-                            // $('#jenis_instansi_update option:eq(1)');
-                            // const text = data.data.role;
-                            // const $select = document.querySelector('#jenis_instansi_update');
-                            // const $options = Array.from($select.options);
-                            // const optionToSelect = $options.find(item => item.text === text);
-                            // $select.value = optionToSelect.value;
-                            // alert(role);
-                        } else {
-                            printErrorMsg(data.error);
-                        }
+                        // $('#jenis_instansi_update option:eq(1)');
+                        // const text = data.data.role;
+                        // const $select = document.querySelector('#jenis_instansi_update');
+                        // const $options = Array.from($select.options);
+                        // const optionToSelect = $options.find(item => item.text === text);
+                        // $select.value = optionToSelect.value;
+                        // alert(role);
+                    } else {
+                        printErrorMsg(data.error);
                     }
-                });
-            }
+                }
+            });
+        }
     </script>
     </div>
 @endsection

@@ -8,7 +8,7 @@ use Dompdf\Dompdf;
 
 class Verifikator_Controller extends Controller
 {
-   public function index(Request $request)
+   public function index(Request $request,$id)
    {
       //  Berfungsi untuk menentukan urutan verifikasi, dari Kasi, Kabid, Disposisi Kepegawaian
       //  Urutan mulai Kasi setelah verifikasi akan dilanjutkan oleh Kabid dan Disposisi Kepegawaian
@@ -16,9 +16,16 @@ class Verifikator_Controller extends Controller
       $data['date'] = $request->min;
       $data['date_end'] = $request->max;
       $data['status_'] = $request->status;
-
+      $data['id'] = $id;
+      if ($id == 1003) {
+        $find = 'tb_pegawai.verifikasi_1';
+      } elseif ($id == 1004) {
+         $find = 'tb_pegawai.verifikasi_2';
+      } elseif ($id == 1005) {
+         $find = 'tb_pegawai.verifikasi_3';
+      }
       if ($data['status_'] != null) {
-         $stat = [['tb_pegawai.is_deleted', 1], ['tb_pegawai.verifikasi_3',$data['status_']]]; 
+         $stat = [['tb_pegawai.is_deleted', 1], [ $find,$data['status_']]]; 
       } else {
          $stat = [['tb_pegawai.is_deleted', 1]]; 
       }
@@ -35,7 +42,7 @@ class Verifikator_Controller extends Controller
           tb_text_status.style as style,
           tb_text_status.text as text')
             ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
-            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_pegawai.verifikasi_3')
+            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=',  $find)
             ->orderBy('tb_pegawai.id', 'ASC')
             ->where( $stat)
             ->whereBetween('tb_pegawai.waktu_pelaksanaan', $date)
@@ -49,7 +56,7 @@ class Verifikator_Controller extends Controller
                tb_text_status.style as style,
               tb_text_status.text as text')
             ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
-            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=', 'tb_pegawai.verifikasi_3')
+            ->leftJoin('tb_text_status', 'tb_text_status.id_status', '=',  $find)
             ->orderBy('tb_pegawai.id', 'ASC')
             ->where( $stat)
             ->groupByRaw('tb_pegawai.id')
@@ -61,16 +68,28 @@ class Verifikator_Controller extends Controller
       return view('verifikator.homeVerifikator', $data);
    }
 
-   public function index_post(Request $request)
+   public function index_post(Request $request,$id)
    {
       // Berfungsi untuk memverifikasi apakah berkas layak atau tidak
-      $get_data = array(
-         'verifikasi_1' => $request->verifikasi,
-         'verifikasi_2' => $request->verifikasi,
-         'verifikasi_3' => $request->verifikasi,
-         'msg_fail' =>  $request->msg_fail
-      );
+      if ($id == 1003) {
+         $get_data = array(
+            'verifikasi_1' => $request->verifikasi,
+            'msg_fail' =>  $request->msg_fail
+         );
+      } elseif ($id == 1004){
+         $get_data = array(
+            'verifikasi_2' => $request->verifikasi,
+            'msg_fail' =>  $request->msg_fail
+         );
+      } elseif ($id == 1005){
+         $get_data = array(
+            'verifikasi_3' => $request->verifikasi,
+            'msg_fail' =>  $request->msg_fail
+         );
+      }
+      print_r($get_data);
+      echo ($request->id_data);
       DB::table('tb_pegawai')->where('id', $request->id_data)->update($get_data);
-      return redirect('/verifikasiPengajuan');
+      return redirect('/verifikasiPengajuan/'.$id);
    }
 }

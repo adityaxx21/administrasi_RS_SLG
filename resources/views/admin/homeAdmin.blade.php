@@ -99,7 +99,7 @@
                                             file</label>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="gambar_instansi_insert">Surat rekomendasi dari bakesbangpol</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc2_insert"
@@ -128,14 +128,14 @@
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name__4">Choose
                                             file</label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="gambar_instansi_insert">MOU</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc5_insert"
-                                            name="doc5_insert" onchange="insert_gb('5','doc5_insert')"
+                                        <input type="file" class="custom-file-input" id="doc2_insert"
+                                            name="doc2_insert" onchange="insert_gb('2','doc2_insert')"
                                             accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="gambar_instansi" id="change_name__5">Choose
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name__2">Choose
                                             file</label>
                                     </div>
                                 </div>
@@ -233,7 +233,7 @@
                                             file</label>
                                     </div>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label for="gambar_instansi_update">Surat rekomendasi dari bakesbangpol</label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" id="doc2_update"
@@ -262,14 +262,14 @@
                                         <label class="custom-file-label" for="gambar_instansi" id="change_name_4">Choose
                                             file</label>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="form-group">
                                     <label for="gambar_instansi_update">MOU</label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" id="doc5_update"
-                                            name="doc5_update" onchange="update_gb('5','doc5_update')"
+                                        <input type="file" class="custom-file-input" id="doc2_update"
+                                            name="doc2_update" onchange="update_gb('2','doc2_update')"
                                             accept="image/*, application/pdf, application/doc">
-                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_5">Choose
+                                        <label class="custom-file-label" for="gambar_instansi" id="change_name_2">Choose
                                             file</label>
                                     </div>
                                 </div>
@@ -293,9 +293,9 @@
                                 <th>Jenis Instansi</th>
                                 <th>Email</th>
                                 <th>Akreditasi</th>
-                                <th>Surat rekomendasi dari bakesbangpol</th>
+                                {{-- <th>Surat rekomendasi dari bakesbangpol</th>
                                 <th>Invoice</th>
-                                <th>Laporan</th>
+                                <th>Laporan</th> --}}
                                 <th>MOU</th>
                                 <th></th>
                             </tr>
@@ -325,7 +325,7 @@
                                             </button>
                                         @endif
                                     </th>
-                                    <th>
+                                    {{-- <th>
 
                                         @if ($item->berkas3 != null)
                                             <button type="button" class="btn btn-success"
@@ -350,7 +350,7 @@
                                                     class="fas fa-file fa-sm "></i>
                                             </button>
                                         @endif
-                                    </th>
+                                    </th> --}}
                                     <th>
                                         <button type="button" class="btn btn-warning"
                                             onclick="get_data({{ $item->id }})"><i class="fas fa-edit fa-sm "></i>
