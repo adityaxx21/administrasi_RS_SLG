@@ -116,10 +116,11 @@
                             <th>Nama Peserta</th>
                             <th>Nomor Induk</th>
                             <th>Jenis Kelamin</th>
+                            <th>Status</th>
                             <th>Surat rekomendasi dari bakesbangpol</th>
                             <th>Invoice</th>
                             <th>Laporan</th>
-                            <th>Status</th>
+                            
                             <th></th>
                         </tr>
                     </thead>
