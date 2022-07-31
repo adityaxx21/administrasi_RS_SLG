@@ -38,6 +38,7 @@ Route::post('/admin', [Admin_Controller::class, 'tambah_data']);
 Route::post('/delete_instansi', [Admin_Controller::class, 'delete_instansi']);
 Route::get('/find_data/{id}', [Admin_Controller::class, 'find_data']);
 Route::post('/updateAkun', [Admin_Controller::class, 'update_data']);
+Route::get('/rekap_pelatihan', [Admin_Controller::class, 'rekap_pelatihan']);
 
 Route::get('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index']);
 Route::post('/konfirmasi_pembayaran', [KonfirmasiPembayaran_Controller::class, 'index_post']);
@@ -89,8 +90,8 @@ Route::post('/pegawai_delete', [Pegawai_Controller::class, 'index_delete']);
 
 
 // Verifikator
-Route::get('/verifikasiPengajuan/{id}', [Verifikator_Controller::class, 'index']);
-Route::post('/verifikasiPengajuan_post/{id}', [Verifikator_Controller::class, 'index_post']);
+Route::get('/verifikasiPengajuan', [Verifikator_Controller::class, 'index']);
+Route::post('/verifikasiPengajuan_post', [Verifikator_Controller::class, 'index_post']);
 // Verifikator End
 
 // Invoice 

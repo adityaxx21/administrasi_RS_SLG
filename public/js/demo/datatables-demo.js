@@ -10,7 +10,12 @@ $(document).ready(function () {
   $('#laporan').DataTable({
     dom: 'Bfrtip',
     buttons: [
-      'pdf']
+      {
+        extend: 'pdfHtml5',
+        orientation: 'landscape',
+        pageSize: 'TABLOID',
+      }
+    ]
 
   });
 

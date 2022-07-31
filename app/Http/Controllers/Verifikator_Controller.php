@@ -8,7 +8,7 @@ use Dompdf\Dompdf;
 
 class Verifikator_Controller extends Controller
 {
-   public function index(Request $request,$id)
+   public function index(Request $request)
    {
       //  Berfungsi untuk menentukan urutan verifikasi, dari Kasi, Kabid, Disposisi Kepegawaian
       //  Urutan mulai Kasi setelah verifikasi akan dilanjutkan oleh Kabid dan Disposisi Kepegawaian
@@ -16,14 +16,7 @@ class Verifikator_Controller extends Controller
       $data['date'] = $request->min;
       $data['date_end'] = $request->max;
       $data['status_'] = $request->status;
-      $data['id'] = $id;
-      if ($id == 1003) {
-        $find = 'tb_pegawai.verifikasi_1';
-      } elseif ($id == 1004) {
-         $find = 'tb_pegawai.verifikasi_2';
-      } elseif ($id == 1005) {
-         $find = 'tb_pegawai.verifikasi_3';
-      }
+      $find = 'tb_pegawai.verifikasi_3';
       if ($data['status_'] != null) {
          $stat = [['tb_pegawai.is_deleted', 1], [ $find,$data['status_']]]; 
       } else {
@@ -68,28 +61,18 @@ class Verifikator_Controller extends Controller
       return view('verifikator.homeVerifikator', $data);
    }
 
-   public function index_post(Request $request,$id)
+   public function index_post(Request $request)
    {
       // Berfungsi untuk memverifikasi apakah berkas layak atau tidak
-      if ($id == 1003) {
-         $get_data = array(
-            'verifikasi_1' => $request->verifikasi,
-            'msg_fail' =>  $request->msg_fail
-         );
-      } elseif ($id == 1004){
-         $get_data = array(
-            'verifikasi_2' => $request->verifikasi,
-            'msg_fail' =>  $request->msg_fail
-         );
-      } elseif ($id == 1005){
-         $get_data = array(
-            'verifikasi_3' => $request->verifikasi,
-            'msg_fail' =>  $request->msg_fail
-         );
-      }
+      $get_data = array(
+         'verifikasi_1' => $request->verifikasi,
+         'verifikasi_2' => $request->verifikasi,
+         'verifikasi_3' => $request->verifikasi,
+         'msg_fail' =>  $request->msg_fail
+      );
       print_r($get_data);
       echo ($request->id_data);
       DB::table('tb_pegawai')->where('id', $request->id_data)->update($get_data);
-      return redirect('/verifikasiPengajuan/'.$id);
+      return redirect('/verifikasiPengajuan');
    }
 }

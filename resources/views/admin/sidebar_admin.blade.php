@@ -37,23 +37,19 @@
     </li>
     <hr class="sidebar-divider">
     <li class="nav-item active">
-        <a class="nav-link" href="/verifikasiPengajuan/1003">
-            <i class="fa-solid fa-file "></i>
-            <span>Verifikasi Kasi</span></a>
+        <a class="nav-link" href="/verifikasiPengajuan">
+            <i class="fa-solid fa-circle-check"></i>
+            <span>Verifikasi Pegawai</span></a>
     </li>
     <hr class="sidebar-divider">
+    <!-- Nav Item - Dashboard -->
     <li class="nav-item active">
-        <a class="nav-link" href="/verifikasiPengajuan/1004">
-            <i class="fa-solid fa-file "></i>
-            <span>Verifikasi Kabid</span></a>
+        <a class="nav-link" href="/rekap_pelatihan">
+            <i class="fas fa-fw fa-tachometer-alt"></i>
+            <span>Rekap Data Pelatihan</span></a>
     </li>
     <hr class="sidebar-divider">
-    <li class="nav-item active">
-        <a class="nav-link" href="/verifikasiPengajuan/1005">
-            <i class="fa-solid fa-file "></i>
-            <span>Verifikasi Disposisi Kepegawaian</span></a>
-    </li>
-    <hr class="sidebar-divider">
+<!-- Divider -->
     <!-- Divider -->
     
 

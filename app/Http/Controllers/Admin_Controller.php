@@ -127,5 +127,44 @@ class Admin_Controller extends Controller
         return $get_data;
     }
 
-    
+    public function rekap_pelatihan(Request $request)
+    {
+        $data['date'] = $request->min;
+        $data['date_end'] = $request->max;
+        $data['status_'] = $request->status;
+        if ($data['status_'] != null) {
+            $stat = [['tb_pegawai.is_deleted', 1], ['tb_pegawai.verifikasi_3', $data['status_']]];
+        } else {
+            $stat = [['tb_pegawai.is_deleted', 1]];
+        }
+        if ($data['date'] != null &&  $data['date_end'] != null) {
+            $cond = [[$data['date']], $data['date_end']];
+            $data['pegawai'] = DB::table('tb_pegawai')
+                ->selectRaw('tb_pegawai.*,
+                    tb_user.nama as nama,
+                    tb_user.username as username')
+                ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
+                ->orderBy('tb_pegawai.id', 'ASC')
+                ->where($stat)
+                ->whereBetween('tb_pegawai.updated_at', $cond)
+                ->groupByRaw('tb_pegawai.id')
+                ->get();
+        } else {
+            $data['pegawai'] = DB::table('tb_pegawai')
+                ->selectRaw('tb_pegawai.*,
+                    tb_user.nama as nama,
+                    tb_user.username as username')
+                ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
+                ->orderBy('tb_pegawai.id', 'ASC')
+                ->where($stat)
+                ->groupByRaw('tb_pegawai.id')
+                ->get();
+        }
+        // Berfungsi untuk menampilkan data pengajuan inhouse atau exhouse dari database
+        $data['status'] = DB::table('tb_text_status')->where([['id_status', '>=', '10'], ['id_status', '<=', '12']])->get();
+
+        $data['style'] = DB::table('tb_text_status')->where('is_deleted', 1)->get();
+
+        return view('admin.rekapPelatihan', $data);
+    }
 }

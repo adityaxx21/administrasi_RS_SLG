@@ -97,6 +97,12 @@
                                         placeholder="Masukan Indikator Kebutuhan">
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Jumlah Peserta</label>
+                                    <input type="text" class="form-control" id="jumlah_peserta"
+                                        name="jumlah_peserta" aria-describedby="emailHelp"
+                                        placeholder="Masukan Jumlah Peserta">
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputEmail1">Anggaran</label>
                                     <input type="text" class="form-control" id="anggaran" name="anggaran"
                                         aria-describedby="emailHelp" placeholder="Masukan Anggaran">
@@ -219,6 +225,12 @@
                                     <input type="text" class="form-control" id="indikator_kebutuhan_update"
                                         name="indikator_kebutuhan_update" aria-describedby="emailHelp"
                                         placeholder="Masukan Indikator Kebutuhan" readonly>
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Jumlah Peserta</label>
+                                    <input type="text" class="form-control" id="jumlah_peserta_update"
+                                        name="jumlah_peserta_update" aria-describedby="emailHelp"
+                                        placeholder="Masukan Jumlah Peserta">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Anggaran</label>

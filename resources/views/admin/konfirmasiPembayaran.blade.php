@@ -25,7 +25,7 @@
                     
                 </div>
                 <div class="table-responsive" style="text-overflow:ellipsis;white-space:nowrap;">
-                    <form class="row" action="/konfirmasi_pembayaran" id="submit_it" method="get">
+                    <form class="row" action="/konfirmasi_pembayaran" id="find_it" method="get">
                         <div class="col-4">
                             <div class="form-group">
                                 <label for="min" class="label-form">Tanggal Mulai</label>
@@ -59,7 +59,7 @@
                                 <label for="max" class="label-form">Search :</label>
                                 <br>
                                 <button type="button" class="btn btn-primary form-control"
-                                    onclick="$('#submit_it').submit()"><i class="fas fa-search fa-sm "></i>
+                                    onclick="$('#find_it').submit()"><i class="fas fa-search fa-sm "></i>
                                 </button>
                             </div>
                         </div>

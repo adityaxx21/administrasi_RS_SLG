@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Dompdf\Dompdf; 
+use Dompdf\Dompdf;
+
 class Pegawai_Controller extends Controller
 {
     // Fungsi ini dipa
@@ -15,45 +16,44 @@ class Pegawai_Controller extends Controller
         $data['date_end'] = $request->max;
         $data['status_'] = $request->status;
         if ($data['status_'] != null) {
-            $stat = [['tb_pegawai.is_deleted', 1], ['tb_pegawai.verifikasi_3',$data['status_']]]; 
+            $stat = [['tb_pegawai.is_deleted', 1], ['tb_pegawai.verifikasi_3', $data['status_']]];
         } else {
-            $stat = [['tb_pegawai.is_deleted', 1]]; 
+            $stat = [['tb_pegawai.is_deleted', 1]];
         }
         if ($data['date'] != null &&  $data['date_end'] != null) {
             $cond = [[$data['date']], $data['date_end']];
             $data['pegawai'] = DB::table('tb_pegawai')
-            ->selectRaw('tb_pegawai.*,
+                ->selectRaw('tb_pegawai.*,
                     tb_user.nama as nama,
                     tb_user.username as username')
-            ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
-            ->orderBy('tb_pegawai.id', 'ASC')
-            ->where( $stat)
-            ->whereBetween('tb_pegawai.updated_at',$cond)
-            ->groupByRaw('tb_pegawai.id')
-            ->get();
-        } else{
+                ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
+                ->orderBy('tb_pegawai.id', 'ASC')
+                ->where($stat)
+                ->whereBetween('tb_pegawai.updated_at', $cond)
+                ->groupByRaw('tb_pegawai.id')
+                ->get();
+        } else {
             $data['pegawai'] = DB::table('tb_pegawai')
-            ->selectRaw('tb_pegawai.*,
+                ->selectRaw('tb_pegawai.*,
                     tb_user.nama as nama,
                     tb_user.username as username')
-            ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
-            ->orderBy('tb_pegawai.id', 'ASC')
-            ->where( $stat)
-            ->groupByRaw('tb_pegawai.id')
-            ->get();
-
+                ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
+                ->orderBy('tb_pegawai.id', 'ASC')
+                ->where($stat)
+                ->groupByRaw('tb_pegawai.id')
+                ->get();
         }
         // Berfungsi untuk menampilkan data pengajuan inhouse atau exhouse dari database
-        $data['status'] = DB::table('tb_text_status')->where([['id_status','>=','10'],['id_status','<=','12']])->get();
+        $data['status'] = DB::table('tb_text_status')->where([['id_status', '>=', '10'], ['id_status', '<=', '12']])->get();
 
-        $data['style'] = DB::table('tb_text_status')->where('is_deleted',1)->get();
+        $data['style'] = DB::table('tb_text_status')->where('is_deleted', 1)->get();
         // print_r($data['pegawai']);
-       return view('pegawai.homePegawai',$data);
+        return view('pegawai.homePegawai', $data);
     }
     public function find_data($id)
     {
         // fungsi ajax untuk menampilkan detail data dari salah satu pengajuan berdasarkan id jika akan dilakukan pengupdate an
-        $data['data'] = DB::table('tb_pegawai')->where('id',$id)->first();
+        $data['data'] = DB::table('tb_pegawai')->where('id', $id)->first();
         $data['data']->waktu_pelaksanaan = date("Y-m-d", strtotime($data['data']->waktu_pelaksanaan));
         return response()->json($data);
     }
@@ -70,13 +70,14 @@ class Pegawai_Controller extends Controller
             'nama_jabatan' => $request->nama_jabatan,
             'materi' => $request->materi,
             'indikator_kebutuhan' => $request->indikator_kebutuhan,
+            'jumlah_peserta' => $request->jumlah_peserta,
             'anggaran' => $request->anggaran,
             'periode_evaluasi' => $request->periode_evaluasi,
             'created_at' => date("Y-m-d H:i:s")
         ];
-        $get_data = $this->doc_input( $request->berkas1, $get_data, 1);
-        $get_data = $this->doc_input( $request->berkas2, $get_data, 2);
-        $get_data = $this->doc_input( $request->berkas3, $get_data, 3);
+        $get_data = $this->doc_input($request->berkas1, $get_data, 1);
+        $get_data = $this->doc_input($request->berkas2, $get_data, 2);
+        $get_data = $this->doc_input($request->berkas3, $get_data, 3);
         // print_r( $get_data);
         DB::table('tb_pegawai')->insert($get_data);
         return redirect('/pegawai');
@@ -97,16 +98,17 @@ class Pegawai_Controller extends Controller
             'indikator_kebutuhan' => $request->indikator_kebutuhan_update,
             'anggaran' => $request->anggaran_update,
             'periode_evaluasi' => $request->periode_evaluasi_update,
+            'jumlah_peserta_update' => $request->jumlah_peserta_update,
             'verifikasi_1' => 11,
             'verifikasi_2' => 11,
             'verifikasi_3' => 11,
             'updated_at' => date("Y-m-d H:i:s")
         ];
-        $get_data = $this->doc_input( $request->berkas4, $get_data, 1);
-        $get_data = $this->doc_input( $request->berkas5, $get_data, 2);
-        $get_data = $this->doc_input( $request->berkas6, $get_data, 3);
+        $get_data = $this->doc_input($request->berkas4, $get_data, 1);
+        $get_data = $this->doc_input($request->berkas5, $get_data, 2);
+        $get_data = $this->doc_input($request->berkas6, $get_data, 3);
 
-        DB::table('tb_pegawai')->where('id',$id)->update($get_data);
+        DB::table('tb_pegawai')->where('id', $id)->update($get_data);
         return redirect('/pegawai');
     }
 
@@ -114,7 +116,7 @@ class Pegawai_Controller extends Controller
     {
         // berfungsi untuk mengahapus salah satu data pengajuan suran in / ex berdasarkan idnya
         $id = $request->id_delete;
-        DB::table('tb_pegawai')->where('id',$id)->update(['is_deleted'=>0]);
+        DB::table('tb_pegawai')->where('id', $id)->update(['is_deleted' => 0]);
         return redirect('/pegawai');
     }
 
@@ -140,12 +142,12 @@ class Pegawai_Controller extends Controller
     {
         // fungsi pembuatan surat berdasarkan detail - detail yang diambil dari tb_pegawai
         // output dari fungsi ini berupa pdf
-        $data['pegawai'] = DB::table('tb_pegawai')->where('id',$id)->first();
+        $data['pegawai'] = DB::table('tb_pegawai')->where('id', $id)->first();
         // print_r($data['pegawai']);
         $view = view("invoice.surat", $data);
         $dompdf = new Dompdf();
         $dompdf->loadHtml($view);
-        $customPaper = array(0,0,700,750);
+        $customPaper = array(0, 0, 700, 750);
         // (Optional) Setup the paper size and orientation
         // $dompdf->setPaper('a4', 'potrait');
         $dompdf->setPaper($customPaper);
@@ -156,6 +158,8 @@ class Pegawai_Controller extends Controller
         // Output the generated PDF to Browser
         $dompdf->stream("Surat Permohonan");
 
-        return view('invoice.surat',$data);
+        return view('invoice.surat', $data);
     }
+
+   
 }

@@ -15,7 +15,7 @@
                 }
             </style>
             <div class="card-body">
-                <form class="row" action="/verifikasiPengajuan/{{$id}}" id="submit_it" method="get">
+                <form class="row" action="/verifikasiPengajuan" id="submit_it" method="get">
                     <div class="col-4">
                         <div class="form-group">
                             <label for="min" class="label-form">Tanggal Mulai</label>
@@ -166,7 +166,7 @@
                             </button>
                         </div>
                         <form class="modal-body" method="POST" id="add_data"
-                            action="/verifikasiPengajuan_post/{{ $id }}" enctype="multipart/form-data">
+                            action="/verifikasiPengajuan_post" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="verifikasi" id="verifikasi">
                             <input type="hidden" name="id_data" id="id_data">
