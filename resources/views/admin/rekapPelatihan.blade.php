@@ -68,24 +68,26 @@
                         <thead>
                             <tr>
                                 <td class="text-center">Id</td>
+                                <td class="text-center">Nama Pegawai</td>
                                 <td class="text-center">Penyelenggaraan Pelatihan</td>
                                 <td class="text-center">Tema Pelatihan</td>
                                 <td class="text-center">Waktu Pelaksanaan</td>
-                                <td class="text-right">Narasumber</td>
-                                <td class="text-right">Sasaran Pelatihan</td>
-                                <td class="text-right">Nama Jabatan</td>
-                                <td class="text-right">Jumlah Peserta</td>
-                                <td class="text-right">Materi</td>
-                                <td class="text-right">Indikator Kebutuhan</td>
-                                <td class="text-right">Anggaran</td>
-                                <td class="text-right">Periode Evaluasi</td>
-                                <td class="text-right">Status</td>
+                                <td class="text-center">Narasumber</td>
+                                <td class="text-center">Sasaran Pelatihan</td>
+                                <td class="text-center">Nama Jabatan</td>
+                                <td class="text-center">Jumlah Peserta</td>
+                                <td class="text-center">Materi</td>
+                                <td class="text-center">Indikator Kebutuhan</td>
+                                <td class="text-center">Anggaran</td>
+                                <td class="text-center">Periode Evaluasi</td>
+                                <td class="text-center">Status</td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($pegawai as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
+                                    <td>{{$item->nama}}</td>
                                     <td>{{ $item->keperluan }}</td>
                                     <td>{{ $item->tema_pelatihan }}</td>
                                     <td>{{ date('d-m-Y', strtotime($item->waktu_pelaksanaan)) }}</td>
