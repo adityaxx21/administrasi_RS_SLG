@@ -64,9 +64,7 @@
                                 <th>Nama Pegawai</th>
                                 <th>Nomor Induk</th>
                                 <th>Keperluan</th>
-                                <th>Kasi</th>
-                                <th>Kabid</th>
-                                <th>Disposisi Kepegawaian</th>
+                                <th>Status</th>
                                 <th>Berkas 1</th>
                                 <th>Berkas 2</th>
                                 <th>Berkas 3</th>
@@ -81,18 +79,6 @@
                                     <th>{{ $item->nama }}</th>
                                     <th>{{ $item->nomor_induk }}</th>
                                     <th>{{ $item->keperluan }}</th>
-                                    @foreach ($style as $value)
-                                        @if ($value->id_status == $item->verifikasi_1)
-                                            <th> <span class="{{ $value->style }}">{{ $value->text }}
-                                                    {{ $item->verifikasi_1 == 12 ?  $item->msg_fail  : ""}}</span> </th>
-                                        @endif
-                                    @endforeach
-                                    @foreach ($style as $value)
-                                        @if ($value->id_status == $item->verifikasi_2)
-                                            <th> <span class="{{ $value->style }}">{{ $value->text }}
-                                                {{ $item->verifikasi_2 == 12 ?  $item->msg_fail  :""}}</span> </th>
-                                        @endif
-                                    @endforeach
                                     @foreach ($style as $value)
                                         @if ($value->id_status == $item->verifikasi_3)
                                             <th> <span class="{{ $value->style }}">{{ $value->text }}

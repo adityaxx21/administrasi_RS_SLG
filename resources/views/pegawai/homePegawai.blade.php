@@ -329,9 +329,7 @@
                             <tr>
                                 <th>Id</th>
                                 <th>Keperluan</th>
-                                <th>Kasi</th>
-                                <th>Kabid</th>
-                                <th>Disposisi Kepegawaian</th>
+                                <th>Status</th>
                                 <th>Berkas</th>
                                 <th></th>
                             </tr>
@@ -341,26 +339,6 @@
                                 <tr>
                                     <th>{{ $item->id }}</th>
                                     <th>{{ $item->keperluan }}</th>
-                                    @foreach ($style as $value)
-                                        @if ($item->verifikasi_1 == $value->id_status)
-                                            @if ($item->verifikasi_1 != 12)
-                                                <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
-                                            @else
-                                                <th> <span class="{{ $value->style }}">{{ $value->text }}
-                                                        {{ $item->msg_fail }}</span> </th>
-                                            @endif
-                                        @endif
-                                    @endforeach
-                                    @foreach ($style as $value)
-                                        @if ($item->verifikasi_2 == $value->id_status)
-                                            @if ($item->verifikasi_2 != 12)
-                                                <th> <span class="{{ $value->style }}">{{ $value->text }}</span> </th>
-                                            @else
-                                                <th> <span class="{{ $value->style }}">{{ $value->text }}
-                                                        {{ $item->msg_fail }}</span> </th>
-                                            @endif
-                                        @endif
-                                    @endforeach
                                     @foreach ($style as $value)
                                         @if ($item->verifikasi_3 == $value->id_status)
                                             @if ($item->verifikasi_3 != 12)
