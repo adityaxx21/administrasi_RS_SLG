@@ -20,7 +20,7 @@
                 <!-- Vertically centered modal -->
                 {{-- Input Data --}}
                 {{-- Update Data --}}
-                <form class="row" action="/laporanPelayanan" id="submit_it" method="get">
+                <form class="row" action="/rekap_pelatihan" id="submit_it" method="get">
                     <div class="col-4">
                         <div class="form-group">
                             <label for="min" class="label-form">Tanggal Mulai</label>

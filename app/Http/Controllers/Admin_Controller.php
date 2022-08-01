@@ -146,7 +146,7 @@ class Admin_Controller extends Controller
                 ->leftJoin('tb_user', 'tb_user.id', '=', 'tb_pegawai.id_pegawai')
                 ->orderBy('tb_pegawai.id', 'ASC')
                 ->where($stat)
-                ->whereBetween('tb_pegawai.updated_at', $cond)
+                ->whereBetween('tb_pegawai.waktu_pelaksanaan', $cond)
                 ->groupByRaw('tb_pegawai.id')
                 ->get();
         } else {
