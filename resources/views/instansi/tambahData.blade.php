@@ -160,7 +160,7 @@
                     <div class="modal-dialog modal-dialog-centered" style="max-width:50%">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Instansi</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Peserta</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
@@ -241,7 +241,7 @@
                     <div class="modal-dialog modal-dialog-centered" style="max-width:50%">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalLabel">Tambah Data Instansi</h5>
+                                <h5 class="modal-title" id="exampleModalLabel">Ubah Data Peserta</h5>
                                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">×</span>
                                 </button>
